@@ -170,7 +170,7 @@ function hoverNode(id){
   const related=new Set(scene.edges.filter(edge=>edge.from===id||edge.to===id).map(edge=>edge.key));
   for(const segment of routingPlan?.segments||[])wireElements.get(segment.id)?.classList.toggle('related-hover',segment.keys.some(key=>related.has(key)));
 }
-function setBox(next){box=next;root.setAttribute('viewBox',box.join(' '));$('#zoom').textContent=Math.round(fitBox[2]/box[2]*100)+'%';}
+function setBox(next){box=next;root.setAttribute('viewBox',box.join(' '));const label=Math.round(fitBox[2]/box[2]*100)+'%',badge=$('#zoom');if(badge.textContent!==label)badge.textContent=label;}
 function boundsFor(ps=positions){const values=Object.values(ps);return{minX:Math.min(...values.map(p=>p.x))-70,minY:Math.min(...values.map(p=>p.y))-125,maxX:Math.max(...values.map(p=>p.x+230))+80,maxY:Math.max(...values.map(p=>p.y+72))+175};}
 function viewFor(bounds){const rect=$('#canvas').getBoundingClientRect(),ratio=rect.width/rect.height;let width=bounds.maxX-bounds.minX,height=bounds.maxY-bounds.minY;if(width/height<ratio)width=height*ratio;else height=width/ratio;return[(bounds.minX+bounds.maxX-width)/2,(bounds.minY+bounds.maxY-height)/2,width,height];}
 function calculateFit(){const b=root.getBBox(),extent={minX:b.x-50,minY:b.y-60,maxX:b.x+b.width+50,maxY:b.y+b.height+60};
@@ -183,7 +183,7 @@ function focus(ids){const ps={};for(const id of ids)if(positions[id])ps[id]=posi
 function makeNode(n){
   const upper=n.level==='L1',p=positions[n.id];
   const g=svg('g',{'class':'node graph-node density-compact '+(upper?'upper':'lower'),'data-node':n.id,'data-level':n.level,tabindex:0,role:'button','aria-label':upper?tr('{name}，点击展开',{name:n.name}):n.name,...(upper?{'aria-expanded':'false'}:{})});
-  g.addEventListener('pointerenter',()=>hoverNode(n.id));g.addEventListener('pointerleave',()=>hoverNode(null));
+  g.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch'&&!drag)hoverNode(n.id);});g.addEventListener('pointerleave',e=>{if(e.pointerType!=='touch'&&!drag)hoverNode(null);});
   g.append(svg('rect',{'class':'node-surface',width:230,height:72,rx:10}));
   if(ioCategories&&categoryColors[n.category]){g.classList.add('category-'+n.category);g.style.setProperty('--node-category-color',categoryColors[n.category]);}
   const stripe=ioCategories&&categoryColors[n.category]?categoryColors[n.category]:upper?'var(--atlas-overview)':({operation:'var(--atlas-operation)',object:'var(--atlas-data)',result:'var(--atlas-result)',failure:'var(--atlas-rejection)'}[p.role]||'var(--atlas-operation)');
@@ -365,26 +365,44 @@ function zoom(factor,e){cameraAnimation++;const anchor=e?point(e):{x:box[0]+box[
 $('#canvas').addEventListener('wheel',e=>{e.preventDefault();zoom(Math.exp(Math.max(-150,Math.min(150,e.deltaY))*.002),e);},{passive:false});
 // Track each contact so touch panning and pinch zoom share the same SVG camera.
 const gesturePointers=new Map();
-let pinch=null,gestureMoved=false,gestureResetTimer;
+let pinch=null,gestureMoved=false,gestureResetTimer,cameraFrame=null,pendingCameraBox=null;
+// Coalesce high-frequency touch samples into one SVG update per display frame.
+function flushGestureCamera(){
+  if(cameraFrame!==null)cancelAnimationFrame(cameraFrame);
+  cameraFrame=null;
+  if(pendingCameraBox){const next=pendingCameraBox;pendingCameraBox=null;setBox(next);}
+}
+function queueGestureCamera(next){
+  pendingCameraBox=next;
+  if(cameraFrame===null)cameraFrame=requestAnimationFrame(()=>{cameraFrame=null;flushGestureCamera();});
+}
+function panStart(id,p,moved=false){
+  const ctm=root.getScreenCTM();
+  return{pointerId:id,startClient:{...p},startBox:[...box],units:{x:1/ctm.a,y:1/ctm.d},moved};
+}
 function captureGesturePointer(id){
   try{if(!$('#canvas').hasPointerCapture(id))$('#canvas').setPointerCapture(id);}catch{}
 }
 function markGestureMoved(){
+  if(gestureMoved)return;
   gestureMoved=true;suppressClick=true;
   clearTimeout(gestureResetTimer);
   $('#canvasWrap').classList.add('is-dragging');
   for(const id of gesturePointers.keys())captureGesturePointer(id);
 }
 function beginPinch(){
-  const [a,b]=[...gesturePointers.values()];
-  pinch={distance:Math.max(1,Math.hypot(b.x-a.x,b.y-a.y)),center:{clientX:(a.x+b.x)/2,clientY:(a.y+b.y)/2}};
+  flushGestureCamera();
+  const [a,b]=[...gesturePointers.values()],ctm=root.getScreenCTM();
+  const center={clientX:(a.x+b.x)/2,clientY:(a.y+b.y)/2};
+  pinch={distance:Math.max(1,Math.hypot(b.x-a.x,b.y-a.y)),center,box:[...box],anchor:point(center),units:{x:1/ctm.a,y:1/ctm.d}};
   drag=null;markGestureMoved();
+  for(const id of gesturePointers.keys())captureGesturePointer(id);
 }
 $('#canvas').addEventListener('pointerdown',e=>{
   const touch=e.pointerType==='touch';
   if(!touch&&(e.button!==0||e.target.closest('.node-entry-link')))return;
   if(!touch&&gesturePointers.size)return;
-  cameraAnimation++;clearTimeout(gestureResetTimer);
+  flushGestureCamera();cameraAnimation++;clearTimeout(gestureResetTimer);
   if(!gesturePointers.size){gestureMoved=false;suppressClick=false;}
   gesturePointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(gesturePointers.size>=2){beginPinch();return;}
@@ -392,7 +410,7 @@ $('#canvas').addEventListener('pointerdown',e=>{
   if(!touch&&e.shiftKey&&n){
     const id=n.dataset.node;drag={id,pointerId:e.pointerId,start:point(e),p:{...positions[id]},moved:false};
   }else if(touch||(!n&&!e.target.closest('.edge,.wire-segment,.owner-control,[data-caption],[data-collapse]'))){
-    drag={pointerId:e.pointerId,startClient:{x:e.clientX,y:e.clientY},client:{x:e.clientX,y:e.clientY},moved:false};
+    drag=panStart(e.pointerId,{x:e.clientX,y:e.clientY});
   }
   // Leave an unmoved touch on its original target so a tap still activates that control.
   if(drag&&!touch)captureGesturePointer(e.pointerId);
@@ -404,10 +422,11 @@ $('#canvas').addEventListener('pointermove',e=>{
     if(!pinch)beginPinch();
     const [a,b]=[...gesturePointers.values()],distance=Math.max(1,Math.hypot(b.x-a.x,b.y-a.y));
     const center={clientX:(a.x+b.x)/2,clientY:(a.y+b.y)/2};
-    const anchor=point(pinch.center),target=point(center);
-    const width=Math.max(300,Math.min(fitBox[2]*4,box[2]*pinch.distance/distance)),factor=width/box[2];
-    setBox([anchor.x-(target.x-box[0])*factor,anchor.y-(target.y-box[1])*factor,width,box[3]*factor]);
-    pinch={distance,center};markGestureMoved();return;
+    const {anchor,units}=pinch,baseline=pinch.box;
+    const width=Math.max(300,Math.min(fitBox[2]*4,baseline[2]*pinch.distance/distance)),factor=width/baseline[2];
+    const dx=(center.clientX-pinch.center.clientX)*units.x,dy=(center.clientY-pinch.center.clientY)*units.y;
+    queueGestureCamera([anchor.x-(anchor.x-baseline[0]+dx)*factor,anchor.y-(anchor.y-baseline[1]+dy)*factor,width,baseline[3]*factor]);
+    markGestureMoved();return;
   }
   if(!drag||drag.pointerId!==e.pointerId)return;
   if(drag.id){
@@ -418,13 +437,13 @@ $('#canvas').addEventListener('pointermove',e=>{
   }else{
     if(!drag.moved&&Math.hypot(e.clientX-drag.startClient.x,e.clientY-drag.startClient.y)<6)return;
     drag.moved=true;markGestureMoved();
-    const dx=e.clientX-drag.client.x,dy=e.clientY-drag.client.y,ctm=root.getScreenCTM();
-    setBox([box[0]-dx/ctm.a,box[1]-dy/ctm.d,box[2],box[3]]);
-    drag.client={x:e.clientX,y:e.clientY};
+    const dx=e.clientX-drag.startClient.x,dy=e.clientY-drag.startClient.y,baseline=drag.startBox;
+    queueGestureCamera([baseline[0]-dx*drag.units.x,baseline[1]-dy*drag.units.y,baseline[2],baseline[3]]);
   }
 });
 function endDrag(e){
   if(!gesturePointers.has(e.pointerId))return;
+  flushGestureCamera();
   if(drag?.id&&drag.moved){
     saved[drag.id]={x:positions[drag.id].x,y:positions[drag.id].y};
     cached.set(stateKey(),structuredClone(positions));
@@ -435,7 +454,7 @@ function endDrag(e){
   if(gesturePointers.size>=2)beginPinch();
   else if(gesturePointers.size){
     const [id,p]=[...gesturePointers.entries()][0];
-    drag={pointerId:id,startClient:{...p},client:{...p},moved:gestureMoved};
+    drag=panStart(id,p,gestureMoved);
   }else{
     $('#canvasWrap').classList.remove('is-dragging');
     // Capture-phase click handling consumes the synthetic click after a drag.
@@ -454,7 +473,7 @@ function activate(target){const collapse=target.closest('[data-collapse]'),n=tar
 $('#canvas').addEventListener('click',e=>{if(e.shiftKey||suppressClick||e.target.closest('.node-entry-link'))return;activate(e.target);});
 // Geometric hover covers the full concept without inserting a hit surface over node, wire or pan controls.
 $('#canvas').addEventListener('pointermove',e=>{
-  if(drag)return;const title=e.target.closest('.concept-title'),border=e.target.closest('.range-border-hit');
+  if(drag||e.pointerType==='touch')return;const title=e.target.closest('.concept-title'),border=e.target.closest('.range-border-hit');
   let id=(title||border)?.dataset.collapse;
   if(!id){const p=point(e),region=rangePlan.regions.find(r=>r.fragments.some(f=>p.x>=f.x&&p.x<=f.x+f.w&&p.y>=f.y&&p.y<=f.y+f.h));id=region?.id||null;}
   if(id!==hoverConcept)focusConcept(id);

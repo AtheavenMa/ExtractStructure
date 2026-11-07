@@ -81,3 +81,7 @@
 .language-notice{font:11px var(--atlas-font-sans);color:var(--atlas-copper);max-width:420px}
 .graph-empty-message{margin:60px auto;padding:24px;max-width:560px;color:var(--atlas-text-secondary);font:14px/1.8 var(--atlas-font-sans);text-align:center}
 @media(max-width:730px){.language-switch,.theme-switch{gap:3px}.graph-pathbar{padding:0}.status-legend{right:10px;bottom:12px;padding:8px 10px;gap:12px}.legend-item{font-size:11px}.legend-swatch{height:16px;width:16px}}
+
+/* Avoid per-node effects and SVG hit testing during captured camera gestures. */
+.canvas-wrap.is-dragging #diagram .node-surface{filter:none!important}
+.canvas-wrap.is-dragging #diagram{pointer-events:none}

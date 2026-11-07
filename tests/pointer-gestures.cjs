@@ -8,11 +8,14 @@ const input=source.slice(source.indexOf('function point(e)'),source.indexOf('fun
 function setup(){
   const listeners=new Map(),captured=new Set(),classes=new Set(),timers=new Map();
   let timer=0;
+  const frames=new Map(),metrics={reads:0,writes:0};
+  function flush(){const current=[...frames.values()];frames.clear();for(const fn of current)fn();}
   const canvas={
     addEventListener(type,handler,capture){const list=listeners.get(type)||[];list.push({handler,capture:capture===true});listeners.set(type,list);},
     hasPointerCapture:id=>captured.has(id),setPointerCapture:id=>captured.add(id),releasePointerCapture:id=>captured.delete(id)
   };
-  const context={console,Map,Math,JSON,structuredClone,
+  const context={console,Map,Math,JSON,structuredClone,metrics,
+    requestAnimationFrame:fn=>{frames.set(++timer,fn);return timer;},cancelAnimationFrame:id=>frames.delete(id),
     $:selector=>selector==='#canvas'?canvas:{classList:{add:x=>classes.add(x),remove:x=>classes.delete(x)}},
     setTimeout:fn=>{timers.set(++timer,fn);return timer;},clearTimeout:id=>timers.delete(id),
     localStorage:{setItem(){}},stateKey:()=>'',drawGeometry(){},
@@ -22,8 +25,8 @@ function setup(){
   vm.runInContext(`
     let box=[0,0,1000,2000],fitBox=[0,0,1000,2000],cameraAnimation=0,drag=null,suppressClick=false;
     const positions={n:{x:10,y:20}},saved={},cached=new Map(),storageKey='test';
-    function setBox(next){box=next;}
-    const root={getScreenCTM(){const a=400/box[2],d=800/box[3],e=-box[0]*a,f=-box[1]*d;return{a,d,e,f,inverse(){return{a:1/a,d:1/d,e:-e/a,f:-f/d};}};}};
+    function setBox(next){metrics.writes++;box=next;}
+    const root={getScreenCTM(){metrics.reads++;const a=400/box[2],d=800/box[3],e=-box[0]*a,f=-box[1]*d;return{a,d,e,f,inverse(){return{a:1/a,d:1/d,e:-e/a,f:-f/d};}};}};
   `+input+`
     globalThis.inspect=()=>({box:[...box],drag,suppressClick,contacts:gesturePointers.size,position:{...positions.n},saved:{...saved}});
   `,context);
@@ -32,9 +35,10 @@ function setup(){
     const e={pointerId:id,pointerType:'touch',button:0,clientX:x,clientY:y,target:target(kind),prevented:false,stopped:false,
       preventDefault(){this.prevented=true;},stopImmediatePropagation(){this.stopped=true;},...extra};
     for(const item of [...(listeners.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture))){item.handler(e);if(e.stopped)break;}
+    if(!extra.deferFrame)flush();
     return e;
   }
-  return{send,state:context.inspect,classes};
+  return{send,state:context.inspect,classes,metrics,flush};
 }
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-6,`${a} != ${b}`);
 for(const kind of ['.node','.wire-segment','.owner-control','.node-entry-link','']){
@@ -75,6 +79,17 @@ for(const kind of ['.node','.wire-segment','.owner-control','.node-entry-link','
   t.send('pointerup',1,120,140,'.node',mouse);
   near(t.state().position.x,60);near(t.state().position.y,120);
   assert.ok(t.state().saved.n);
+}
+{
+  const t=setup();t.send('pointerdown',1,100,100,'.node');
+  const reads=t.metrics.reads,writes=t.metrics.writes;
+  for(let i=1;i<=120;i++)t.send('pointermove',1,100+i,100+i,'.node',{deferFrame:true});
+  assert.equal(t.metrics.reads,reads,'Pan samples must not synchronously read SVG geometry');
+  assert.equal(t.metrics.writes,writes,'Pan samples must wait for animation frame');
+  t.flush();assert.equal(t.metrics.writes,writes+1,'One render for 120 samples');
+  near(t.state().box[0],-300);near(t.state().box[1],-300);
+  t.send('pointermove',1,230,230,'.node',{deferFrame:true});t.send('pointerup',1,230,230,'.node');
+  near(t.state().box[0],-325);
 }
 for(const name of ['gpt-code-structure.html','attention-is-all-you-need-paper-structure.html']){
   const html=fs.readFileSync(path.join(__dirname,'../examples',name),'utf8');
