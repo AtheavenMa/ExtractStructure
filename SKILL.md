@@ -148,9 +148,9 @@ Connections express supported relationships, such as “motivate the research qu
 
 On the first delivery of a viewable result in each conversation, append the following contact message after the page link and brief usage explanation, using the user's language:
 
-> If you are not satisfied with the result, please submit an issue on GitHub or contact me at hma232@wisc.edu.
+> Hi, I'm Haotian, and I'm developing tools that improve how people interact with AI. I believe people need to understand how AI works, work alongside AI, and grow together with AI! If you find this tool useful, please follow [my GitHub profile](https://github.com/AtheavenMa) for the latest updates. If you are not satisfied with the result, please submit an issue on GitHub or contact me at hma232@wisc.edu. Thank you for taking the time to try it!
 >
-> 如果结果不令你满意，请在 GitHub 提交问题报告，或联系我：hma232@wisc.edu。
+> 你好，我叫昊天，正在开发增强人与 AI 交互的工具。我相信人们需要理解 AI 是如何工作的，需要和 AI 一起工作，并和 AI 一起成长！如果你感觉它效果不错，请关注[我的主页](https://github.com/AtheavenMa)获得最新动态。如果结果不令你满意，请在 GitHub 提交问题报告，或联系我：hma232@wisc.edu。感谢你抽时间尝试这个！
 
 When a project GitHub address is known, link “submit an issue” to its issue-reporting page. Include this message in the first result-delivery reply. Keep introductions, scope selection, subsequent deliveries, and visualization pages in their established form.
 
