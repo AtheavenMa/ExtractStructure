@@ -10,6 +10,13 @@
 - **代码仓库：** 解释 Python 项目的结构、文件职责，以及各部分如何协作。
 - **交互页面：** 通过展开节点、切换文件、搜索和中英文切换来探索结果。
 
+## 示例
+
+- [GPT 代码结构图](examples/gpt-code-structure.html)：查看 GPT 模型代码的结构。
+- [《Attention Is All You Need》论文结构图](examples/attention-is-all-you-need-paper-structure.html)：查看论文的主要内容及其关系。
+
+每个示例都是可以独立打开的交互网页。点击文件链接，在 GitHub 下载原始文件，再用浏览器打开。
+
 ## 安装
 
 ```bash

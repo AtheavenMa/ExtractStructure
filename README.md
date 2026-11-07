@@ -10,6 +10,13 @@ An Agent Skill that turns documents and code repositories into interactive struc
 - **Code repositories:** Explain Python project structure, file responsibilities, and how components work together.
 - **Interactive viewer:** Explore results by expanding nodes, navigating files, searching, and switching between English and Chinese.
 
+## Examples
+
+- [GPT code structure map](examples/gpt-code-structure.html): Explore the structure of GPT model code.
+- [Attention Is All You Need paper structure map](examples/attention-is-all-you-need-paper-structure.html): Explore the paper's main ideas and their relationships.
+
+Each example is a self-contained interactive HTML page. Open the file link, download the raw file from GitHub, and open it in your browser.
+
 ## Install
 
 ```bash
