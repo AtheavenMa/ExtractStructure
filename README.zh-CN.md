@@ -12,10 +12,10 @@
 
 ## 示例
 
-- [GPT 代码结构图](examples/gpt-code-structure.html)：查看 GPT 模型代码的结构。
-- [《Attention Is All You Need》论文结构图](examples/attention-is-all-you-need-paper-structure.html)：查看论文的主要内容及其关系。
+- [GPT 代码结构图](https://atheavenma.github.io/extract-structure/gpt-code-structure.html)：查看 GPT 模型代码的结构。
+- [《Attention Is All You Need》论文结构图](https://atheavenma.github.io/extract-structure/attention-is-all-you-need-paper-structure.html)：查看论文的主要内容及其关系。
 
-每个示例都是可以独立打开的交互网页。点击文件链接，在 GitHub 下载原始文件，再用浏览器打开。
+点击上面的链接即可直接打开交互页面。每个示例的独立 HTML 文件也保存在 [`examples/`](examples/) 中，可下载后离线使用。
 
 ## 安装
 
