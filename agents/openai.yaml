@@ -1,0 +1,6 @@
+# Purpose and main functions: Display ExtractStructure's name and short purpose in the skill list.
+# Scope: Skill discovery interfaces supporting this configuration; load from the actual installation path.
+interface:
+  display_name: "ExtractStructure"
+  short_description: "Understand responsibilities and file collaboration in Python folders, then expand internal functions and processes"
+  default_prompt: "Use $extract-structure to help me understand the current project. Recommend suitable folders first and agree on the scope."

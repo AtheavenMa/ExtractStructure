@@ -1,0 +1,79 @@
+/* 目的和主要功能：定义 Mineral Atlas 双主题色彩与 ExtractStructure 页框布局。
+ * 适用范围：本 Skill 的目录图和文件图页面；组件按颜色用途读取主题变量。
+ */
+:root{
+  --atlas-font-sans:"IBM Plex Sans","IBM Plex Sans SC",ui-sans-serif,system-ui,sans-serif;
+  --atlas-font-mono:"IBM Plex Mono","IBM Plex Sans SC",ui-monospace,monospace;
+  --atlas-type-product:600 18px/1.5 var(--atlas-font-sans);
+  --atlas-type-path:600 16px/1.5 var(--atlas-font-sans);
+  --atlas-type-group:600 13px/1.5 var(--atlas-font-sans);
+  --atlas-type-filename:500 13px/1.5 var(--atlas-font-mono);
+  --atlas-type-description:400 12px/1.5 var(--atlas-font-sans);
+  --atlas-type-caption:500 12px/1.5 var(--atlas-font-sans);
+  --atlas-type-toolbar:500 13px/1.5 var(--atlas-font-sans);
+}
+:root,[data-theme="light"]{
+  color-scheme:light;
+  --atlas-independent:#808987;
+  --atlas-category-opacity:.14;--atlas-category-hover-opacity:.20;--atlas-category-selected-opacity:.26;
+  --atlas-canvas:#FFFFFF;--atlas-chrome:#FFFFFF;--atlas-group:#E8EAE3;
+  --atlas-node:#F4F3EC;--atlas-node-hover:#F6FAF7;--atlas-node-selected:#E9F5F0;
+  --atlas-group-border:#CDD5CE;--atlas-node-border:#B7C8BF;
+  --atlas-text:#202B2B;--atlas-text-secondary:#4B625B;--atlas-text-muted:#586D65;
+  --atlas-edge:#627C72;--atlas-edge-dimmed:#9CAC9F;
+  --atlas-accent:#187A69;--atlas-accent-hover:#126557;--atlas-copper:#AF754D;--atlas-overview:#235345;
+  --atlas-operation:#187A69;--atlas-data:#4D6D7A;--atlas-result:#547C31;--atlas-rejection:#A75237;
+  --atlas-shadow:0 1px 3px #202B2B0A;--atlas-node-filter:drop-shadow(0 1px 2px #202B2B0A);
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --atlas-independent:#A0AAA6;
+  --atlas-category-opacity:.18;--atlas-category-hover-opacity:.24;--atlas-category-selected-opacity:.30;
+  --atlas-canvas:#11191A;--atlas-chrome:#162020;--atlas-group:#1C2929;
+  --atlas-node:#2B3938;--atlas-node-hover:#334541;--atlas-node-selected:#24413A;
+  --atlas-group-border:#425751;--atlas-node-border:#526A64;
+  --atlas-text:#E9EEE6;--atlas-text-secondary:#B8C6C0;--atlas-text-muted:#9EAEA9;
+  --atlas-edge:#809B95;--atlas-edge-dimmed:#5B746E;
+  --atlas-accent:#79D2B6;--atlas-accent-hover:#A3E4D0;--atlas-copper:#D8AB73;--atlas-overview:#548C76;
+  --atlas-operation:#79D2B6;--atlas-data:#A5BAC5;--atlas-result:#A9D17B;--atlas-rejection:#E3A07E;
+  --atlas-shadow:none;--atlas-node-filter:none;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--atlas-canvas);color:var(--atlas-text)}
+code,pre,kbd,samp{font-family:var(--atlas-font-mono)}
+body{font:14px/1.5 var(--atlas-font-sans);-webkit-font-smoothing:antialiased;overflow:hidden}
+button,input,select,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--atlas-accent);outline-offset:3px}
+.app{height:100dvh;min-height:380px;display:flex;flex-direction:column;overflow:hidden;background:var(--atlas-canvas)}
+.topbar{display:flex;align-items:center;gap:20px;flex:none;height:65px;min-height:65px;padding:0 25px;background:var(--atlas-chrome);border-bottom:1px solid var(--atlas-group-border)}
+.brand{display:inline-flex;align-items:center;gap:9px;flex:none;white-space:nowrap;font:var(--atlas-type-product);letter-spacing:-.45px;color:var(--atlas-text)}
+.brand-mark{font-size:19px;font-weight:500;color:var(--atlas-accent)}
+.workspace{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0}
+.toolbar{font:var(--atlas-type-toolbar);height:55px;flex:none;display:flex;align-items:center;padding:7px 22px;gap:12px;background:var(--atlas-chrome);border-bottom:1px solid var(--atlas-group-border)}
+.tool-actions{display:flex;align-items:center;gap:4px;width:100%;min-width:0;flex-shrink:0}
+.search-box{display:flex;align-items:center;width:205px;height:34px;border:1px solid var(--atlas-node-border);border-radius:8px;padding:0 9px;background:var(--atlas-node);color:var(--atlas-text-muted);margin-right:auto}
+.search-box:focus-within{border-color:var(--atlas-accent)}
+.search-symbol{font-size:20px;line-height:1;margin-right:5px}
+.search-box input{min-width:0;width:100%;border:0;background:none;outline:0;font:var(--atlas-type-toolbar);color:var(--atlas-text)}
+.search-box input::placeholder{color:var(--atlas-text-muted)}
+.search-box input::-webkit-search-cancel-button{cursor:pointer}
+.icon-button{height:32px;min-width:32px;border:1px solid transparent;border-radius:6px;background:none;padding:5px 8px;color:var(--atlas-text-secondary);font:var(--atlas-type-toolbar)}
+.icon-button:hover:not(:disabled){background:var(--atlas-node-hover);color:var(--atlas-text)}
+button:disabled{cursor:default;color:var(--atlas-text-muted)}
+.tool-actions select{height:32px;max-width:135px;padding:0 8px;border:1px solid var(--atlas-node-border);border-radius:7px;background:var(--atlas-node);color:var(--atlas-text-secondary);font:var(--atlas-type-toolbar)}
+.toolbar-separator{width:1px;height:19px;background:var(--atlas-group-border);margin:0 6px}
+.zoom-value{min-width:42px;text-align:center;color:var(--atlas-text-muted);font:var(--atlas-type-toolbar);font-variant-numeric:tabular-nums}
+.visual-stage{position:relative;display:flex;flex:1;min-height:0;min-width:0;overflow:hidden}
+.graph-panel{display:flex;flex-direction:column;position:relative;min-height:0;min-width:0;flex:1;overflow:hidden}
+.canvas-wrap,.canvas-wrap.in-focus{display:block;position:relative;flex:1;min-height:180px;min-width:0;overflow:hidden;outline:none;background:var(--atlas-canvas);background-image:none;overscroll-behavior:contain;cursor:grab;touch-action:none;scrollbar-color:var(--atlas-node-border) var(--atlas-canvas)}
+.canvas-wrap.is-dragging{cursor:grabbing;user-select:none}
+#canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+#canvas>svg#diagram{position:static;width:100%;height:100%;max-width:none;max-height:none;margin:0;user-select:none;will-change:auto;transform:none}
+.canvas-foot{height:39px;min-height:39px;flex:none;padding:9px 22px;border-top:1px solid var(--atlas-group-border);background:var(--atlas-chrome);display:flex;justify-content:space-between;gap:14px;align-items:center;font-size:11px;color:var(--atlas-text-muted)}
+.canvas-foot>span:first-child{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.canvas-foot #sceneStatus{font-size:14px}.canvas-foot #sceneStatus.selection-active{color:var(--atlas-accent)}
+.canvas-foot .interaction-hint{font-size:12.5px;white-space:nowrap;color:var(--atlas-text-muted)}
+[hidden]{display:none!important}
+@media(max-width:1120px){.topbar{padding:0 16px;gap:16px}.search-box{width:150px}.interaction-hint{display:none}.tool-actions{gap:1px}.tool-actions select{max-width:105px}}
+@media(max-width:730px){.topbar{height:62px;min-height:62px;padding:10px 12px;gap:12px}.brand{font:var(--atlas-type-product)}.toolbar{font:var(--atlas-type-toolbar);height:auto;min-height:48px;padding:7px 10px;gap:6px}.tool-actions{flex-wrap:wrap;gap:3px}.search-box{width:145px}.tool-actions select{max-width:90px}.icon-button{min-width:24px;padding:4px 6px}.toolbar-separator{display:none}.canvas-foot{font-size:10px;padding:7px 10px}.canvas-foot #sceneStatus{font-size:13px}}
+

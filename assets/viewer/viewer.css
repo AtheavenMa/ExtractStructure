@@ -1,0 +1,83 @@
+/* 目的和主要功能：将 Mineral Atlas 色彩角色应用于节点、分组、关系与交互状态。
+ * 适用范围：本 Skill 的目录图和文件图画布；主题切换沿用相同布局及语义。
+ */
+.status-legend{position:absolute;z-index:3;display:flex;align-items:center;pointer-events:none;border:1px solid var(--atlas-group-border);border-radius:9px;bottom:18px;right:20px;padding:11px 14px;gap:18px;background:var(--atlas-chrome)}
+.legend-item{display:flex;align-items:center;gap:8px;white-space:nowrap;color:var(--atlas-text-secondary);font-size:12px}
+.legend-swatch{display:block;width:18px;height:18px;border-radius:4px;flex:none}
+.legend-swatch.overview{background:var(--atlas-overview)}
+.legend-swatch.operation{background:var(--atlas-operation)}.legend-swatch.object{background:var(--atlas-data)}.legend-swatch.result{background:var(--atlas-result)}.legend-swatch.failure{background:var(--atlas-rejection)}
+.node{outline:none}.node text{pointer-events:none}
+#diagram .graph-node .node-surface{fill:var(--atlas-node);stroke:var(--atlas-node-border);stroke-width:1.1;filter:var(--atlas-node-filter);transition:none}
+#diagram .graph-node.upper .node-surface{stroke:var(--atlas-overview)}
+#diagram .graph-node[class*="category-"] .node-surface{stroke:var(--node-category-color)}
+#diagram .graph-node:hover .node-surface{fill:var(--node-category-color,var(--atlas-node-hover));stroke:var(--node-category-color,var(--atlas-accent));stroke-width:1.5}
+#diagram .graph-node.selected .node-surface{fill:var(--node-category-color,var(--atlas-node-selected));stroke:var(--node-category-color,var(--atlas-accent));stroke-width:1.9}
+#diagram .graph-node:focus-visible .node-surface{stroke:var(--node-category-color,var(--atlas-accent));stroke-width:2.5}
+#diagram .graph-node:focus-visible{outline:2px solid var(--node-category-color,var(--atlas-accent));outline-offset:5px;border-radius:10px}
+#diagram .graph-node .node-title{fill:var(--atlas-text);font:var(--atlas-type-description)}
+#diagram .graph-node .node-filename{font:var(--atlas-type-filename);fill:var(--atlas-text)}
+.node .node-status{stroke:none}.node.lower{cursor:pointer}
+#diagram .graph-node .node-entry-link{cursor:pointer;outline:none}
+#diagram .graph-node .node-entry-link text{pointer-events:auto;text-decoration:underline;text-decoration-thickness:.7px;text-underline-offset:3px}
+#diagram .graph-node .node-entry-link:hover text,#diagram .graph-node .node-entry-link:focus-visible text{fill:var(--node-category-color,var(--atlas-accent))}
+#diagram .graph-node .child-count rect{fill:var(--atlas-group);stroke:var(--atlas-node-border);stroke-width:.7}
+#diagram .graph-node .child-count text{fill:var(--atlas-text-secondary);font-size:11px}
+.guides{display:none}
+.edge{cursor:pointer}.edge>.edge-line,.edge>.edge-hit,.edge>.arrow-end,.edge>.arrow-start{display:none!important}
+.wire-segment{cursor:pointer;outline:none}.wire-line{stroke:var(--atlas-edge);stroke-width:1.5;pointer-events:none}
+.wire-segment.main .wire-line{stroke-width:1.65}.wire-segment.shared .wire-line{stroke-width:2.2}
+.wire-segment.related-hover .wire-line{stroke:var(--atlas-accent-hover);stroke-width:2}
+.wire-segment:hover .wire-line,.wire-segment:focus-visible .wire-line{stroke:var(--atlas-accent-hover);stroke-width:2.5}
+.wire-segment.selected .wire-line{stroke:var(--atlas-accent);stroke-width:2.8}
+.wire-segment.dim .wire-line{stroke:var(--atlas-edge-dimmed)}
+.wire-hit{pointer-events:stroke}.wire-junction{fill:var(--atlas-edge)}
+.node.dim{opacity:.65}.wire-segment.dim{opacity:.8}.inline-caption.dim{opacity:.8}
+.owner-control{cursor:pointer;outline:none}.owner-control text{pointer-events:none}
+.range-fill{fill:var(--atlas-canvas);fill-opacity:1;pointer-events:none}
+.range-outline{fill:none;stroke:var(--concept-color,var(--atlas-overview));stroke-width:1.2;pointer-events:none}
+.range-border-hit{fill:none;stroke:transparent;stroke-width:12;pointer-events:stroke;cursor:pointer;outline:none}
+.concept-focused .range-outline,.range-border-hit:focus-visible{stroke:var(--concept-color,var(--atlas-accent));stroke-width:1.8}
+.concept-title rect{fill:none;stroke:none;pointer-events:all}
+.concept-title text{font:var(--atlas-type-group);fill:var(--atlas-text-secondary)}
+.concept-title .concept-disclosure{font-size:20px}
+.concept-title:hover text,.concept-title:focus-visible text,.concept-title.concept-focused text{fill:var(--concept-color,var(--atlas-accent))}
+.concept-title:focus-visible rect{stroke:var(--concept-color,var(--atlas-accent));stroke-width:1.5}
+.node.concept-member .node-surface{stroke:var(--node-category-color,var(--atlas-accent));stroke-width:1.5}
+#diagram .graph-node[class*="category-"] .node-surface{fill:var(--node-category-color);fill-opacity:var(--atlas-category-opacity)}
+#diagram .graph-node[class*="category-"]:hover .node-surface{fill-opacity:var(--atlas-category-hover-opacity)}
+#diagram .graph-node[class*="category-"].selected .node-surface{fill-opacity:var(--atlas-category-selected-opacity)}
+#diagram .graph-node[class*="category-"]:focus-visible .node-surface{fill-opacity:var(--atlas-category-selected-opacity)}
+#diagram .graph-node[class*="category-"] .child-count rect{fill:var(--node-category-color);fill-opacity:var(--atlas-category-opacity);stroke:var(--node-category-color)}
+
+.inline-caption{cursor:pointer;outline:none}
+.inline-caption text{fill:var(--atlas-text-secondary);font:var(--atlas-type-caption);stroke:none}
+.inline-caption.selected text,.inline-caption:hover text,.inline-caption:focus-visible text{fill:var(--atlas-accent)}
+.caption-hitbox{fill:none;stroke:none;pointer-events:all}
+.caption-leader{stroke:var(--atlas-edge);stroke-width:1;pointer-events:stroke}.caption-anchor{fill:var(--atlas-edge);pointer-events:none}
+.inline-caption.selected .caption-leader,.inline-caption:hover .caption-leader,.inline-caption:focus-visible .caption-leader{stroke:var(--atlas-accent);stroke-width:1.6}
+.graph-pathbar{display:flex;align-items:center;gap:4px;flex:1;min-width:0;padding:0;overflow-x:auto;white-space:nowrap;scrollbar-width:thin;color:var(--atlas-accent)}
+.graph-breadcrumbs{display:flex;gap:5px;align-items:center;flex:none;font:var(--atlas-type-path);color:inherit}
+.graph-pathbar a{color:inherit;text-decoration:none}.graph-pathbar a:hover{text-decoration:underline}
+.path-divider{color:inherit;opacity:.65}
+.graph-breadcrumbs .path-segment,.graph-breadcrumbs .path-choice{appearance:none;flex:none;background:transparent;border:0;border-radius:4px;color:inherit;font:inherit;cursor:pointer;white-space:nowrap}
+.graph-breadcrumbs .path-segment{padding:5px 3px;max-width:260px}.graph-breadcrumbs .path-choice{line-height:26px;padding:0 3px}
+.path-choice:hover,.path-choice:focus-visible,.path-next:hover,.path-next:focus-within{background:var(--atlas-node-hover);color:var(--atlas-text)}
+.path-segment option,.graph-pathbar #graphPicker option{background:var(--atlas-node);color:var(--atlas-text)}
+.path-next{position:relative;display:inline-flex;align-items:center;justify-content:center;width:22px;height:26px;color:var(--atlas-text-secondary);border-radius:4px}
+.path-next svg{position:absolute;pointer-events:none;z-index:1}
+.graph-pathbar .path-next #graphPicker{appearance:none;display:block;margin:0;width:22px;min-width:22px;max-width:22px;height:26px;padding:0;border:0;background:transparent;color:transparent;cursor:pointer}
+.path-next .path-choice-next{position:absolute;inset:0;width:22px;height:26px;padding:0}
+.file-suffix{color:inherit}
+.path-menu{position:fixed;z-index:1000;min-width:180px;max-width:min(420px,calc(100vw - 16px));max-height:min(360px,calc(100vh - 24px));overflow:auto;padding:5px;background:var(--atlas-node);border:1px solid var(--atlas-node-border);border-radius:7px;box-shadow:var(--atlas-shadow);font:var(--atlas-type-toolbar)}
+.path-menu button{display:block;width:100%;text-align:left;border:0;border-radius:3px;background:transparent;color:var(--atlas-text-secondary);padding:7px 10px;cursor:pointer;font:inherit;white-space:nowrap}
+.path-menu button:hover,.path-menu button:focus-visible{background:var(--atlas-node-hover);color:var(--atlas-text)}
+.path-menu button.current{background:var(--atlas-node-selected);color:var(--atlas-accent)}
+.path-menu[hidden],.graph-breadcrumbs select[hidden],.path-next select[hidden]{display:none}
+.language-switch,.theme-switch{display:flex;align-items:center;gap:5px;flex:none;font:var(--atlas-type-toolbar);color:var(--atlas-text-muted)}
+.topbar .language-switch{margin-left:auto}
+.language-switch button,.theme-switch button{background:transparent;border:0;padding:4px 2px;color:var(--atlas-text-secondary);cursor:pointer}
+.language-switch button.active,.theme-switch button.active{color:var(--atlas-accent)}
+.language-switch button:hover,.theme-switch button:hover{color:var(--atlas-accent-hover)}
+.language-notice{font:11px var(--atlas-font-sans);color:var(--atlas-copper);max-width:420px}
+.graph-empty-message{margin:60px auto;padding:24px;max-width:560px;color:var(--atlas-text-secondary);font:14px/1.8 var(--atlas-font-sans);text-align:center}
+@media(max-width:730px){.language-switch,.theme-switch{gap:3px}.graph-pathbar{padding:0}.status-legend{right:10px;bottom:12px;padding:8px 10px;gap:12px}.legend-item{font-size:11px}.legend-swatch{height:16px;width:16px}}
