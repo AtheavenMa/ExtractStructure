@@ -30,3 +30,9 @@ The agent analyzes the selected files and serves the resulting map in a local br
 ## Requirements
 
 Python 3.9+ and a browser. The included graph tools use Python's standard library; PDF reading depends on the host agent's available tools.
+
+## License
+
+© 2026 Haotian Ma. All rights reserved.
+
+This project is publicly available for reference and academic citation. See [LICENSE](LICENSE) for details.

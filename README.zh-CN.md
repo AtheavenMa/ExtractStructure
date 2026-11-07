@@ -30,3 +30,9 @@ npx skills add AtheavenMa/ExtractStructure
 ## 运行要求
 
 Python 3.9 及以上版本和浏览器。内置绘图工具使用 Python 标准库；PDF 阅读使用智能助手所在环境提供的工具。
+
+## 许可说明
+
+© 2026 Haotian Ma。保留所有权利。
+
+本项目公开提供参考和学术引用。详情见 [LICENSE](LICENSE)。
