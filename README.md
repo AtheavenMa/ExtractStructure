@@ -12,10 +12,10 @@ An Agent Skill that turns documents and code repositories into interactive struc
 
 ## Examples
 
-- [GPT code structure map](examples/gpt-code-structure.html): Explore the structure of GPT model code.
-- [Attention Is All You Need paper structure map](examples/attention-is-all-you-need-paper-structure.html): Explore the paper's main ideas and their relationships.
+- [GPT code structure map](https://atheavenma.github.io/extract-structure/gpt-code-structure.html): Explore the structure of GPT model code.
+- [Attention Is All You Need paper structure map](https://atheavenma.github.io/extract-structure/attention-is-all-you-need-paper-structure.html): Explore the paper's main ideas and their relationships.
 
-Each example is a self-contained interactive HTML page. Open the file link, download the raw file from GitHub, and open it in your browser.
+Click either link to open the interactive page directly in your browser. Each example is also available as a self-contained HTML file in [`examples/`](examples/) for offline use.
 
 ## Install
 
