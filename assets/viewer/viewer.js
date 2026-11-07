@@ -442,6 +442,9 @@ $('#canvas').addEventListener('pointermove',e=>{
   }
 });
 function endDrag(e){
+  // Capture transfers emit a bubbling loss event on the previous SVG child.
+  // Only terminate when the canvas itself genuinely loses this pointer.
+  if(e.type==='lostpointercapture'&&(e.target!==$('#canvas')||$('#canvas').hasPointerCapture(e.pointerId)))return;
   if(!gesturePointers.has(e.pointerId))return;
   flushGestureCamera();
   if(drag?.id&&drag.moved){

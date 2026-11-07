@@ -32,8 +32,9 @@ function setup(){
   `,context);
   const target=kind=>({closest:selectors=>selectors.split(',').some(s=>s.trim()===kind)?{dataset:{node:'n'}}:null});
   function send(type,id,x,y,kind='',extra={}){
-    const e={pointerId:id,pointerType:'touch',button:0,clientX:x,clientY:y,target:target(kind),prevented:false,stopped:false,
+    const e={type,pointerId:id,pointerType:'touch',button:0,clientX:x,clientY:y,target:type==='lostpointercapture'?canvas:target(kind),prevented:false,stopped:false,
       preventDefault(){this.prevented=true;},stopImmediatePropagation(){this.stopped=true;},...extra};
+    if(type==='lostpointercapture'&&e.target===canvas)captured.delete(id);
     for(const item of [...(listeners.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture))){item.handler(e);if(e.stopped)break;}
     if(!extra.deferFrame)flush();
     return e;
@@ -90,6 +91,26 @@ for(const kind of ['.node','.wire-segment','.owner-control','.node-entry-link','
   near(t.state().box[0],-300);near(t.state().box[1],-300);
   t.send('pointermove',1,230,230,'.node',{deferFrame:true});t.send('pointerup',1,230,230,'.node');
   near(t.state().box[0],-325);
+}
+// Touch browsers implicitly capture to the SVG child on pointerdown. Transferring
+// that capture to the canvas bubbles lostpointercapture from the old child.
+{
+  const t=setup();
+  t.send('pointerdown',1,100,100,'.node');t.send('pointermove',1,120,100,'.node');
+  t.send('lostpointercapture',1,120,100,'.node',{target:{}});
+  assert.equal(t.state().contacts,1,'Capture transfer from SVG child must keep the touch active');
+  t.send('pointermove',1,160,100,'.node');near(t.state().box[0],-150);
+  t.send('pointerup',1,160,100,'.node');assert.equal(t.state().contacts,0);
+}
+{
+  const t=setup();t.send('pointerdown',1,100,150,'.node');t.send('pointerdown',2,200,150,'.node');
+  t.send('lostpointercapture',1,100,150,'.node',{target:{}});
+  t.send('lostpointercapture',2,200,150,'.node',{target:{}});
+  assert.equal(t.state().contacts,2,'Both implicit capture transfers must preserve pinch contacts');
+  t.send('pointermove',1,50,150);t.send('pointermove',2,250,150);near(t.state().box[2],500);
+  t.send('lostpointercapture',2,250,150);assert.equal(t.state().contacts,1);
+  t.send('pointermove',1,70,150);near(t.state().box[0],162.5);
+  t.send('pointerup',1,70,150);assert.equal(t.state().contacts,0);
 }
 for(const name of ['gpt-code-structure.html','attention-is-all-you-need-paper-structure.html']){
   const html=fs.readFileSync(path.join(__dirname,'../examples',name),'utf8');
