@@ -33,6 +33,6 @@ Python 3.9+ and a browser. The included graph tools use Python's standard librar
 
 ## License
 
-© 2026 Haotian Ma. All rights reserved.
+Copyright (c) 2026 Haotian Ma.
 
-This project is publicly available for reference and academic citation. See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.

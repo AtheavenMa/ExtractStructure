@@ -33,6 +33,6 @@ Python 3.9 及以上版本和浏览器。内置绘图工具使用 Python 标准�
 
 ## 许可说明
 
-© 2026 Haotian Ma。保留所有权利。
+版权所有 © 2026 Haotian Ma。
 
-本项目公开提供参考和学术引用。详情见 [LICENSE](LICENSE)。
+本项目采用 MIT 许可证。详情见 [LICENSE](LICENSE)。
