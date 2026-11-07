@@ -20,6 +20,17 @@ The full product name is **ExtractStructure**; the folder and invocation name is
 
 This skill contains its instructions, graph assembly programs, drawing resources, and results. The agent reads selected code or text, writes structural explanations, and uses the skill's components to save and display graphs. Python programs use the standard library and pages open in a browser. PDF reading uses text extraction and page viewing tools available in the current environment.
 
+## Mandatory principles for writing, explanation, and conversation
+
+The following is a complete English translation of the “Principles for writing, explanation, and conversation” in ResearchHarness's root AGENTS.md. These principles are mandatory within this skill. Apply them when drafting, editing, or translating documents and graph content, explaining results, reporting progress, and communicating with people in either mode and in any language.
+
+These principles apply to writing files, explaining issues to people, and communicating with people. Their purpose is to ensure that people can understand what is written and said.
+
+1. **Use familiar words.** Replace code names, invented compound terms, and words that require specialized background with familiar, plain expressions. State concrete objects, purposes, and results directly.
+2. **Use complete natural language.** Expand abbreviations and code-like expressions into full words and explanations that people can understand directly.
+3. **Use affirmative sentences to explain concepts and relationships.** State directly what each concept means, what it does, how it relates to other concepts, and when it applies. Use affirmative sentences consistently when distinguishing concepts and explaining boundaries.
+4. **Provide detail according to people's needs.** In everyday writing and conversation, focus on understanding the actual problem, purpose, and result. Expand technical details and execution boundaries when people explicitly request them. By default, treat ambiguity in execution boundaries and missing technical details as having a minor impact on the task, and continue using the available information.
+
 ## Startup and conversation
 
 When the user says “load” or “use” ExtractStructure, first deliver the complete fixed introduction from Phase 1, then recommend entry points from visible files and folders. When the user has already specified text, a folder, or scope, follow that choice. Requests to read or discuss the skill, or to pause execution, follow the requested scope.
