@@ -2,8 +2,8 @@
  * 适用范围：本 Skill 的目录图和文件图页面；组件按颜色用途读取主题变量。
  */
 :root{
-  --atlas-font-sans:"IBM Plex Sans","IBM Plex Sans SC",ui-sans-serif,system-ui,sans-serif;
-  --atlas-font-mono:"IBM Plex Mono","IBM Plex Sans SC",ui-monospace,monospace;
+  --atlas-font-sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --atlas-font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   --atlas-type-product:600 18px/1.5 var(--atlas-font-sans);
   --atlas-type-path:600 16px/1.5 var(--atlas-font-sans);
   --atlas-type-group:600 13px/1.5 var(--atlas-font-sans);

@@ -7,12 +7,11 @@ import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import mimetypes
-import re
 from urllib.parse import quote, unquote, urlsplit
 from graph_store import SKILL, PREFIX, graph_catalog, read_graph, graph_id_for
 
 ASSETS = frozenset({'index.html', 'bootstrap.js', 'i18n.js', 'viewer.js', 'viewer.css',
-    'atlas-shell.css', 'fonts.css', 'orthogonal.js', 'inline_labels.js', 'caption_worker.js', 'concept_ranges.js', 'expansion_layout.js'})
+    'atlas-shell.css', 'orthogonal.js', 'inline_labels.js', 'caption_worker.js', 'concept_ranges.js', 'expansion_layout.js'})
 
 
 def serve(store, *, port=0, source=None):
@@ -30,8 +29,7 @@ def serve(store, *, port=0, source=None):
                 tail = path[len(PREFIX):]
                 if tail.startswith('assets/'):
                     name = tail[len('assets/'):]
-                    if name not in ASSETS and not re.fullmatch(
-                        r'fonts/(?:IBMPlex(?:SansSC-(?:Regular|Medium|SemiBold)-[0-9]{3}|Sans-(?:Regular|Medium|SemiBold)|Mono-Medium)\.woff2|IBM-Plex-LICENSE\.txt)', name):
+                    if name not in ASSETS:
                         raise FileNotFoundError('Unknown page resource')
                     raw = (SKILL / 'assets' / 'viewer' / name).read_bytes()
                     mime = mimetypes.guess_type(name)[0] or 'application/octet-stream'
@@ -66,9 +64,9 @@ def serve(store, *, port=0, source=None):
                     raw = (SKILL / 'assets' / 'viewer' / 'index.html').read_bytes()
                     mime = 'text/html'
                 self.send_response(200)
-                self.send_header('Content-Type', mime if mime.startswith('font/') else mime + '; charset=utf-8')
+                self.send_header('Content-Type', mime + '; charset=utf-8')
                 self.send_header('Content-Length', str(len(raw)))
-                self.send_header('Cache-Control', 'public, max-age=86400' if tail.startswith('assets/fonts/') else 'no-store')
+                self.send_header('Cache-Control', 'no-store')
                 self.end_headers()
                 self.wfile.write(raw)
             except (OSError, ValueError, KeyError, TypeError) as error:

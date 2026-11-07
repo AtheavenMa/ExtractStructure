@@ -12,7 +12,7 @@ Use when generating or reusing ExtractStructure graph data, delivering pages, or
 
 Folder and file graphs use this skill's `assets/viewer/`. The agent writes functional explanations, actual relationships, source evidence, and bilingual content; shared components handle layout, themes, text placement, and interaction. New projects and existing results follow the same defaults. Refresh the page after presentation resources change.
 
-The path navigation appears on the first row to the right of ExtractStructure, using the brand's IBM Plex font at 16px, weight 600, and the theme accent color; the brand is 18px. Paths support navigation between levels and horizontal scrolling for long paths.
+The path navigation appears on the first row to the right of ExtractStructure, using the system sans-serif font at 16px, weight 600, and the theme accent color; the brand is 18px. Paths support navigation between levels and horizontal scrolling for long paths.
 
 Deliver the selected folder or file's own address with every expandable node initially collapsed. Folder tasks open the selected folder's overview. The page responds when users expand, locate content, or switch language.
 
@@ -52,7 +52,7 @@ Color values reside in `assets/viewer/atlas-shell.css` as `--atlas-*` variables,
 
 ## Fonts
 
-Use IBM Plex Sans for English UI, IBM Plex Sans SC for Chinese UI, and IBM Plex Mono for code and filenames. Mixed text selects fonts from the same family per character. Font stacks and typography roles use `--atlas-font-*` and `--atlas-type-*` variables in `atlas-shell.css`.
+Use system sans-serif fonts for English UI, available system Chinese fonts for Chinese text, and system monospace fonts for code and filenames. The browser selects available fonts on each device. Font stacks and typography roles use `--atlas-font-*` and `--atlas-type-*` variables in `atlas-shell.css`.
 
 | Role | Size and weight |
 | --- | --- |
@@ -65,7 +65,7 @@ Use IBM Plex Sans for English UI, IBM Plex Sans SC for Chinese UI, and IBM Plex 
 | Bottom node and relationship counts | 14px; 13px on narrow screens |
 | Bottom interaction hints | 12.5px |
 
-Use IBM's official open-source fonts and retain `assets/viewer/fonts/IBM-Plex-LICENSE.txt`. `fonts.css` declares local WOFF2 resources. Chinese uses official hinted subsets and their original `unicode-range`, loading by character and weight. Use `swap` to display fallback text while fonts load, and allow browser caching. Existing subsets support new Chinese content. Font changes preserve card sizes, coordinates, wrapping, theme colors, and interaction logic.
+The viewer uses fonts available through the browser and operating system. Retain the established font sizes, weights, colors, spacing, card dimensions, graph coordinates, and layout rules. Font appearance and text wrapping may vary across devices because system fonts have different character widths.
 
 ## Interaction and performance
 
