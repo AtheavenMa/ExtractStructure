@@ -2,6 +2,8 @@
 
 # ExtractStructure
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24051078.svg)](https://doi.org/10.5281/zenodo.24051078)
+
 ![《Attention Is All You Need》交互结构图](assets/screenshots/attention-paper-structure.png)
 
 一个将文档和代码仓库整理成可交互结构图的智能助手技能。
@@ -45,3 +47,19 @@ Python 3.10 及以上版本和浏览器。内置绘图工具使用 Python 标准
 版权所有 © 2026 Haotian Ma。
 
 本项目采用 MIT 许可证。详情见 [LICENSE](LICENSE)。
+
+## 引用
+
+如果在研究或项目中使用了 ExtractStructure，请引用对应的 Zenodo 发布版本：
+
+```bibtex
+@software{ma2026extractstructure,
+  author    = {Ma, Haotian},
+  title     = {ExtractStructure: An Agent Skill for Interactive Structure Visualization},
+  year      = {2026},
+  version   = {0.1.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24051078},
+  url       = {https://doi.org/10.5281/zenodo.24051078}
+}
+```

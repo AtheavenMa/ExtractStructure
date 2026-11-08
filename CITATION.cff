@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use ExtractStructure in your work, please cite this software."
+type: software
+
+title: "ExtractStructure: An Agent Skill for Interactive Structure Visualization"
+
+authors:
+  - family-names: "Ma"
+    given-names: "Haotian"
+
+version: "0.1.0"
+date-released: 2026-11-08
+doi: 10.5281/zenodo.24051078
+
+repository-code: "https://github.com/AtheavenMa/ExtractStructure"
+url: "https://github.com/AtheavenMa/ExtractStructure"
+license: MIT
