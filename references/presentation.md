@@ -10,11 +10,11 @@ Use when generating or reusing ExtractStructure graph data, delivering pages, or
 
 ## Shared pages for new graphs and existing results
 
-Folder and file graphs use this skill's `assets/viewer/`. The agent writes functional explanations, actual relationships, source evidence, and bilingual content; shared components handle layout, themes, text placement, and interaction. New projects and existing results follow the same defaults. Refresh the page after presentation resources change.
+Article, folder and file graphs use this skill's `assets/viewer/`. The agent writes functional explanations, actual relationships, source evidence, and bilingual content; shared components handle layout, themes, text placement, and interaction. New projects and existing results follow the same defaults. Refresh the page after presentation resources change.
 
 The path navigation appears on the first row to the right of ExtractStructure, using the system sans-serif font at 16px, weight 600, and the theme accent color; the brand is 18px. Paths support navigation between levels and horizontal scrolling for long paths.
 
-Deliver the selected folder or file's own address with every expandable node initially collapsed. Folder tasks open the selected folder's overview. The page responds when users expand, locate content, or switch language.
+Deliver the selected article, folder or file's own address or exported page with every expandable node initially collapsed. Folder tasks open the selected folder's overview. The page responds when users expand, locate content, or switch language.
 
 ## Layout and nodes
 
@@ -24,6 +24,14 @@ Deliver the selected folder or file's own address with every expandable node ini
 - The page reads `display.presentation.layout.collapse_layout`. The default `"compact"` uses the behavior above. When the user explicitly requests fixed absolute positions, `"fixed"` reserves the complete reference layout.
 - Function names and descriptions within cards use 12px, weight 400, and the theme's main text color. Count badges and interaction indicate expansion. Center filenames and descriptions vertically as a single text block with consistent line spacing and padding.
 - Expanded group titles have transparent backgrounds and retain their full click areas. Nodes show names, purposes, and applicable filenames. Groups, node names, and path navigation convey ownership; small external ownership labels remain omitted.
+
+## Names and explanations
+
+A card name identifies one concrete topic, action or result. Its `meaning` preserves the explanation needed to understand it. Current cards are 230 × 72 pixels. As drafting guidance, aim for about twelve Chinese characters or twenty-one Latin characters per row, with up to four rows; folder cards reserve an additional filename row. Actual wrapping depends on words and fonts.
+
+The viewer abbreviates overflow with an ellipsis while preserving the original graph text. Hover or keyboard focus shows the complete name and explanation in a shared tooltip. Escape dismisses it. Clicking retains the established expansion and selection behavior. Translations include both names and explanations.
+
+Expanded topic regions use the same base margins for every topic. Geometry and nearby nodes determine merging and separation. A region can have several pieces when its members surround other nodes. Topic names, order and content follow source meaning.
 
 ## Connection labels
 
@@ -71,11 +79,17 @@ The viewer uses fonts available through the browser and operating system. Retain
 
 Bottom hints explain expansion, collapse, relationship highlighting, and scroll zoom in that order. Both language versions omit Shift-drag text; dragging retains its current behavior.
 
-Expansion, collapse, search navigation, and view movement switch immediately. The browser continues accepting input while labels are placed. Switching views cancels previous work; the current view receives results corresponding to its own layout.
+Expansion, collapse, search navigation, and view movement switch immediately. The browser continues accepting input while labels are placed. Workers run label placement in the background. Where workers are unavailable, deferred page computation provides the same labels, with computation time depending on graph complexity. Switching views cancels pending work; the current view receives results corresponding to its own layout.
 
 Start label placement with a small set of good candidates and expand the search for difficult labels. Use spatial indexing for nearby collision checks and reuse computed candidates across retries. Cache label positions and connection paths by view; collapse and re-expansion reuse current-session results.
 
 When the user requests performance investigation, measure data loading, nodes and connection paths, label candidate generation, position assignment, and retries separately. Distinguish initial computation, cache hits, and time until the page accepts input, using measurements from the current environment.
+
+## Service and independent pages
+
+The same viewer resources serve both delivery modes. Service pages request graph data from the local service. Independent HTML embeds the selected graph, its available descendant graphs and ancestor navigation, along with scripts, styles and worker resources. Internal navigation uses URL fragments in independent pages. Language switching rebuilds the current graph in place and retains expansion, view and search, including after asynchronous connection labels finish; theme switching keeps the current geometry. Browser storage is optional for the running page.
+
+Export creates a self-contained file. Host attachment, hosting and port forwarding tools determine how users access it. The initial graph and collapsed state follow the selected task object.
 
 ## Files to locate during maintenance
 
@@ -89,6 +103,8 @@ When the user requests performance investigation, measure data loading, nodes an
 | `assets/viewer/atlas-shell.css`, `viewer.css` | Define theme colors, page layout, and component display states. |
 | `assets/viewer/i18n.js` | Manage language and theme preferences and restore views when language changes. |
 | `assets/viewer/bootstrap.js` | Load the current graph and organize folder and file navigation. |
+| `assets/viewer/runtime.js` | Read server or embedded data, navigate results, and create background workers with a page-computation fallback. |
+| `scripts/export_page.py` | Package selected graph navigation and the shared viewer into an independent HTML file. |
 | `scripts/server.py` | Serve page resources and graph data, including resources for background placement. |
 
 Implement presentation changes in shared resources. Graph data continues storing meanings and full L2 reference coordinates. Reuse and replacement of existing content follow the user's selection.
@@ -109,3 +125,11 @@ For nodes awaiting a category, infer from complete relationships at that level: 
 Every page shows the same four categories at bottom right: input, process, output, and independent. English, Chinese, dark, and light versions use the same items and larger swatches, with colors adjusted to the theme. Collapsed cards and leaf nodes use translucent category fills. Group borders use parent colors; expanded regions use the canvas background.
 
 Hover, selection, keyboard focus, and group focus retain each node's category color in borders and fill, using border width and opacity for feedback. Expanded group border and title highlights use that group's color.
+
+## Optional developer checks
+
+When viewer verification is requested, `tests/check_viewer.py` accepts any saved viewer URL or exported HTML path. It checks collapsed opening, node explanations, expansion and language restoration after labels finish. Supply `--sandbox` with an HTML file to exercise an opaque frame; `--worker-mode blocked` or `--worker-mode load-error` exercises fallback computation. The check uses the host's optional Playwright package and Chromium browser; graph generation and export keep their standard-library runtime. Store any downloaded browser runtime and captured reports in a named directory under this skill's `results/tasks/`. The check prints its observed result as JSON.
+
+```bash
+python <skill-directory>/tests/check_viewer.py <exported-html-path> --sandbox --worker-mode blocked
+```

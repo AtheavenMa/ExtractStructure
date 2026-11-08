@@ -1,6 +1,6 @@
 <!doctype html>
-<!-- 目的和主要功能：提供 ExtractStructure 目录与文件功能图的页面骨架。
-     适用范围：本 Skill 的 /extract-structure/ 页面；内部组件读取当前图资料，提供展开、收起和聚焦。 -->
+<!-- 目的和主要功能：提供 ExtractStructure 文章、目录与文件结构图的页面骨架。
+     适用范围：本技能的服务页面与独立页面；内部组件读取当前图资料，提供展开、收起和聚焦。 -->
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ExtractStructure</title>
 <link rel="stylesheet" href="/extract-structure/assets/atlas-shell.css">
@@ -10,5 +10,11 @@
 
 <div class="workspace"><div class="toolbar"><div class="tool-actions"><label class="search-box"><span class="search-symbol" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="查找节点…" aria-label="查找节点" autocomplete="off"></label><button id="expandAll" class="icon-button">全部展开</button><span class="toolbar-separator"></span><button id="minus" class="icon-button" aria-label="缩小">−</button><span id="zoom" class="zoom-value">100%</span><button id="plus" class="icon-button" aria-label="放大">＋</button></div></div>
 <div class="visual-stage"><main class="graph-panel"><div id="canvasWrap" class="canvas-wrap"><div id="canvas"></div><div class="status-legend" role="note" aria-label="节点颜色表示输入、过程、输出与独立节点"><span class="legend-item"><i class="legend-swatch" style="background:var(--atlas-data)"></i>输入</span><span class="legend-item"><i class="legend-swatch" style="background:var(--atlas-operation)"></i>过程</span><span class="legend-item"><i class="legend-swatch" style="background:var(--atlas-copper)"></i>输出</span><span class="legend-item"><i class="legend-swatch" style="background:var(--atlas-independent)"></i>独立</span></div></div><footer class="canvas-foot"><span id="sceneStatus" aria-live="polite"></span><span class="interaction-hint">点击功能展开 · 点击范围标题或边界收起 · 点击线段高亮关系 · 滚轮缩放</span></footer></main></div></div></div>
+<script src="/extract-structure/assets/runtime.js" defer></script>
 <script src="/extract-structure/assets/i18n.js" defer></script>
+<script src="/extract-structure/assets/orthogonal.js" defer></script>
+<script src="/extract-structure/assets/inline_labels.js" defer></script>
+<script src="/extract-structure/assets/concept_ranges.js" defer></script>
+<script src="/extract-structure/assets/expansion_layout.js" defer></script>
+<script src="/extract-structure/assets/viewer.js" defer></script>
 <script src="/extract-structure/assets/bootstrap.js" defer></script></body></html>

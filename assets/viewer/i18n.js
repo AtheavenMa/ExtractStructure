@@ -1,5 +1,5 @@
-/* 目的和主要功能：提供代码语义图的中英文界面、JSON 文本翻译、语言与明暗主题偏好。
- * 适用范围：共用代码图 viewer；翻译保持源码路径、身份、关系及坐标不变。
+/* 目的和主要功能：提供文章与代码结构图的中英文界面、JSON 文本翻译、语言与明暗主题偏好。
+ * 适用范围：共用结构图查看器；翻译保持源码路径、身份、关系及坐标不变。
  */
 'use strict';
 (()=>{
@@ -28,8 +28,8 @@
     '连线说明暂未排好，节点仍可浏览。':'Connection labels are unavailable; nodes remain browsable.',
     '部分图中文字沿用原文，尚待补充所选语言翻译。':'Some graph text is shown in its original language; translations are not yet complete.'
   };
-  const params=new URLSearchParams(location.search);let stored;try{stored=localStorage.getItem('codeAtlas.language');}catch{}
-  const requested=params.get('lang')||stored,lang=requested==='zh'?'zh':'en';
+  const params=ExtractRuntime.parameters();let stored;try{stored=localStorage.getItem('codeAtlas.language');}catch{}
+  const requested=params.get('lang')||(ExtractRuntime.standalone?ExtractRuntime.defaultLanguage:stored)||ExtractRuntime.defaultLanguage;let lang=requested==='zh'?'zh':'en';
   try{localStorage.setItem('codeAtlas.language',lang);}catch{}
   const systemTheme=window.matchMedia('(prefers-color-scheme: dark)');
   let manualTheme=false;
@@ -38,40 +38,41 @@
     for(const button of document.querySelectorAll('.theme-switch [data-theme]')){
       button.classList.toggle('active',button.dataset.theme===choice);button.setAttribute('aria-pressed',String(button.dataset.theme===choice));
     }
-    if(persist){manualTheme=true;try{localStorage.setItem('codeAtlas.theme',choice);}catch{}const url=new URL(location.href);url.searchParams.set('theme',choice);window.history.replaceState(null,'',url);}
+    if(persist){manualTheme=true;try{localStorage.setItem('codeAtlas.theme',choice);}catch{}ExtractRuntime.preference('theme',choice);}
   }
   let storedTheme;try{storedTheme=localStorage.getItem('codeAtlas.theme');}catch{}
-  const explicitTheme=[params.get('theme'),storedTheme].find(value=>value==='light'||value==='dark');
+  const explicitTheme=[params.get('theme'),ExtractRuntime.defaultTheme,storedTheme].find(value=>value==='light'||value==='dark');
   manualTheme=!!explicitTheme;
   setTheme(explicitTheme||(systemTheme.matches?'dark':'light'));
   if(params.get('theme')==='light'||params.get('theme')==='dark')try{localStorage.setItem('codeAtlas.theme',document.documentElement.dataset.theme);}catch{}
   systemTheme.addEventListener('change',event=>{if(!manualTheme)setTheme(event.matches?'dark':'light');});
   for(const button of document.querySelectorAll('.theme-switch [data-theme]'))button.onclick=()=>setTheme(button.dataset.theme,true);
   function t(key,values={}){return (lang==='en'?(english[key]||key):key).replace(/\{(\w+)\}/g,(_,k)=>values[k]??'{'+k+'}');}
+  const originals=new WeakMap();
   function ui(){
     document.documentElement.lang=lang==='zh'?'zh-CN':'en';
     const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
-    while((node=walker.nextNode())){if(node.parentElement.closest('script,style'))continue;const text=node.nodeValue.trim();if(english[text])node.nodeValue=node.nodeValue.replace(text,t(text));}
-    for(const el of document.querySelectorAll('[title],[aria-label],[placeholder]'))for(const attr of ['title','aria-label','placeholder']){const raw=el.getAttribute(attr);if(raw&&english[raw])el.setAttribute(attr,t(raw));}
+    while((node=walker.nextNode())){if(node.parentElement.closest('script,style'))continue;if(!originals.has(node))originals.set(node,node.nodeValue);const raw=originals.get(node),text=raw.trim();if(english[text])node.nodeValue=raw.replace(text,t(text));}
+    for(const el of document.querySelectorAll('[title],[aria-label],[placeholder]'))for(const attr of ['title','aria-label','placeholder']){let saved=originals.get(el);if(!saved){saved={};originals.set(el,saved);}if(!(attr in saved))saved[attr]=el.getAttribute(attr);const raw=saved[attr];if(raw&&english[raw])el.setAttribute(attr,t(raw));}
     for(const button of document.querySelectorAll('[data-language]')){
       button.classList.toggle('active',button.dataset.language===lang);button.setAttribute('aria-pressed',String(button.dataset.language===lang));
       button.onclick=()=>{const next=button.dataset.language;if(next===lang)return;
-        try{localStorage.setItem('codeAtlas.language',next);if(window.SemanticPreview)sessionStorage.setItem('codeAtlas.languageView',JSON.stringify({source:window.B.data.source,state:SemanticPreview.snapshot()}));}catch{}
-        const url=new URL(location.href);url.searchParams.set('lang',next);location.assign(url);
+        lang=next;try{localStorage.setItem('codeAtlas.language',next);}catch{}
+        ExtractRuntime.preference('lang',next);ui();window.dispatchEvent(new Event('extract:language'));
       };
     }
   }
   function localize(graph){
     const result=structuredClone(graph),dictionary=graph.i18n?.translations?.[lang]||{};
-    const fixed=new Set(['id','from','to','owner','source','file','folder','path','symbol','relation','source_index','i18n','source_sha256','sha256','detail_graph','category']);
+    const fixed=new Set(['id','from','to','owner','source','file','folder','path','symbol','relation','source_index','source_files','i18n','source_sha256','sha256','detail_graph','category']);
     function walk(value){if(typeof value==='string')return typeof dictionary[value]==='string'?dictionary[value]:value;
       if(Array.isArray(value))return value.map(walk);if(value&&typeof value==='object'){for(const key of Object.keys(value))if(!fixed.has(key))value[key]=walk(value[key]);}return value;}
     walk(result);
     const visible=[];
-    for(const level of ['L1','L2']){visible.push(...result.graphs[level].nodes.map(n=>n.name));visible.push(...result.graphs[level].edges.map(e=>e.label));}
+    for(const level of ['L1','L2']){visible.push(...result.graphs[level].nodes.flatMap(n=>[n.name,n.meaning].filter(Boolean)));visible.push(...result.graphs[level].edges.map(e=>e.label));}
     const p=result.display.presentation;visible.push(...(p.relationship_summaries||[]).map(r=>r.text),...Object.values(p.shared_targets||{}),...Object.values(p.shared_sources||{}),...Object.values(p.connection_pairs||{}));
     const original=[];
-    for(const level of ['L1','L2'])original.push(...graph.graphs[level].nodes.map(n=>n.name),...graph.graphs[level].edges.map(e=>e.label));
+    for(const level of ['L1','L2'])original.push(...graph.graphs[level].nodes.flatMap(n=>[n.name,n.meaning].filter(Boolean)),...graph.graphs[level].edges.map(e=>e.label));
     const raw=graph.display.presentation;original.push(...(raw.relationship_summaries||[]).map(r=>r.text),...Object.values(raw.shared_targets||{}),...Object.values(raw.shared_sources||{}),...Object.values(raw.connection_pairs||{}));
     const source=graph.i18n?.source_language||(/\p{Script=Han}/u.test(original.join(''))?'zh':'en');
     const incomplete=lang!==source&&original.some(text=>typeof dictionary[text]!=='string');
@@ -79,5 +80,5 @@
     return result;
   }
   function restore(source){try{const raw=sessionStorage.getItem('codeAtlas.languageView');if(!raw)return null;sessionStorage.removeItem('codeAtlas.languageView');const value=JSON.parse(raw);return value.source===source?value.state:null;}catch{return null;}}
-  window.GraphLocale={lang,t,localize,restore};ui();
+  window.GraphLocale={get lang(){return lang;},t,localize,restore};ui();
 })();

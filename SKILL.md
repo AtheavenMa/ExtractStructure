@@ -18,7 +18,7 @@ Use when the user asks to load or use ExtractStructure, understand Markdown, TeX
 
 The full product name is **ExtractStructure**; the folder and invocation name is `extract-structure`.
 
-This skill contains its instructions, graph assembly programs, drawing resources, and results. The agent reads selected code or text, writes structural explanations, and uses the skill's components to save and display graphs. Python programs use the standard library and pages open in a browser. PDF reading uses text extraction and page viewing tools available in the current environment.
+This skill contains its instructions, graph assembly programs, drawing resources, and results. The agent reads selected code or text, writes structural explanations, and uses the skill's components to save and display graphs. Python programs use the standard library. The shared browser viewer supports a local service and independent HTML pages with embedded data and resources. PDF reading uses text extraction and page viewing tools available in the current environment.
 
 ## Mandatory principles for writing, explanation, and conversation
 
@@ -48,6 +48,7 @@ Apply this section to folder, file, and article graphs in both modes, and to use
 - **Use the existing visual structure.** Present content through existing nodes, groups, connections, and expansion. Additional visual regions, panels, banners, sidebars, legends, and explanatory components require an explicit user request. Requests for more explanation, background, or completeness use the established interface.
 - **Describe structure and purpose directly.** Pages, nodes, connections, and delivery explanations state what objects do, how they connect, and what they produce. Explanations of capability boundaries, analysis boundaries, exclusions, and disclaimers stay outside the presentation. Follow the established selection process when users choose objects and scope.
 - **Keep node names short and specific.** Name one clear purpose, object, or result, retaining identifying features. Examples: “Fit 256 combinations, evaluate 128” and “Pairwise modeling improves ranking from 0.9782 to 0.9959.” Use concrete content rather than generic labels such as “process data” or “effective method.” Give distinct topics their own nodes and keep paragraph-length explanations in appropriate detail.
+- **Separate names and explanations.** Use short names for scanning and `meaning` for substantive explanations. Current cards are 230 × 72 pixels; aim for about twelve Chinese characters or twenty-one Latin characters per row and up to four rows. Folder cards also reserve space for filenames. Treat these as writing guidance; the viewer abbreviates overflowing names and shows the full name and explanation on hover or keyboard focus.
 - **Preserve substance in node explanations.** Use concise natural sentences for concrete objects, procedures, necessary conditions, or key results as appropriate. Concision retains information needed for understanding. Split complex content into concrete nodes within existing expansion structures: summarize topics above and explain substance below. Each explanation adds relevant content and uses compact prose.
 - **Keep connection explanations brief.** Use one short phrase for a concrete relationship, such as “provide selection criteria” or “generate summary report.” Existing interactive detail supports at most one short natural sentence. Each label conveys a single connection; background and boundary explanations remain outside connection text.
 - **Use familiar words.** Express objects, actions, and results in everyday language. Keep necessary domain terms tied to concrete use. Store technical names used only for locating implementation in internal evidence. Show research objects, necessary assumptions, core calculations, and key values with the corresponding content.
@@ -89,7 +90,9 @@ Offer choices based on actual content, with a brief description of each:
 
 Read the chosen content in depth and understand claims and reasoning before extracting structure. For research articles, use “Research article analysis and information retention” below as a reading guide. Upper levels organize main questions or topics; lower levels develop claims, methods, derivations, evidence, and results according to their actual role. Connections briefly express real relationships such as “measure,” “support the claim,” or “derive the conclusion.” Headings support navigation and reading; article meaning determines groups.
 
-Save original evidence: headings, paragraphs, and line numbers for Markdown; sections, original labels, and line numbers for TeX; pages and corresponding paragraphs, equations, or figures for PDFs. Then select existing graphs and follow shared drawing and delivery. For short texts, use the full text unless the user chooses otherwise.
+Save original evidence: headings, paragraphs, and line numbers for Markdown; sections, original labels, and line numbers for TeX; physical pages and corresponding paragraphs, equations, or figures for PDFs. Save text graphs through the `article` command, retaining evidence from each original file. Then select existing graphs and follow shared drawing and delivery. For short texts, use the full text unless the user chooses otherwise.
+
+After selecting text scope, read [Article analysis](references/article-analysis.md). Purpose and main functions: Explain how to turn selected Markdown, TeX and PDF passages into article topics, details and relationships with original source locations. Scope: Use when creating or updating an article graph after the user selects the text and coverage, including articles whose body spans several files.
 
 ### 3. Repository mode: Assess analysis size
 
@@ -124,13 +127,13 @@ Repository mode follows the steps below after agreeing on folder, scope, and exi
 3. **Draw a two-level folder graph.** The upper level summarizes main functions; the lower level shows files and collaboration. A file serving several functions appears once with its actual connections.
 4. **Connect file details.** By default complete internal function graphs for selected files and connect them to the overview. Follow choices to show only the overview or reuse existing details. Analyze Python by functions and concrete processes; Markdown by purpose, topics, and specific explanations.
 5. **Write clear graph text.** Follow the required presentation and writing rules for concise names and connections explaining objects, roles, and results. Write English first, then natural Chinese. Keep source locations and implementation-location details in graph data; show concrete procedures, conditions, and outcomes needed for understanding in nodes. Follow the user's selected translation scope for existing graphs.
-6. **Deliver an accessible page.** Save graph data, start the internal service, and obtain a real accessible address. Folder tasks open the selected folder graph with all expandable nodes collapsed. Text or individual-file tasks open that article or file graph with the same collapsed initial state. Explain in one or two sentences what it shows and how to expand it. Add the developer contact note on the first result delivery. Perform content and page checks when requested, within the specified scope.
+6. **Deliver an accessible page.** Save graph data and select delivery according to the environment: use the local service when the user can access its address, or export an independent HTML page for file delivery or platform hosting. Use available host tools to attach or host the exported page and obtain a usable file link or hosted address. A service address identifies the running service; user access depends on the host network and forwarding facilities. Folder tasks open the selected folder graph with all expandable nodes collapsed. Text or individual-file tasks open that article or file graph with the same collapsed initial state. Explain in one or two sentences what it shows and how to expand it. Add the developer contact note on the first result delivery. Perform content and page checks when requested, within the specified scope.
 
 After scope selection, read [Folder analysis](references/folder-analysis.md). Purpose and main functions: Explain folder responsibilities, file collaboration, and subfolders so readers can move from the overview to individual files. Scope: Use when creating or updating a selected folder's function graph. Retain the agreed folder, file scope, and treatment of existing results.
 
 For file internals, read [File analysis](references/file-analysis.md). Purpose and main functions: Explain a file through expandable functions and concrete processes, so readers can move from its overall purpose to its internal behavior. Scope: Use when creating or updating the internal function graph of a selected Python file, whether selected from a folder or specified directly by the user.
 
-For inventory, drafts, saving, or serving pages, read [Graph data and storage](references/graph-format.md). Purpose and main functions: Describe internal draft fields, source locations, bilingual content, commands, and result storage. Scope: Use this skill's programs to create, save, link, or open graph data. This document guides internal program operation; explanations to users follow the folder and file analysis guidance.
+For inventory, drafts, saving, exporting, or serving pages, read [Graph data and storage](references/graph-format.md). Purpose and main functions: Describe internal draft fields, source locations, bilingual content, commands, and result storage. Scope: Use this skill's programs to create, save, link, or open graph data. This document guides internal program operation; explanations to users follow the folder and file analysis guidance.
 
 ## Research article analysis and information retention
 
@@ -178,7 +181,15 @@ Classify Markdown by its actual role in the current work:
 
 Base relationships on code behavior, concrete document requirements, and actual use. Filenames, links, and shared topics help locate related content; actual purpose determines connections. Independent nodes retain their own positions and detail entries. Classify a document's overall role and internal topics separately.
 
-Current folder inventory and file assembly primarily serve Python: folders collect `.py`, and file details locate classes and functions through Python syntax. For Markdown, TeX, and PDF, the agent supplements text listings, reads originals, locates evidence using text-mode methods, and uses shared saving and display components. Python-specific reference methods apply to Python; Markdown analysis and relationships follow this section. Program extensions follow user-approved scope.
+Folder inventory and Python file details use Python syntax to locate classes and functions. Article saving accepts Markdown, TeX and PDF evidence through the `article` command and uses the same graph assembly and viewer. For folder scopes containing Markdown, supplement the Python inventory with text listings and save document details through the article entry. Python-specific reference methods apply to Python; Markdown analysis and relationships follow this section. Program extensions follow user-approved scope.
+
+## Working files and delivery selection
+
+Save extracted text, page extracts, drafts and any task-specific working files inside `results/tasks/<task-id>/` in this skill. Use a descriptive task identifier. Record created or updated artifacts in that directory's `log_updates.jsonl`, with a timezone-aware timestamp, skill-relative path, brief content and actual source tool or script. Saved graph commands and exports maintain their own result logs. Original documents and analyzed code retain their content.
+
+Choose an accessible delivery after saving. A local service suits environments with user access to its printed address or a supported forwarded address. Independent HTML suits file attachments and static hosting: export the chosen graph, its available descendants and ancestor navigation using the shared viewer. The exported file contains its required graph data, styles, scripts and background computation resources. A hosting platform supplies the publication URL; use available host tools within the user's requested delivery scope. When interactive hosting is unavailable, provide the exported file through the host's file attachment or download facility. State the actual delivery status when access remains unresolved.
+
+Keep the chosen article or folder as the initial view, with expandable nodes collapsed. Language switching works inside the page. Browser storage saves preferences when available. Background label placement uses a worker when permitted and falls back to page computation when workers are unavailable; complex layouts may take longer in that fallback.
 
 ## Page use and result storage
 
@@ -186,7 +197,7 @@ Top navigation browses levels like a file browser. Folder paths open folder grap
 
 Deliver the selected folder or file's own path with all expandable nodes collapsed. Keep its overall view; users locate, highlight, and expand content after opening.
 
-Drawing components handle compact layout, expansion, connection labels, highlighting, and languages. Store projects separately under this skill's `results/<project-id>/`. Deliver graph data and page links by default. Agree on delivery for standalone pages or static images when explicitly requested.
+Drawing components handle compact layout, expansion, connection labels, highlighting, and languages. Store projects separately under this skill's `results/<project-id>/`. Deliver graph data and page links by default. Choose the local service or independent HTML export according to user access and the host environment. Follow explicit requests for static images or other formats.
 
 New and reused graph data share these page defaults:
 

@@ -11,7 +11,31 @@ from urllib.parse import quote, unquote, urlsplit
 from graph_store import SKILL, PREFIX, graph_catalog, read_graph, graph_id_for
 
 ASSETS = frozenset({'index.html', 'bootstrap.js', 'i18n.js', 'viewer.js', 'viewer.css',
-    'atlas-shell.css', 'orthogonal.js', 'inline_labels.js', 'caption_worker.js', 'concept_ranges.js', 'expansion_layout.js'})
+    'atlas-shell.css', 'runtime.js', 'orthogonal.js', 'inline_labels.js', 'caption_worker.js', 'concept_ranges.js', 'expansion_layout.js'})
+
+
+def graph_payload(store, requested, catalog=None):
+    """Read a graph and attach currently available navigation without changing saved data."""
+    catalog = graph_catalog(store) if catalog is None else catalog
+    navigation = next((g for g in catalog
+        if g.get('available') is False and requested in {g['id'], g['source']}), None)
+    if navigation:
+        value = {'graph': None, 'source': navigation['source'], 'available': False}
+    else:
+        graph, digest = read_graph(store, requested)
+        # Attach details from the current catalog without rewriting saved explanations.
+        if graph.get('graph_kind') == 'folder':
+            available = {g['source']: g for g in catalog if g.get('available') is not False}
+            for node in graph['graphs']['L2']['nodes']:
+                entry = node.get('file') or node.get('folder')
+                hints = graph['display']['L2']['nodes'][node['id']]
+                hints.pop('detail_graph', None)
+                target = available.get(entry)
+                if target or node.get('entry_kind') == 'folder':
+                    hints['detail_graph'] = {'id': target['id'] if target else graph_id_for(entry, folder=True), 'source': entry}
+        digest = hashlib.sha256(json.dumps(graph, sort_keys=True).encode()).hexdigest()
+        value = {'graph': graph, 'sha256': digest}
+    return value
 
 
 def serve(store, *, port=0, source=None):
@@ -38,24 +62,7 @@ def serve(store, *, port=0, source=None):
                     mime = 'application/json'
                 elif tail.startswith('data/') and tail.endswith('.json'):
                     requested = tail[len('data/'):-len('.json')]
-                    navigation = next((g for g in graph_catalog(store)
-                        if g.get('available') is False and requested in {g['id'], g['source']}), None)
-                    if navigation:
-                        value = {'graph': None, 'source': navigation['source'], 'available': False}
-                    else:
-                        graph, digest = read_graph(store, requested)
-                        # Attach details from the current catalog without rewriting saved explanations.
-                        if graph.get('graph_kind') == 'folder':
-                            available = {g['source']: g for g in graph_catalog(store) if g.get('available') is not False}
-                            for node in graph['graphs']['L2']['nodes']:
-                                entry = node.get('file') or node.get('folder')
-                                hints = graph['display']['L2']['nodes'][node['id']]
-                                hints.pop('detail_graph', None)
-                                target = available.get(entry)
-                                if target or node.get('entry_kind') == 'folder':
-                                    hints['detail_graph'] = {'id': target['id'] if target else graph_id_for(entry, folder=True), 'source': entry}
-                        digest = hashlib.sha256(json.dumps(graph, sort_keys=True).encode()).hexdigest()
-                        value = {'graph': graph, 'sha256': digest}
+                    value = graph_payload(store, requested)
                     raw = json.dumps(value, ensure_ascii=False).encode()
                     mime = 'application/json'
                 else:

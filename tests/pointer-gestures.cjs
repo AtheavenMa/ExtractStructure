@@ -1,4 +1,5 @@
-// Exercise the production gesture handlers with SVG camera coordinates.
+// Purpose and main functions: Exercise production gesture handlers with SVG camera coordinates.
+// Scope: Run explicitly requested checks of touch panning, pinch zoom and pointer capture in the viewer.
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
@@ -11,10 +12,12 @@ function setup(){
   const frames=new Map(),metrics={reads:0,writes:0};
   function flush(){const current=[...frames.values()];frames.clear();for(const fn of current)fn();}
   const canvas={
-    addEventListener(type,handler,capture){const list=listeners.get(type)||[];list.push({handler,capture:capture===true});listeners.set(type,list);},
+    addEventListener(type,handler,capture){const list=listeners.get(type)||[];list.push({handler,capture:capture===true||capture?.capture===true});listeners.set(type,list);},
     hasPointerCapture:id=>captured.has(id),setPointerCapture:id=>captured.add(id),releasePointerCapture:id=>captured.delete(id)
   };
   const context={console,Map,Math,JSON,structuredClone,metrics,
+    listen:(target,type,handler,options={})=>target.addEventListener(type,handler,options),
+    hideExplanation(){},hoverNode(){},focusConcept(){},
     requestAnimationFrame:fn=>{frames.set(++timer,fn);return timer;},cancelAnimationFrame:id=>frames.delete(id),
     $:selector=>selector==='#canvas'?canvas:{classList:{add:x=>classes.add(x),remove:x=>classes.delete(x)}},
     setTimeout:fn=>{timers.set(++timer,fn);return timer;},clearTimeout:id=>timers.delete(id),

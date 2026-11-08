@@ -11,7 +11,7 @@ function computeConceptRanges(expanded,model,positions){
   for(const owner of expanded){
     if(model.layoutHints.exclusive_groups&&model.displayChildren.get(owner).size<=1)continue;
     const own=new Set([...(model.layoutHints.exclusive_groups?model.displayChildren:model.children).get(owner)||[]].filter(id=>positions[id]));if(!own.size)continue;
-    const index=[...model.upperBy.keys()].indexOf(owner),inset=index*5;
+    const inset=0; // Equal margins depend on geometry, independent of theme count and order.
     const foreign=nodes.filter(n=>!own.has(n.id));
     let fragments=[...own].map(id=>{
       const p=positions[id];let left=p.x-24-inset,top=p.y-64-inset,right=p.x+W+24+inset,bottom=p.y+H+24+inset;
@@ -26,7 +26,11 @@ function computeConceptRanges(expanded,model,positions){
       outer:for(let i=0;i<fragments.length;i++)for(let j=i+1;j<fragments.length;j++){
         const a=fragments[i],b=fragments[j],merged=union(a,b);
         const near=a.members.some(aa=>b.members.some(bb=>{const p=positions[aa],q=positions[bb];return Math.abs(p.y-q.y)<35&&Math.abs(p.x-q.x)<=470||Math.abs(p.x-q.x)<35&&Math.abs(p.y-q.y)<=290;}));
-        if(!near||merged.w*merged.h>merged.members.length*W*H*5.5||foreign.some(n=>intersects(merged,n,3)))continue;
+        const memberPositions=merged.members.map(id=>positions[id]);
+        const spanWidth=Math.max(...memberPositions.map(p=>p.x+W))-Math.min(...memberPositions.map(p=>p.x));
+        const spanHeight=Math.max(...memberPositions.map(p=>p.y+H))-Math.min(...memberPositions.map(p=>p.y));
+        const occupiedSpan=(spanWidth+48)*(spanHeight+88);
+        if(!near||merged.w*merged.h>occupiedSpan||foreign.some(n=>intersects(merged,n,10)))continue;
         fragments.splice(j,1);fragments.splice(i,1,merged);changed=true;break outer;
       }
     }

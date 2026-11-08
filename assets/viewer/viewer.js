@@ -1,7 +1,10 @@
 /* 目的和主要功能：在同一画布展开功能和具体内容，维护位置、连线及关系高亮。
- * 适用范围：ExtractStructure 的目录图和文件图；根据当前图资料在浏览器中绘图。
+ * 适用范围：ExtractStructure 的文章、目录和文件图；根据当前图资料在浏览器中绘图。
  */
 'use strict';
+window.ExtractViewerMount=function(){
+  const lifetime=new AbortController();
+  const listen=(target,type,handler,options={})=>target.addEventListener(type,handler,{...(typeof options==='boolean'?{capture:options}:options),signal:lifetime.signal});
 
 function createSemanticModel(data, layouts, presentation={}) {
   const layoutHints=presentation.layout||{};
@@ -123,6 +126,8 @@ let saved={};try{saved=JSON.parse(localStorage.getItem(storageKey)||'{}')}catch{
 let scene, positions={}, displayPositions={}, nodeElements=new Map(), edgeElements=new Map();
 let ownerElements=new Map(), selected=[], selectionEdge=null, box,fitBox,drag=null;
 let cameraAnimation=0,suppressClick=false,transitioning=false;
+// A restored camera is an explicit user view; later label completion retains it.
+let preserveRestoredView=!!B.restore;
 const tr=window.GraphLocale?.t||((key,values={})=>key.replace(/\{(\w+)\}/g,(_,k)=>values[k]??'{'+k+'}'));
 const root=document.createElementNS(NS,'svg');
 root.id='diagram';root.setAttribute('role','img');root.setAttribute('aria-label',tr('可逐节点展开的两层语义图'));
@@ -180,10 +185,21 @@ function calculateFit(){const b=root.getBBox(),extent={minX:b.x-50,minY:b.y-60,m
 function fit(){cameraAnimation++;fitBox=calculateFit();setBox([...fitBox]);}
 function moveBox(target){cameraAnimation++;setBox(target);}
 function focus(ids){const ps={};for(const id of ids)if(positions[id])ps[id]=positions[id];if(Object.keys(ps).length)moveBox(viewFor(boundsFor(ps)));}
+const explanation=document.createElement('div');explanation.className='node-explanation';explanation.id='nodeExplanation';explanation.setAttribute('role','tooltip');explanation.hidden=true;document.body.append(explanation);
+function hideExplanation(){explanation.hidden=true;for(const g of nodeElements.values())g.removeAttribute('aria-describedby');}
+function showExplanation(node,element){
+  const name=document.createElement('strong'),meaning=document.createElement('div');name.textContent=node.name;meaning.textContent=node.meaning||'';
+  explanation.replaceChildren(name,meaning);explanation.hidden=false;element.setAttribute('aria-describedby',explanation.id);
+  const rect=element.getBoundingClientRect(),w=explanation.offsetWidth,h=explanation.offsetHeight;
+  explanation.style.left=Math.max(8,Math.min(rect.left,innerWidth-w-8))+'px';
+  explanation.style.top=Math.max(8,rect.bottom+h+16<innerHeight?rect.bottom+8:rect.top-h-8)+'px';
+}
 function makeNode(n){
   const upper=n.level==='L1',p=positions[n.id];
   const g=svg('g',{'class':'node graph-node density-compact '+(upper?'upper':'lower'),'data-node':n.id,'data-level':n.level,tabindex:0,role:'button','aria-label':upper?tr('{name}，点击展开',{name:n.name}):n.name,...(upper?{'aria-expanded':'false'}:{})});
-  g.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch'&&!drag)hoverNode(n.id);});g.addEventListener('pointerleave',e=>{if(e.pointerType!=='touch'&&!drag)hoverNode(null);});
+  g.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch'&&!drag){hoverNode(n.id);showExplanation(n,g);}});g.addEventListener('pointerleave',e=>{if(e.pointerType!=='touch'&&!drag){hoverNode(null);hideExplanation();}});
+  g.addEventListener('focusin',()=>showExplanation(n,g));g.addEventListener('focusout',hideExplanation);
+  g.setAttribute('aria-label',(upper?tr('{name}，点击展开',{name:n.name}):n.name)+(n.meaning?' — '+n.meaning:''));
   g.append(svg('rect',{'class':'node-surface',width:230,height:72,rx:10}));
   if(ioCategories&&categoryColors[n.category]){g.classList.add('category-'+n.category);g.style.setProperty('--node-category-color',categoryColors[n.category]);}
   const stripe=ioCategories&&categoryColors[n.category]?categoryColors[n.category]:upper?'var(--atlas-overview)':({operation:'var(--atlas-operation)',object:'var(--atlas-data)',result:'var(--atlas-result)',failure:'var(--atlas-rejection)'}[p.role]||'var(--atlas-operation)');
@@ -193,7 +209,8 @@ function makeNode(n){
   const detail=fileNode&&B.layouts.L2.nodes[n.id]?.detail_graph;
   const validDetail=detail&&detail.source===entryPath&&typeof detail.id==='string'&&/^(files|folders)\//.test(detail.id)&&!/[\\\0]/.test(detail.id)&&detail.id.split('/').every(p=>p&&p!=='.'&&p!=='..');
   const title=fileNode?(n.name.includes('\n')?n.name.split('\n').slice(1).join('\n'):n.meaning):n.name;
-  const rows=wrap(title,12),lineHeight=16;
+  const fullRows=wrap(title,12),limit=fileNode?2:4,rows=fullRows.slice(0,limit),lineHeight=16;
+  if(fullRows.length>limit)rows[limit-1]=rows[limit-1].replace(/.$/u,'')+'…';
   const blockHeight=fileNode?13+8+12+(rows.length-1)*lineHeight:12+(rows.length-1)*lineHeight;
   const blockTop=(72-blockHeight)/2;
   if(fileNode){
@@ -212,8 +229,8 @@ function makeEdge(e){return svg('g',{'class':'edge','data-edge':e.key,'data-from
 let routingPlan=null,routingSignature='';const captionLayouts=new Map(),routingLayouts=new Map();
 let captionTask=null,captionError=null,captionElapsedMs=null;
 function cancelCaptionTask(){if(captionTask){captionTask.worker.terminate();captionTask=null;}}
-window.addEventListener('pagehide',cancelCaptionTask);
-window.addEventListener('pageshow',event=>{if(event.persisted&&routingPlan)drawGeometry(positions);});
+listen(window,'pagehide',cancelCaptionTask);
+listen(window,'pageshow',event=>{if(event.persisted&&routingPlan)drawGeometry(positions);});
 function drawGeometry(ps){
   displayPositions=ps;for(const[id,g]of nodeElements){const p=ps[id];g.setAttribute('transform',`translate(${p.x},${p.y})`);}
   rangePlan=computeConceptRanges(expanded,model,ps);drawConceptRegions(rangePlan);
@@ -255,8 +272,8 @@ function requestCaptionLayout(extra){
   // Background work can be discarded immediately when the user changes view.
   // Only the current geometry may receive its computed labels.
   try{
-    const worker=new Worker('/extract-structure/assets/caption_worker.js');
-    const task={worker,signature,camera:null};captionTask=task;
+    const worker=ExtractRuntime.worker();
+    const task={worker,signature,camera:null,preserveView:preserveRestoredView};captionTask=task;
     queueMicrotask(()=>{if(captionTask===task)task.camera=cameraAnimation;});
     const fail=message=>{
       if(captionTask!==task)return;
@@ -274,7 +291,7 @@ function requestCaptionLayout(extra){
       if(captionLayouts.size>12)captionLayouts.delete(captionLayouts.keys().next().value);
       captionModel=known.model;inlineCaptions=known.captions;drawInlineCaptions();
       fitBox=calculateFit();
-      if(cameraAnimation===task.camera&&(compactCollapsed||scene.none||scene.all))fit();
+      if(!task.preserveView&&cameraAnimation===task.camera&&(compactCollapsed||scene.none||scene.all))fit();
     };
     worker.postMessage({model:{captions:currentModel.captions,individualCaptions:currentModel.individualCaptions},segments:routingPlan.segments,positions,extra,policy:B.presentation.label_layout||{}});
   }catch(error){
@@ -316,6 +333,7 @@ function drawConceptRegions(plan){
 }
 function refreshControls(){ownerElements=new Map();}
 function render({anchor=null,previous=null,initial=false}={}){
+  hideExplanation();
   transitioning=true;
   wireLayer.replaceChildren();wireElements=new Map();captionLayer.replaceChildren();captionElements=new Map();inlineCaptions=[];
   const oldPositions=structuredClone(displayPositions);hoverConcept=null;focusConcept(null);
@@ -362,7 +380,7 @@ const history=new Map();
 function toggle(id){if(!model.children.has(id)||!model.children.get(id).size||!expandableIds.includes(id))return;const beforeKey=stateKey();history.set(beforeKey,{box:[...box]});if(expanded.has(id))expanded.delete(id);else expanded.add(id);render({anchor:id,previous:history.get(stateKey())});}
 function point(e){return new DOMPoint(e.clientX,e.clientY).matrixTransform(root.getScreenCTM().inverse());}
 function zoom(factor,e){cameraAnimation++;const anchor=e?point(e):{x:box[0]+box[2]/2,y:box[1]+box[3]/2};const w=Math.max(300,Math.min(fitBox[2]*4,box[2]*factor)),f=w/box[2];setBox([anchor.x-(anchor.x-box[0])*f,anchor.y-(anchor.y-box[1])*f,w,box[3]*f]);}
-$('#canvas').addEventListener('wheel',e=>{e.preventDefault();zoom(Math.exp(Math.max(-150,Math.min(150,e.deltaY))*.002),e);},{passive:false});
+listen($('#canvas'),'wheel',e=>{e.preventDefault();zoom(Math.exp(Math.max(-150,Math.min(150,e.deltaY))*.002),e);},{passive:false});
 // Track each contact so touch panning and pinch zoom share the same SVG camera.
 const gesturePointers=new Map();
 let pinch=null,gestureMoved=false,gestureResetTimer,cameraFrame=null,pendingCameraBox=null;
@@ -385,7 +403,7 @@ function captureGesturePointer(id){
 }
 function markGestureMoved(){
   if(gestureMoved)return;
-  gestureMoved=true;suppressClick=true;
+  gestureMoved=true;suppressClick=true;hideExplanation();hoverNode(null);focusConcept(null);
   clearTimeout(gestureResetTimer);
   $('#canvasWrap').classList.add('is-dragging');
   for(const id of gesturePointers.keys())captureGesturePointer(id);
@@ -398,7 +416,7 @@ function beginPinch(){
   drag=null;markGestureMoved();
   for(const id of gesturePointers.keys())captureGesturePointer(id);
 }
-$('#canvas').addEventListener('pointerdown',e=>{
+listen($('#canvas'),'pointerdown',e=>{
   const touch=e.pointerType==='touch';
   if(!touch&&(e.button!==0||e.target.closest('.node-entry-link')))return;
   if(!touch&&gesturePointers.size)return;
@@ -415,7 +433,7 @@ $('#canvas').addEventListener('pointerdown',e=>{
   // Leave an unmoved touch on its original target so a tap still activates that control.
   if(drag&&!touch)captureGesturePointer(e.pointerId);
 });
-$('#canvas').addEventListener('pointermove',e=>{
+listen($('#canvas'),'pointermove',e=>{
   if(!gesturePointers.has(e.pointerId))return;
   gesturePointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(gesturePointers.size>=2){
@@ -465,41 +483,41 @@ function endDrag(e){
     if(gestureMoved){suppressClick=true;gestureResetTimer=setTimeout(()=>suppressClick=false,400);}
   }
 }
-$('#canvas').addEventListener('pointerup',endDrag);
-$('#canvas').addEventListener('pointercancel',endDrag);
-$('#canvas').addEventListener('lostpointercapture',endDrag);
-$('#canvas').addEventListener('click',e=>{
+listen($('#canvas'),'pointerup',endDrag);
+listen($('#canvas'),'pointercancel',endDrag);
+listen($('#canvas'),'lostpointercapture',endDrag);
+listen($('#canvas'),'click',e=>{
   if(!suppressClick)return;
   e.preventDefault();e.stopImmediatePropagation();
 },true);
 function activate(target){const collapse=target.closest('[data-collapse]'),n=target.closest('.node'),edge=target.closest('.edge'),segment=target.closest('.wire-segment'),caption=target.closest('[data-caption]');if(collapse)toggle(collapse.dataset.collapse);else if(n){if(model.upperBy.has(n.dataset.node))toggle(n.dataset.node);else showNode(n.dataset.node);}else if(caption)showWireRelations(inlineCaptions.find(c=>c.id===caption.dataset.caption).keys);else if(segment)showSegment(segment.dataset.segment);else if(edge)showEdge(edge.dataset.edge);else{highlight();overview();}}
-$('#canvas').addEventListener('click',e=>{if(e.shiftKey||suppressClick||e.target.closest('.node-entry-link'))return;activate(e.target);});
+listen($('#canvas'),'click',e=>{if(e.shiftKey||suppressClick||e.target.closest('.node-entry-link'))return;activate(e.target);});
 // Geometric hover covers the full concept without inserting a hit surface over node, wire or pan controls.
-$('#canvas').addEventListener('pointermove',e=>{
+listen($('#canvas'),'pointermove',e=>{
   if(drag||e.pointerType==='touch')return;const title=e.target.closest('.concept-title'),border=e.target.closest('.range-border-hit');
   let id=(title||border)?.dataset.collapse;
   if(!id){const p=point(e),region=rangePlan.regions.find(r=>r.fragments.some(f=>p.x>=f.x&&p.x<=f.x+f.w&&p.y>=f.y&&p.y<=f.y+f.h));id=region?.id||null;}
   if(id!==hoverConcept)focusConcept(id);
 });
-$('#canvas').addEventListener('pointerleave',()=>{if(!drag)focusConcept(null);});
-$('#canvas').addEventListener('focusin',e=>{const control=e.target.closest('.concept-title,.range-border-hit');if(control)focusConcept(control.dataset.collapse);});
-$('#canvas').addEventListener('focusout',e=>{if(e.target.closest('.concept-title,.range-border-hit')&&!e.target.contains(e.relatedTarget))focusConcept(null);});
-$('#canvas').addEventListener('keydown',e=>{if(e.target.closest('.node-entry-link'))return;if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(e.target);}});
+listen($('#canvas'),'pointerleave',()=>{if(!drag)focusConcept(null);});
+listen($('#canvas'),'focusin',e=>{const control=e.target.closest('.concept-title,.range-border-hit');if(control)focusConcept(control.dataset.collapse);});
+listen($('#canvas'),'focusout',e=>{if(e.target.closest('.concept-title,.range-border-hit')&&!e.target.contains(e.relatedTarget))focusConcept(null);});
+listen($('#canvas'),'keydown',e=>{if(e.target.closest('.node-entry-link'))return;if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(e.target);}});
 $('#plus').onclick=()=>zoom(.8);$('#minus').onclick=()=>zoom(1.25);
 $('#expandAll').onclick=()=>{
   if(transitioning)return;
   if(expandableIds.every(id=>expanded.has(id))){expanded.clear();render({previous:history.get('')});}
   else{history.set(stateKey(),{box:[...box]});expandableIds.forEach(id=>expanded.add(id));render();}
 };
-window.addEventListener('keydown',e=>{if(e.key==='Escape'){highlight();overview();$('#search').value='';}});
+listen(window,'keydown',e=>{if(e.key==='Escape'){hideExplanation();highlight();overview();$('#search').value='';}});
 
-$('#search').addEventListener('input',()=>{
+listen($('#search'),'input',()=>{
   const query=$('#search').value.trim().toLocaleLowerCase();
   if(!query){highlight();overview();return;}
   const ids=scene.nodes.filter(n=>n.name.toLocaleLowerCase().includes(query)).map(n=>n.id);
   highlight(ids);$('#sceneStatus').textContent=tr('当前画布找到 {count} 个节点',{count:ids.length});
 });
-$('#search').addEventListener('keydown',e=>{
+listen($('#search'),'keydown',e=>{
   if(e.key!=='Enter')return;e.preventDefault();
   const query=$('#search').value.trim().toLocaleLowerCase();if(!query)return;
   const visible=scene.nodes.find(n=>n.name.toLocaleLowerCase().includes(query));
@@ -512,10 +530,21 @@ $('#search').addEventListener('keydown',e=>{
 
 
 window.SemanticPreview={snapshot:()=>({expanded:[...expanded],box:[...box],search:$('#search').value}),model,expanded,get transitioning(){return transitioning;},get captionPending(){return captionTask!==null;},get captionError(){return captionError;},get captionElapsedMs(){return captionElapsedMs;},get scene(){return scene;},get positions(){return positions;},get routing(){return routingPlan;},get ranges(){return rangePlan;},get captions(){return inlineCaptions;},get captionModel(){return captionModel;},toggle,fit};
-const focusPath=new URLSearchParams(location.search).get('focus_path');
+const focusPath=ExtractRuntime.parameters().get('focus_path');
 const focusNodes=focusPath?data.graphs.L2.nodes.filter(n=>{const path=n.file||n.folder;return path===focusPath||path?.startsWith(focusPath+'/')||n.folder&&focusPath.startsWith(n.folder+'/');}).map(n=>n.id):[];
 if(!B.restore)for(const id of focusNodes)expanded.add(model.layoutHints.stable_positions.nodes[id].owner);
 for(const id of B.restore?.expanded||[])if(expandableIds.includes(id))expanded.add(id);
 render({initial:true});
 if(B.restore){if(Array.isArray(B.restore.box)&&B.restore.box.length===4&&B.restore.box.every(Number.isFinite))setBox(B.restore.box);$('#search').value=B.restore.search||'';}
+preserveRestoredView=false;
 if(focusNodes.length&&!B.restore){highlight(focusNodes);$('#sceneStatus').textContent=tr('当前路径在目录图中的对应文件');}
+
+window.ExtractViewerDispose=()=>{
+  lifetime.abort();cancelCaptionTask();clearTimeout(gestureResetTimer);
+  if(cameraFrame!==null)cancelAnimationFrame(cameraFrame);
+  cameraFrame=null;pendingCameraBox=null;
+  for(const id of gesturePointers.keys())if($('#canvas').hasPointerCapture(id))$('#canvas').releasePointerCapture(id);
+  gesturePointers.clear();pinch=null;drag=null;
+  explanation.remove();root.remove();$('#canvasWrap').classList.remove('is-dragging','has-concept-focus');
+};
+};

@@ -12,7 +12,7 @@ Use this skill's programs to create, save, link, or open graph data. This docume
 
 Executable files reside in this skill's `scripts/`, drawing resources in `assets/viewer/`, and results in `results/`. Programs use the Python 3.10+ standard library; browsers load local JavaScript and CSS. Programs locate internal files relative to the skill and analyze an explicitly selected project folder.
 
-Replace `<skill-directory>` with the absolute folder containing `SKILL.md`, and `<project-root>` with the target project's absolute path. Relative target paths and `--include`/`--exclude` are relative to the project root. Draft file paths are relative to the command's working directory.
+Replace `<skill-directory>` with the absolute folder containing `SKILL.md`, and `<project-root>` with the target project's absolute path. Relative target paths and `--include`/`--exclude` are relative to the project root. Draft file paths are relative to the command's working directory. Keep drafts, text extraction and other working files inside this skill's `results/tasks/<task-id>/`; log them as described in the skill entrypoint.
 
 Graph `source`, source references, and page paths include the project root's name. For `/work/demo/package/read.py`, the graph source identity is `demo/package/read.py`. Graphs use a separate project result directory, with the absolute root path distinguishing projects with the same name.
 
@@ -84,6 +84,41 @@ Each group has at least one primary member. `columns` is a positive integer; `re
 
 `stable_positions` stores full L2 reference coordinates. The page arranges currently visible groups compactly. For layout choices, colors, transparent labels, and immediate interaction, read [Presentation and interaction](presentation.md). Purpose and main functions: Describe ExtractStructure's established visual, layout, interaction, and performance requirements, and identify the shared page resources responsible for them. Scope: Use when generating or reusing ExtractStructure graph data, delivering pages, or modifying this skill's drawing and presentation resources.
 
+## Article graph drafts
+
+Use `article` for Markdown, TeX and PDF. It shares `purpose`, `groups`, `edges`, `upper_edges`, categories, bilingual content and layout options with file drafts. Supply `coverage` as a natural description of the user-selected scope. Each concrete node and relationship supplies original evidence through `source`; groups may supply it or inherit member evidence. These entries replace Python `symbols` for articles.
+
+Synthetic example for an original Markdown document whose selected passage occupies lines 1–8:
+
+```json
+{
+  "purpose": "Explain how measurements support a comparison",
+  "coverage": "The selected method and result paragraphs",
+  "groups": [{
+    "id": "COMPARE", "name": "Compare measurements",
+    "meaning": "Use the same measurement procedure for the compared conditions.",
+    "category": "process",
+    "nodes": [
+      {"id": "METHOD", "name": "Measure each condition", "meaning": "Apply the described measurement procedure to each condition.", "category": "input", "source": [{"path": "study/article.md", "lines": [1, 4], "section": "Method"}]},
+      {"id": "RESULT", "name": "Compare observed values", "meaning": "Compare the measurements obtained under the stated conditions.", "category": "output", "source": [{"path": "study/article.md", "lines": [5, 8], "section": "Results"}]}
+    ]
+  }],
+  "edges": [{"from": "METHOD", "to": "RESULT", "label": "Supply measurements", "source": [{"path": "study/article.md", "lines": [5, 8]}]}],
+  "upper_edges": []
+}
+```
+
+For PDF evidence, use `{"path": "study/article.pdf", "pages": [2, 3], "section": "Method", "label": "Equation 1"}`. TeX uses `lines` in the actual included source file. Ranges are inclusive and begin at one. PDF pages refer to physical positions; printed labels can be retained in `label`. Optional `paragraph` identifies a specific paragraph. Paths include the project directory name and remain within the selected project. The primary source comes from the command target. All evidence files receive recorded fingerprints.
+
+```bash
+python <skill-directory>/scripts/extract_structure.py --root <project-root> article article.pdf --recipe <skill-directory>/results/tasks/<task-id>/article.json
+python <skill-directory>/scripts/extract_structure.py --root <project-root> discover article.pdf
+```
+
+Use the existing-result selection before adding `--regenerate`. Discovery reports `source_sha_matches` for the primary file and `source_files_match` for all recorded article sources. Saving checks required drawing fields, source paths and text line ranges. Reading tools supply actual PDF page counts and evidence; content review follows user-requested checks.
+
+Article graphs use `graph_kind: "article"` and the existing `files/` graph identities, retaining the original `.md`, `.tex` or `.pdf` suffix. Stored source references carry page or line ranges. Existing Python and folder graphs retain their formats.
+
 ## File graph drafts
 
 File drafts use `purpose`, `groups`, `edges`, `upper_edges`, and optional `i18n`. Groups contain `id`, `name`, `meaning`, `category`, and `nodes`. Concrete nodes contain `id`, `name`, `meaning`, `category`, and `symbols`, with optional `implementation_details`.
@@ -111,13 +146,15 @@ Synthetic structural example:
 }
 ```
 
+For Python supplied as a text attachment or another filename extension, use `file <target> --format python`. The command parses the original UTF-8 text as Python and preserves its original source identity and line locations. The model code is read as syntax; its imports and training operations remain unexecuted.
+
 `symbols` contains actual names in the target file. Use qualified names for classes and nested functions and `<module>` for the whole file. The program locates source; replace example relationships with actual evidence.
 
 New graphs use `category: "input" | "process" | "output"`, and `"independent"` for nodes with zero incoming and outgoing connections. Determine and store overview and concrete node categories separately. `role` remains a compatibility field for older layouts; `category` determines display classification. `shared_nodes` lists concrete node IDs defined by other groups to record shared implementations. Define each concrete node once in a group's `nodes`.
 
 File edges use concrete node IDs and contain `from`, `to`, and `label`; explicitly providing `description` and `symbols` is recommended, with optional `condition`. Upper-level edges use group IDs and actual lower-level paths. Repetition or returning to earlier work uses `feedback: true` with actual conditions or reasons. Layout options match folder graphs.
 
-The program prefixes upper- and lower-level IDs with `L1_` and `L2_`; drafts use the values before these prefixes. Final JSON contains `graphs`, `mappings`, `source_index`, and `display`. `graph_kind` is `folder` or `file`. Connections use `label`; full explanations use `description`. Keep implementation notes and source evidence.
+The program prefixes upper- and lower-level IDs with `L1_` and `L2_`; drafts use the values before these prefixes. Final JSON contains `graphs`, `mappings`, `source_index`, and `display`. `graph_kind` is `folder`, `file`, or `article`. Connections use `label`; full explanations use `description`. Keep implementation notes and source evidence.
 
 ## Bilingual content
 
@@ -140,7 +177,7 @@ Write new graph purposes, names, explanations, connections, conditions, and shar
 
 Translation keys are complete English originals and values their Chinese translations. Folder node names combine filename, newline, and draft `name`; cover the full combined name. Keep filenames, source paths, IDs, references, and program identities unchanged. Keep original file headers in evidence. Graph `meaning` explains the role and supplies displayed content in both languages.
 
-The first view defaults to English; later visits retain the user's choice. Deliver `?lang=zh` for Chinese conversations. Language switching preserves expansion and view; missing translations retain original text and indicate translation status.
+Service pages default to English and retain stored choices; an explicit `?lang=zh` selects Chinese. Independent exports use their `--language` choice initially and can read an explicit fragment preference such as `#lang=zh`. Language switching preserves expansion and view; missing translations retain original text and indicate translation status.
 
 ## Save, reuse, and open
 
@@ -170,7 +207,7 @@ results/<project-name-and-path-digest>/
 └── log_updates.jsonl
 ```
 
-The project root graph is `graphs/folders/<project-name>.json`. File graphs retain `.py`; folder and file graphs use separate directories to preserve same-name entries. `project.json` uses `purpose` and `scope` for its role and coverage; other fields record project identity and source locations. Graph data uses the same purpose and scope fields. Each log line records a timezone-aware timestamp, skill-relative path, content, and actual program source.
+The project root graph is `graphs/folders/<project-name>.json`. File and article graphs retain their source extension; folder and file graphs use separate directories to preserve same-name entries. `project.json` uses `purpose` and `scope` for its role and coverage; other fields record project identity and source locations. Graph data uses the same purpose and scope fields. Each log line records a timezone-aware timestamp, skill-relative path, content, and actual program source.
 
 The page service reads saved results directly using this skill's programs and resources. Existing results remain readable when source files are temporarily unavailable.
 
@@ -180,9 +217,21 @@ python <skill-directory>/scripts/extract_structure.py serve --project <saved-pro
 
 The service binds locally, selects an available port by default, and prints its actual address on success. `--port` selects a port explicitly. Always supply `--source` for delivery: the selected folder identity for folder tasks, or selected file identity for individual files. Open that graph with all expandable nodes collapsed. Links carry only required presentation preferences such as language; keep automatic focus/expansion parameters such as `focus_path` empty for an overview of the graph itself. Language changes retain expansion chosen by the user in the page.
 
-After saving results, start the service using a terminal tool supporting persistent processes. Keep it running for the user and deliver its printed address. Restarting a stopped service reads the same results. Commands, ports, storage details, and service operation are internal; follow `SKILL.md` for conversation and delivery.
+Choose delivery from actual user access. For an accessible local service, start it with a terminal tool supporting persistent processes and provide the printed address or a supported forwarded address. Its lifetime follows that process. Restarting reads the same saved results.
 
-The page serves internal drawing resources and graph JSON; internal programs organize path navigation, parent-derived subfolder views, and file details. Standalone HTML, SVG, and images are optional deliveries. Current commands provide interactive pages and JSON; explain the proposed format and scope when another format is requested.
+## Independent HTML export
+
+```bash
+python <skill-directory>/scripts/extract_structure.py export --project <saved-project-id> --source <selected-source-identity> --name <delivery-name> --language zh
+```
+
+`--source` accepts a saved graph source or ID. `--name` is a new directory name within `results/<project-id>/deliveries/`. The command writes `index.html`, records it in the project log and prints its absolute path. Existing delivery directories retain their files; choose a new name for a new export. `--language` selects the initial language (`en` by default). `--theme dark` or `--theme light` sets the initial theme; the default `--theme system` follows existing preference and system behavior. An explicit export theme takes precedence over stored browser theme, while a theme selected within the page takes precedence over that export default. Explicit page preferences take precedence, followed by the export language; local service pages can reuse stored language preferences.
+
+Export includes the selected graph, its available descendants and ancestor navigation. Navigation-only directories retain their existing role. Details outside this exported set appear without links. Exported pages use the shared viewer and contain all required data, scripts, styles and worker code. Source documents remain at their original locations; the export contains the graph's recorded explanations and evidence locations.
+
+Open the selected graph with expandable nodes collapsed. Language and theme changes work within the page. Independent page navigation and preferences use URL fragments when supported, and page state remains usable when browser storage is unavailable. Background placement uses a Blob worker or page computation when workers are unavailable. The latter can take longer for complex graphs.
+
+The export command creates a file. For cloud delivery, use the host's attachment or static hosting tools to provide a downloadable file or hosted URL. Host publication and service forwarding depend on available platform capabilities. Keep commands, ports and internal paths out of ordinary graph explanations. SVG and static images follow an explicit format request.
 
 ## Discovery and relocation
 

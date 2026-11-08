@@ -1,4 +1,4 @@
-"""Purpose and main functions: Provide ExtractStructure folder inventory, graph saving, existing-graph linking, and standalone page serving.
+"""Purpose and main functions: Provide folder inventory, Python and article graph saving, page serving and HTML export.
 
 Scope: Use after selecting a project and analysis scope; read source and store generated data inside this skill.
 """
@@ -11,6 +11,7 @@ import sys
 sys.dont_write_bytecode = True
 
 import file_graph
+import article_graph
 import folder_graph
 from graph_store import Store, graph_id_for, graph_path, write_graph
 from server import serve
@@ -32,16 +33,30 @@ def main():
         if name == 'folder':
             command.add_argument('--recipe', default='-', help='Draft JSON; - reads standard input')
             command.add_argument('--regenerate', action='store_true')
-    command = sub.add_parser('file')
-    command.add_argument('target')
-    command.add_argument('--recipe', default='-')
-    command.add_argument('--regenerate', action='store_true')
+    for name in ('file', 'article'):
+        command = sub.add_parser(name)
+        command.add_argument('target')
+        command.add_argument('--recipe', default='-')
+        command.add_argument('--regenerate', action='store_true')
+        if name == 'file':
+            command.add_argument('--format', choices=('python',), help='Explicit Python input, including code supplied as a text attachment')
+    command = sub.add_parser('export')
+    command.add_argument('--project', required=True)
+    command.add_argument('--source', required=True)
+    command.add_argument('--name', required=True, help='New named delivery directory inside this project result')
+    command.add_argument('--language', choices=('en', 'zh'), default='en')
+    command.add_argument('--theme', choices=('system', 'light', 'dark'), default='system')
     command = sub.add_parser('serve')
     command.add_argument('--project', help='Saved result directory name; open graphs when source is temporarily unavailable')
     command.add_argument('--port', type=int, default=0)
     command.add_argument('--source', help='Source path recorded in the graph and returned when saving')
     args = parser.parse_args()
     try:
+        if args.command == 'export':
+            from export_page import export
+            result = export(Store.open(args.project), args.source, args.name, language=args.language, theme=args.theme)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return
         if args.command == 'serve':
             if args.project:
                 store = Store.open(args.project)
@@ -79,9 +94,13 @@ def main():
         else:
             if args.command == 'folder':
                 identity = graph_id_for(target.relative_to(store.root).as_posix(), folder=True)
+            elif args.command == 'article':
+                if target.suffix.lower() not in {'.md', '.tex', '.pdf'} or not target.is_file():
+                    raise ValueError('Select a Markdown, TeX or PDF article')
+                identity = graph_id_for(target.relative_to(store.root).as_posix())
             else:
-                if target.suffix != '.py' or not target.is_file():
-                    raise ValueError('Select a Python file')
+                if (target.suffix.lower() != '.py' and args.format != 'python') or not target.is_file():
+                    raise ValueError('Select a Python file, or use --format python for a Python text attachment')
                 tree = ast.parse(target.read_text(encoding='utf-8'))
                 if target.name == '__init__.py' and all(isinstance(n, ast.Pass) or
                     isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant) and isinstance(n.value.value, str)
@@ -95,8 +114,9 @@ def main():
                 graph_id, output = folder_graph.store(target, recipe, recursive=recursive is not False, regenerate=args.regenerate)
             else:
                 recipe['source'] = target.relative_to(store.root).as_posix()
-                graph = file_graph.build(recipe, store.root)
-                graph_id, output = write_graph(store, identity, graph, 'Save a file graph of functions and concrete processes')
+                builder = article_graph if args.command == 'article' else file_graph
+                graph = builder.build(recipe, store.root)
+                graph_id, output = write_graph(store, identity, graph, 'Save an article graph' if args.command == 'article' else 'Save a file graph of functions and concrete processes')
             result = {'graph_id': graph_id, 'path': str(output), 'source': target.relative_to(store.root).as_posix()}
         result['project_id'] = store.id
         print(json.dumps(result, ensure_ascii=False, indent=2))

@@ -95,6 +95,11 @@ def existing_graph(store_context, graph_id, source, *, folder=False):
         recorded = graph.get('analysis', {}).get('source_sha256')
         if recorded and (ROOT / source).is_file():
             info['source_sha_matches'] = recorded == hashlib.sha256((ROOT / source).read_bytes()).hexdigest()
+        sources = graph.get('analysis', {}).get('source_files')
+        if sources:
+            info['source_files_match'] = all((store_context.root / name).is_file()
+                and hashlib.sha256((store_context.root / name).read_bytes()).hexdigest() == digest
+                for name, digest in sources.items())
         if folder:
             checked = []
             for item in graph.get('source_index', []):

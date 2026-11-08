@@ -82,6 +82,10 @@
 .graph-empty-message{margin:60px auto;padding:24px;max-width:560px;color:var(--atlas-text-secondary);font:14px/1.8 var(--atlas-font-sans);text-align:center}
 @media(max-width:730px){.language-switch,.theme-switch{gap:3px}.graph-pathbar{padding:0}.status-legend{right:10px;bottom:12px;padding:8px 10px;gap:12px}.legend-item{font-size:11px}.legend-swatch{height:16px;width:16px}}
 
+/* 节点名称与解释在悬停或键盘聚焦时完整显示。 */
+.node-explanation{position:fixed;z-index:1000;max-width:min(420px,calc(100vw - 16px));max-height:calc(100vh - 16px);overflow:auto;padding:12px 16px;border:1px solid var(--atlas-edge);border-radius:8px;background:var(--atlas-canvas,#fff);color:var(--atlas-text);font:13px/1.6 var(--atlas-font-sans);white-space:pre-wrap;overflow-wrap:anywhere;box-shadow:0 4px 20px #0002;}
+.node-explanation[hidden]{display:none}.node-explanation strong{display:block;margin-bottom:4px;}
+
 /* Avoid per-node effects and SVG hit testing during captured camera gestures. */
 .canvas-wrap.is-dragging #diagram .node-surface{filter:none!important}
 .canvas-wrap.is-dragging #diagram{pointer-events:none}

@@ -1,9 +1,10 @@
 /* 目的和主要功能：加载 ExtractStructure 图资料，连接内部绘图组件与目录、文件导航。
- * 适用范围：本 Skill 的目录图和文件图页面；从内部页面服务读取资料。
+ * 适用范围：本技能的文章、目录和文件图页面；通过统一入口读取服务资料或内嵌资料。
  */
 'use strict';
-(async()=>{
-  const base='/extract-structure/',assets=base+'assets/';
+(()=>{
+  const base='/extract-structure/',runtime=ExtractRuntime;
+  const next=document.querySelector('#pathNext');
   const status=document.querySelector('#sceneStatus'),t=GraphLocale.t;
   const byTypeAndName=(a,b)=>(a.kind==='folder'?0:1)-(b.kind==='folder'?0:1)||a.source.split('/').at(-1).localeCompare(b.source.split('/').at(-1),'en',{sensitivity:'base'});
   function fileLabel(element,text,isFile){
@@ -38,43 +39,55 @@
       if(target){e.preventDefault();target.focus();}
     };
   }
+  let generation=0;
+  async function renderPage(){
+    const ticket=++generation;
+    window.ExtractViewerDispose?.();
+    closeMenu();
+    window.SemanticPreview=null;
+    window.B=null;
+    document.querySelector('#graphBreadcrumbs').parentElement.append(next);
+    document.querySelector('#graphBreadcrumbs').replaceChildren();
+    document.querySelector('#graphPicker').replaceChildren();
+    next.querySelectorAll('button').forEach(node=>node.remove());
+    document.querySelectorAll('.path-menu').forEach(node=>node.remove());
+    document.querySelector('#canvas').replaceChildren();
+    document.querySelectorAll('.toolbar button,.toolbar input,.toolbar select').forEach(control=>control.disabled=false);
   try{
-    const catalogResponse=await fetch(base+'data/',{cache:'no-store'});
-    if(!catalogResponse.ok)throw new Error(t('代码图目录暂时不可用'));
-    const catalog=await catalogResponse.json(),picker=document.querySelector('#graphPicker');
-    const requested=decodeURIComponent(location.pathname.slice(base.length)).replace(/\/$/,'');
+    const catalog=await runtime.catalog(),picker=document.querySelector('#graphPicker');
+    if(ticket!==generation)return;
+    const requested=runtime.requested();
     const current=catalog.graphs.find(g=>g.source===requested||g.id===requested)||(!requested?catalog.graphs[0]:null);
     const id=current?.id||requested;
     if(!id){status.textContent=t('尚无代码图，请先通过 Skill 保存 JSON。');return;}
-    if(current&&location.pathname!==current.url)history.replaceState(null,'',current.url+location.search+location.hash);
+    if(!runtime.standalone&&current&&location.pathname!==current.url)try{history.replaceState(null,'',current.url+location.search+location.hash);}catch{}
     const source=current?.source||requested;
     const directory=current?.kind==='folder'?source:source.slice(0,source.lastIndexOf('/'));
     // Path segments show only the selected source path. Descending is a separate action.
     picker.append(new Option('',''));
     const local=catalog.graphs.filter(g=>g.source!==source&&g.source.slice(0,g.source.lastIndexOf('/'))===directory);
     for(const item of local.sort(byTypeAndName)){
-      const option=new Option(item.source.split('/').at(-1)+(item.kind==='folder'?'/':''),item.url);option.dataset.kind=item.kind;picker.append(option);
+      const option=new Option(item.source.split('/').at(-1)+(item.kind==='folder'?'/':''),runtime.url(item.source));option.dataset.kind=item.kind;picker.append(option);
     }
-    picker.value='';picker.onchange=()=>{if(picker.value)location.assign(picker.value);};
+    picker.value='';picker.onchange=()=>{if(picker.value)runtime.follow(picker.value);};
     const path=document.querySelector('#graphBreadcrumbs'),parts=source.split('/');
     for(let i=0;i<parts.length;i++){
       if(i){const divider=document.createElement('span');divider.className='path-divider';divider.textContent='/';path.append(divider);}
       const targetSource=parts.slice(0,i+1).join('/'),parentSource=parts.slice(0,i).join('/');
       const siblings=catalog.graphs.filter(g=>g.source===targetSource||g.source.slice(0,g.source.lastIndexOf('/'))===parentSource);
       const select=document.createElement('select');select.className='path-segment';select.setAttribute('aria-label',t('切换 {path}',{path:targetSource}));
-      for(const item of siblings.sort(byTypeAndName)){const option=new Option(item.source.split('/').at(-1)+(item.kind==='folder'?'/':''),item.url);option.dataset.kind=item.kind;select.append(option);}
-      select.value=base+targetSource;
-      select.onchange=()=>location.assign(select.value+'?focus_path='+encodeURIComponent(source));
+      for(const item of siblings.sort(byTypeAndName)){const option=new Option(item.source.split('/').at(-1)+(item.kind==='folder'?'/':''),runtime.url(item.source));option.dataset.kind=item.kind;select.append(option);}
+      select.value=runtime.url(targetSource);
+      select.onchange=()=>runtime.follow(select.value,{focus_path:source});
       path.append(select);
       styleSelector(select);
     }
 
-    const next=document.querySelector('#pathNext');
     next.hidden=current?.kind!=='folder'||local.length===0;
     if(!next.hidden){const divider=document.createElement('span');divider.className='path-divider';divider.textContent='/';path.append(divider,next);styleSelector(picker,true);}
 
-    const response=await fetch(base+'data/'+id.split('/').map(encodeURIComponent).join('/')+'.json',{cache:'no-store'});
-    const payload=await response.json();if(!response.ok)throw new Error(payload.error||t('代码图读取失败'));
+    const payload=await runtime.graph(id);
+    if(ticket!==generation)return;
     if(!payload.graph){
       document.title=source+' / ExtractStructure';
       status.textContent=t('当前目录尚未生成目录图');
@@ -90,10 +103,20 @@
       layouts[level]={nodes:Object.fromEntries(graph.graphs[level].nodes.map(n=>[n.id,{role:'operation',column:0,lane:0,...plan.nodes[n.id]}])),
         edges:graph.graphs[level].edges.map((e,index)=>({from:e.from,to:e.to,index,primary:(plan.main_edges||[]).some(pair=>pair[0]===e.from&&pair[1]===e.to)}))};
     }
-    window.B={data:graph,layouts,presentation:hints.presentation,title:hints.title||graph.source,input_sha256:payload.sha256,restore:GraphLocale.restore(graph.source)};
+    window.B={original:payload.graph,data:graph,layouts,presentation:hints.presentation,title:hints.title||graph.source,input_sha256:payload.sha256,restore:GraphLocale.restore(graph.source)};
     document.title=(hints.title||graph.source)+' / ExtractStructure';
-    for(const name of ['orthogonal.js','inline_labels.js','concept_ranges.js','expansion_layout.js','viewer.js']){
-      await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=assets+name;script.onload=resolve;script.onerror=()=>reject(new Error(t('绘图组件加载失败')));document.head.append(script);});
-    }
-  }catch(error){status.textContent=t('加载失败：{error}',{error:error.message});}
+    window.ExtractViewerMount();
+  }catch(error){if(ticket===generation)status.textContent=t('加载失败：{error}',{error:error.message});}
+  }
+  window.addEventListener('extract:navigate',renderPage);
+  window.addEventListener('hashchange',()=>{if(runtime.standalone)renderPage();});
+  window.addEventListener('popstate',()=>{if(runtime.standalone)renderPage();});
+  window.addEventListener('extract:language',()=>{
+    if(!window.B)return;const snapshot=window.SemanticPreview?.snapshot();
+    window.ExtractViewerDispose?.();
+    B.data=GraphLocale.localize(B.original);B.presentation=B.data.display.presentation;B.restore=snapshot;
+    window.ExtractViewerMount();
+  });
+  document.addEventListener('click',event=>{const link=event.target.closest('a.node-entry-link');if(runtime.standalone&&link){event.preventDefault();runtime.navigate(decodeURIComponent(new URL(link.getAttribute('href'),'https://extract-structure.invalid').pathname.slice(base.length)));}});
+  renderPage();
 })();
