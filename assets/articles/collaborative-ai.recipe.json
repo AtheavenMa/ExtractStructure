@@ -1,26 +1,41 @@
 {
   "source": "extract-structure/assets/articles/collaborative-ai.md",
-  "purpose": "Collaborative AI: Build knowledge for what comes next",
-  "coverage": "The full supplied essay, including individual and team game examples, research, collaboration, and model understanding.",
+  "purpose": "After the Riemann Hypothesis: Humans Still Have So Much to Do",
+  "coverage": "The complete revised essay: the continuing human role, adaptive game strategies, reusable research, Collaborative AI, and mechanistic interpretability.",
   "groups": [
     {
       "id": "INTELLIGENCE",
-      "name": "Results and intelligence",
-      "meaning": "The article asks how a difficult achievement can become adaptable judgment and knowledge that supports future work.",
+      "name": "Humans still have work to do",
+      "meaning": "The essay argues that humans can identify important problems, understand discoveries, develop strategies, and build on knowledge, with AI helping at every step.",
       "category": "input",
       "columns": 2,
       "nodes": [
         {
-          "id": "MILESTONE",
-          "name": "A difficult achievement",
-          "meaning": "The opening uses an AI-assisted Riemann Hypothesis proof as its motivating example and credits difficult achievements as evidence of capability.",
+          "id": "HUMAN_WORK",
+          "name": "Choose, understand, build",
+          "meaning": "Humans can identify important problems, understand new discoveries, develop better strategies, and turn knowledge into further progress. Collaborative AI helps humans and AI work, learn, and improve together.",
           "category": "input",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                5,
-                25
+                3,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MILESTONE",
+          "name": "A difficult achievement",
+          "meaning": "The essay presents an AI-assisted Riemann Hypothesis proof as its opening example of a difficult achievement, while distinguishing success from understanding and reusing the result.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                22,
+                28
               ]
             }
           ]
@@ -34,8 +49,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                27,
-                37
+                15,
+                16
               ]
             }
           ]
@@ -49,8 +64,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                39,
-                47
+                44,
+                50
               ]
             }
           ]
@@ -64,8 +79,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                49,
-                51
+                30,
+                32
               ]
             }
           ]
@@ -88,8 +103,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                53,
-                69
+                56,
+                72
               ]
             }
           ]
@@ -103,8 +118,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                71,
-                89
+                78,
+                90
               ]
             }
           ]
@@ -118,7 +133,7 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                91,
+                94,
                 95
               ]
             }
@@ -133,8 +148,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                97,
-                99
+                96,
+                96
               ]
             }
           ]
@@ -148,8 +163,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                99,
-                99
+                97,
+                97
               ]
             }
           ]
@@ -163,8 +178,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                101,
-                115
+                98,
+                114
               ]
             }
           ]
@@ -187,8 +202,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                117,
-                125
+                120,
+                132
               ]
             }
           ]
@@ -202,8 +217,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                127,
-                127
+                136,
+                136
               ]
             }
           ]
@@ -217,8 +232,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                129,
-                129
+                137,
+                137
               ]
             }
           ]
@@ -226,14 +241,14 @@
         {
           "id": "TEAM_B",
           "name": "Partial coordination: B",
-          "meaning": "When only two or three teammates communicate and overall skill is limited, the author prioritizes B for more consistent focused damage.",
+          "meaning": "With limited communication and less experienced players, the author suggests B for consistent damage without requiring perfect coordination. These choices are conditional strategies, rather than fixed rules.",
           "category": "process",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                131,
-                135
+                138,
+                138
               ]
             }
           ]
@@ -247,8 +262,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                133,
-                135
+                140,
+                148
               ]
             }
           ]
@@ -262,8 +277,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                137,
-                147
+                150,
+                154
               ]
             }
           ]
@@ -280,14 +295,14 @@
         {
           "id": "PAPERS",
           "name": "Correct work needs direction",
-          "meaning": "The author argues that technical correctness alone may not guide research. The discussion cites AI-written papers and a release of more than 700 mathematical manuscripts as examples.",
+          "meaning": "The author acknowledges AI’s mathematical results, research code, and paper generation, including a cited release of hundreds of mathematical manuscripts, while asking whether correct results also create useful understanding.",
           "category": "input",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                149,
-                153
+                158,
+                164
               ]
             }
           ]
@@ -301,8 +316,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                155,
-                155
+                166,
+                166
               ]
             }
           ]
@@ -316,8 +331,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                157,
-                161
+                168,
+                172
               ]
             }
           ]
@@ -325,14 +340,14 @@
         {
           "id": "DRUGS",
           "name": "Reuse treatment principles",
-          "meaning": "The drug example asks how engineering principles and biological mechanisms could support more efficient development across diseases, treatment, and prevention.",
+          "meaning": "An effective cancer treatment is valuable immediately. Understanding its biological mechanisms could also help develop treatments for other diseases: a discovery matters both for the problem it solves and for what it makes possible next.",
           "category": "output",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                163,
-                171
+                174,
+                182
               ]
             }
           ]
@@ -355,8 +370,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                175,
-                179
+                186,
+                190
               ]
             }
           ]
@@ -370,8 +385,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                181,
-                183
+                192,
+                194
               ]
             }
           ]
@@ -379,14 +394,14 @@
         {
           "id": "FOLDERS",
           "name": "Give folders clear purposes",
-          "meaning": "Clearly defined folders and subfolders distribute responsibilities and create persistent organization. Frequently used files can remain accessible exceptions.",
+          "meaning": "Organizing files into clearly defined folders takes time initially but makes future tasks easier. The essay uses this as an analogy for maintaining useful research structure.",
           "category": "process",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                185,
-                187
+                196,
+                198
               ]
             }
           ]
@@ -394,14 +409,14 @@
         {
           "id": "SCATTER",
           "name": "Immediate completion scatters work",
-          "meaning": "The author observes that assistants may prioritize the current task, take shortcuts under vague instructions, and leave scattered files, tools, and hard-to-read logs.",
+          "meaning": "A coding agent can finish an experiment while leaving scattered scripts, disorganized files, and lengthy logs. Humans then struggle to understand or reproduce the result, so increased automation alone may not improve research effectiveness.",
           "category": "output",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                189,
-                195
+                200,
+                212
               ]
             }
           ]
@@ -418,14 +433,14 @@
         {
           "id": "GUIDANCE",
           "name": "Agents plus a guiding environment",
-          "meaning": "A harness is an environment that constrains and guides an agent’s behavior. The author supplies a direction while the agent explores the implementation.",
+          "meaning": "A harness provides structures, tools, and constraints that guide an agent. It can help AI work in ways humans can understand and maintain, offering a way to improve collaboration with current models.",
           "category": "input",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                197,
-                207
+                214,
+                220
               ]
             }
           ]
@@ -439,8 +454,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                209,
-                217
+                222,
+                228
               ]
             }
           ]
@@ -454,8 +469,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                219,
-                221
+                226,
+                230
               ]
             }
           ]
@@ -478,8 +493,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                223,
-                231
+                232,
+                244
               ]
             }
           ]
@@ -493,8 +508,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                233,
-                239
+                246,
+                250
               ]
             }
           ]
@@ -508,8 +523,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                241,
-                243
+                254,
+                254
               ]
             }
           ]
@@ -523,8 +538,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                235,
-                245
+                255,
+                255
               ]
             }
           ]
@@ -538,8 +553,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                241,
-                247
+                256,
+                256
               ]
             }
           ]
@@ -562,8 +577,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                249,
-                255
+                264,
+                272
               ]
             }
           ]
@@ -577,8 +592,8 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                257,
-                263
+                274,
+                276
               ]
             }
           ]
@@ -586,14 +601,14 @@
         {
           "id": "CIRCUITS",
           "name": "Study neurons and circuits",
-          "meaning": "The author supports research into internal mechanisms, including neurons and circuits, while recognizing that sufficiently powerful tools are still needed.",
+          "meaning": "Mechanistic interpretability studies neurons, circuits, and internal representations to understand how models process information and make decisions. The author considers this essential for future Collaborative AI.",
           "category": "process",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                259,
-                259
+                278,
+                282
               ]
             }
           ]
@@ -601,14 +616,14 @@
         {
           "id": "WEIGHTS",
           "name": "Weights and context",
-          "meaning": "The author distinguishes knowledge incorporated into model weights from knowledge supplied in context, and expresses the belief that the former may offer more reliable influence over internal behavior.",
+          "meaning": "A document can be supplied through context or incorporated into model weights. The author believes shaping internal representations could eventually offer more reliable influence over future behavior, provided those changes can be verified and controlled.",
           "category": "process",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                261,
-                263
+                284,
+                292
               ]
             }
           ]
@@ -622,23 +637,23 @@
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                265,
-                265
+                294,
+                294
               ]
             }
           ]
         },
         {
           "id": "EXCHANGE",
-          "name": "Make knowledge easier to share",
-          "meaning": "Efficient exchange between humans and AI could also improve communication among people and among AI systems, making each task a foundation for later progress.",
+          "name": "Each discovery enables the next",
+          "meaning": "Efficient knowledge exchange can help humans and AI, people with one another, and AI systems with one another. The essay proposes measuring intelligence by how reliably knowledge is understood, accumulated, and reused to support the next discovery.",
           "category": "output",
           "source": [
             {
               "path": "extract-structure/assets/articles/collaborative-ai.md",
               "lines": [
-                267,
-                271
+                296,
+                306
               ]
             }
           ]
@@ -648,6 +663,28 @@
   ],
   "edges": [
     {
+      "from": "HUMAN_WORK",
+      "to": "CRITERION",
+      "label": "Explain the continuing human role",
+      "description": "AI can help humans identify what matters and build on discoveries.",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            3,
+            18
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            15,
+            16
+          ]
+        }
+      ]
+    },
+    {
       "from": "MILESTONE",
       "to": "CRITERION",
       "label": "Motivate a broader measure",
@@ -656,8 +693,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            35,
-            37
+            22,
+            28
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            15,
+            16
           ]
         }
       ]
@@ -671,8 +715,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            35,
-            49
+            15,
+            16
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            30,
+            32
           ]
         }
       ]
@@ -686,8 +737,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            39,
-            49
+            44,
+            50
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            30,
+            32
           ]
         }
       ]
@@ -701,8 +759,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            63,
-            77
+            56,
+            72
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            78,
+            90
           ]
         }
       ]
@@ -716,7 +781,14 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            89,
+            78,
+            90
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            94,
             95
           ]
         }
@@ -731,8 +803,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            93,
-            97
+            94,
+            95
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            96,
+            96
           ]
         }
       ]
@@ -746,8 +825,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            99,
-            99
+            96,
+            96
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            97,
+            97
           ]
         }
       ]
@@ -761,8 +847,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            99,
-            105
+            97,
+            97
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            98,
+            114
           ]
         }
       ]
@@ -776,8 +869,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            111,
-            115
+            98,
+            114
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            94,
+            95
           ]
         }
       ],
@@ -793,8 +893,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            51,
-            93
+            30,
+            32
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            94,
+            95
           ]
         }
       ]
@@ -808,8 +915,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            117,
-            125
+            98,
+            114
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            120,
+            132
           ]
         }
       ]
@@ -823,8 +937,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            127,
-            127
+            120,
+            132
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            136,
+            136
           ]
         }
       ]
@@ -838,8 +959,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            129,
-            129
+            120,
+            132
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            137,
+            137
           ]
         }
       ]
@@ -853,8 +981,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            131,
-            135
+            120,
+            132
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            138,
+            138
           ]
         }
       ]
@@ -868,8 +1003,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            133,
-            135
+            120,
+            132
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            140,
+            148
           ]
         }
       ]
@@ -883,8 +1025,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            133,
-            143
+            136,
+            136
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            150,
+            154
           ]
         }
       ]
@@ -898,8 +1047,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            133,
-            143
+            137,
+            137
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            150,
+            154
           ]
         }
       ]
@@ -913,8 +1069,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            133,
-            143
+            138,
+            138
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            150,
+            154
           ]
         }
       ]
@@ -928,8 +1091,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            133,
-            143
+            140,
+            148
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            150,
+            154
           ]
         }
       ]
@@ -943,8 +1113,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            141,
-            153
+            150,
+            154
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            158,
+            164
           ]
         }
       ]
@@ -958,8 +1135,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            153,
-            155
+            158,
+            164
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            166,
+            166
           ]
         }
       ]
@@ -973,8 +1157,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            155,
-            161
+            166,
+            166
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            168,
+            172
           ]
         }
       ]
@@ -988,8 +1179,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            161,
-            171
+            168,
+            172
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            174,
+            182
           ]
         }
       ]
@@ -1003,8 +1201,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            171,
-            179
+            174,
+            182
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            186,
+            190
           ]
         }
       ]
@@ -1018,8 +1223,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            179,
-            183
+            186,
+            190
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            192,
+            194
           ]
         }
       ]
@@ -1033,8 +1245,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            183,
-            187
+            192,
+            194
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            196,
+            198
           ]
         }
       ]
@@ -1048,8 +1267,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            189,
-            195
+            196,
+            198
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            200,
+            212
           ]
         }
       ]
@@ -1063,8 +1289,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            195,
-            205
+            200,
+            212
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            214,
+            220
           ]
         }
       ]
@@ -1078,8 +1311,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            207,
-            217
+            214,
+            220
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            222,
+            228
           ]
         }
       ]
@@ -1093,8 +1333,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            213,
-            221
+            222,
+            228
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            226,
+            230
           ]
         }
       ]
@@ -1108,8 +1355,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            221,
-            229
+            226,
+            230
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            232,
+            244
           ]
         }
       ]
@@ -1123,8 +1377,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            231,
-            239
+            232,
+            244
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            246,
+            250
           ]
         }
       ]
@@ -1138,8 +1399,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            241,
-            243
+            246,
+            250
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            254,
+            254
           ]
         }
       ]
@@ -1153,8 +1421,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            235,
-            245
+            246,
+            250
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            255,
+            255
           ]
         }
       ]
@@ -1168,8 +1443,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            241,
-            247
+            246,
+            250
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            256,
+            256
           ]
         }
       ]
@@ -1183,8 +1465,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            247,
-            255
+            256,
+            256
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            264,
+            272
           ]
         }
       ]
@@ -1198,8 +1487,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            253,
-            257
+            264,
+            272
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            274,
+            276
           ]
         }
       ]
@@ -1213,8 +1509,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            257,
-            259
+            274,
+            276
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            278,
+            282
           ]
         }
       ]
@@ -1228,8 +1531,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            261,
-            263
+            274,
+            276
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            284,
+            292
           ]
         }
       ]
@@ -1243,8 +1553,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            259,
-            265
+            278,
+            282
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            294,
+            294
           ]
         }
       ]
@@ -1258,8 +1575,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            261,
-            265
+            284,
+            292
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            294,
+            294
           ]
         }
       ]
@@ -1273,8 +1597,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            265,
-            271
+            294,
+            294
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            296,
+            306
           ]
         }
       ]
@@ -1290,8 +1621,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            51,
-            93
+            30,
+            32
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            94,
+            95
           ]
         }
       ]
@@ -1305,8 +1643,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            117,
-            125
+            98,
+            114
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            120,
+            132
           ]
         }
       ]
@@ -1320,8 +1665,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            141,
-            155
+            150,
+            154
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            158,
+            164
           ]
         }
       ]
@@ -1335,8 +1687,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            171,
-            179
+            174,
+            182
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            186,
+            190
           ]
         }
       ]
@@ -1350,8 +1709,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            195,
-            205
+            200,
+            212
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            214,
+            220
           ]
         }
       ]
@@ -1365,8 +1731,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            221,
-            235
+            226,
+            230
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            232,
+            244
           ]
         }
       ]
@@ -1380,8 +1753,15 @@
         {
           "path": "extract-structure/assets/articles/collaborative-ai.md",
           "lines": [
-            247,
-            265
+            256,
+            256
+          ]
+        },
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            264,
+            272
           ]
         }
       ]
@@ -1391,146 +1771,150 @@
     "source_language": "en",
     "translations": {
       "zh": {
-        "Results and intelligence": "成果与智能",
-        "The article asks how a difficult achievement can become adaptable judgment and knowledge that supports future work.": "文章讨论如何把一次困难任务的成果转化为适应新情境的判断，以及支持后续工作的知识。",
-        "A difficult achievement": "困难任务的成果",
-        "The opening uses an AI-assisted Riemann Hypothesis proof as its motivating example and credits difficult achievements as evidence of capability.": "开篇以 AI 协助证明黎曼猜想的叙述引出讨论，并肯定解决困难问题所体现的能力。",
-        "What matters in a new setting?": "新情境中什么最关键",
-        "The author proposes a broader measure of intelligence: identify decisive factors in unfamiliar situations, adapt an approach, and turn discoveries into useful knowledge.": "作者提出更广的智能衡量标准：在陌生情境中找出决定性因素，调整解决方法，并把发现转化为有用的知识。",
-        "Treatment and mechanism": "疗效与作用机制",
-        "Effective treatment has immediate value for patients. Understanding how it works can also make future drug development more efficient; the article treats both goals as valuable.": "有效治疗对患者有直接价值。理解其作用机制还可能提高后续药物开发的效率，文章认为这两个目标都值得追求。",
-        "Build on the result": "在成果上继续推进",
-        "Producing one successful result and understanding how to extend it are distinct capabilities. The article uses this distinction to motivate the rest of its argument.": "取得一次成功，与理解如何基于这次成功继续推进，是两种不同的能力。文章以此展开后面的论证。",
-        "Motivate a broader measure": "引出更广的衡量标准",
-        "Require transferable knowledge": "要求知识能够迁移",
-        "Explain long-term value": "说明长期价值",
-        "Learn through play": "在游戏中逐步学习",
-        "The one-player example compares a generic win-rate recommendation with a training plan adapted to a player’s current control and goals.": "单人对战的例子比较了通用胜率建议与训练计划；后者围绕玩家当前的操作能力和长期目标进行调整。",
-        "Three buffs: A, B, C": "三种增益：A、B、C",
-        "Both players can move, attack, and dodge cast-time skills. A sets health to 200%, B sets attack power to 300%, and C sets movement speed to 400%.": "双方都能移动、攻击和躲避需要施法时间的技能。A 把生命值提高到 200%，B 把攻击力提高到 300%，C 把移动速度提高到 400%。",
-        "High win rate, poor fit": "高胜率也可能不适合",
-        "In the example, AI recommends C from aggregate win rates. The player cannot control the speed, loses matches, and receives changing suggestions without an understandable learning plan.": "例子中的 AI 根据总体胜率推荐 C。玩家无法控制过快的移动速度，连续失利后得到反复变化的建议，却没有获得容易理解的学习计划。",
-        "Grow into a strong player": "成长为更强的玩家",
-        "The author first identifies the real goal: improve as a player and enjoy the game. Difficulty controlling C reveals a current skill constraint.": "作者先明确真正的目标：提升水平并享受游戏。难以控制 C 的速度，揭示了玩家当前操作能力的限制。",
-        "A: survive and practice": "A：生存并练习操作",
-        "Extra health allows more mistakes while learning control and dodging. The proposed next step depends on observed improvement.": "额外生命值提供了容错空间，让玩家练习控制角色和躲避技能。后续选择取决于实际进步。",
-        "B: land reliable damage": "B：稳定命中并输出",
-        "Once dodging improves and health remains high, the author switches to B. Reliable attack accuracy turns the additional attack power into useful damage.": "当躲避能力提升、生命值经常保持较高时，作者转用 B。稳定的命中能力让额外攻击力转化为有效输出。",
-        "C: strike and retreat": "C：快速进攻与撤退",
-        "With improved control, the player returns to C, casts a skill, and retreats quickly. The intended AI assistant would plan and revise this progression through experimentation.": "操作熟练后，玩家重新选择 C，快速施放技能并撤退。作者期待 AI 能根据实验和反馈规划、调整这一成长过程。",
-        "Supply the available choices": "提供可选方案",
-        "Expose the player’s constraint": "暴露玩家当前的限制",
-        "Choose a useful practice stage": "选择合适的练习阶段",
-        "Advance when dodging improves": "躲避熟练后推进",
-        "Use better control": "利用提升后的操作能力",
-        "Revise through experimentation": "通过实验继续调整",
-        "Test judgment in a simple game": "用简单游戏检验判断",
-        "Test adaptable judgment": "检验适应性判断",
-        "Coordinate before choosing": "先看协作再选策略",
-        "In the five-versus-five version, the author makes communication and team skill the first criteria for choosing buffs and tactics.": "在五对五版本中，作者把沟通能力与队伍水平放在首位，再据此选择增益和战术。",
-        "Can the team coordinate?": "队伍能否协调行动",
-        "Before choosing A, B, or C, determine who can communicate in real time, whether players follow calls, and how skilled the team is.": "选择 A、B 或 C 之前，先确定哪些成员能实时沟通、大家是否听从指挥，以及队伍的操作水平。",
-        "No communication: skilled C": "无沟通：熟练者选 C",
-        "For sufficiently skilled players without real-time communication, the author proposes C to use individual mobility and control.": "对于操作足够熟练、但缺乏实时沟通的玩家，作者建议用 C 发挥个人机动性和操作优势。",
-        "Strong coordination: team C": "强协作：全队使用 C",
-        "When everyone is skilled and follows team calls, the proposed tactic is to rush together, focus one target, secure a kill, and retreat quickly.": "当全员熟练且能统一行动时，作者提出全队快速进场、集火一个目标、完成击杀后迅速撤退。",
-        "Partial coordination: B": "部分协作：优先选 B",
-        "When only two or three teammates communicate and overall skill is limited, the author prioritizes B for more consistent focused damage.": "当只有两三人能沟通、队伍整体水平有限时，作者优先考虑 B，以便更稳定地集火输出。",
-        "Adjust roles and opponents": "根据角色与对手调整",
-        "A struggling teammate may use A to absorb damage. Mixed buffs can answer opposing tactics; more complex plans require stronger coordination.": "操作吃力的队友可以用 A 承担伤害；混合增益可以应对对方战术。计划越复杂，对团队协作的要求越高。",
-        "Find the decisive factor": "找出决定性因素",
-        "The author values recognizing communication as the governing constraint, organizing choices around it, and knowing what to test next as conditions change.": "作者看重的是：把沟通识别为主导约束，围绕它组织选择，并在条件变化时知道下一步应测试什么。",
-        "Change the game to teams": "把个人对战改成团队对战",
-        "Choose for individual control": "按个人能力选择",
-        "Enable synchronized tactics": "支持同步行动",
-        "Prioritize reliable focus": "优先保证稳定集火",
-        "Set the complexity of tactics": "决定战术复杂程度",
-        "Organize a conditional strategy": "组织有条件的策略",
-        "Introduce team coordination": "引入团队协作条件",
-        "Make discoveries reusable": "让科研发现能够复用",
-        "The article extends the game example to research: explain how ideas arise, select valuable questions, and reuse mechanisms across later problems.": "文章把游戏中的判断推广到科研：解释想法如何形成，选择有价值的问题，并把机制理解用于后续问题。",
-        "Correct work needs direction": "正确成果也需要方向",
-        "The author argues that technical correctness alone may not guide research. The discussion cites AI-written papers and a release of more than 700 mathematical manuscripts as examples.": "作者认为，技术上正确的成果仍可能无法指导后续研究。文中以 AI 生成论文以及其提到的七百多篇数学手稿为例展开讨论。",
-        "Explain how ideas develop": "解释关键想法的形成",
-        "Researchers need to know how key ideas emerged, how steps were developed, which intuitions guided them, and which parts transfer to other problems.": "研究者需要理解关键想法从何而来、各步骤如何发展、哪些直觉引导了过程，以及哪些部分能迁移到其他问题。",
-        "Choose valuable questions": "选择有价值的研究问题",
-        "Identifying questions that matter and turning results into new directions are additional measures of intelligence in the author’s argument.": "在作者的论证中，识别真正重要的问题、把成果转化为新的研究方向，是衡量智能的另一部分。",
-        "Reuse treatment principles": "复用药物与治疗原理",
-        "The drug example asks how engineering principles and biological mechanisms could support more efficient development across diseases, treatment, and prevention.": "药物例子追问：能否理解开发流程的工程原理和治疗过程的生物机制，从而更高效地支持不同疾病的治疗与预防。",
-        "Apply the criterion to research": "把判断标准用于科研",
-        "Recover useful reasoning": "提炼有用的研究思路",
-        "Guide subsequent discoveries": "指导后续发现",
-        "Generalize the mechanism example": "推广机制理解的例子",
-        "Carry the criterion into science": "把判断标准推广到科学",
-        "Organize work for later": "为后续工作组织成果",
-        "The file-organization analogy shows how an initial investment in clear structure can reduce future distractions and preserve useful work.": "文件整理的类比说明：预先建立清晰结构，可以减少后续分心，并保存已有工作的价值。",
-        "Each task supports the next": "每次工作支持下一步",
-        "The value of engineering, coding, or file organization includes the foundation it creates for future work.": "工程、编程和文件整理的价值，也包括它们为后续工作建立的基础。",
-        "A crowded desktop costs time": "杂乱桌面消耗注意力",
-        "Saving important files on the desktop is convenient initially; as files accumulate, searching and small distractions waste time.": "把重要文件放在桌面最初很方便；随着文件积累，查找和反复分心会不断消耗时间。",
-        "Give folders clear purposes": "让文件夹职责清晰",
-        "Clearly defined folders and subfolders distribute responsibilities and create persistent organization. Frequently used files can remain accessible exceptions.": "职责明确的文件夹及子文件夹形成持续可用的组织方式。经常使用的文件可以作为便于访问的例外。",
-        "Immediate completion scatters work": "只顾当前容易分散成果",
-        "The author observes that assistants may prioritize the current task, take shortcuts under vague instructions, and leave scattered files, tools, and hard-to-read logs.": "作者观察到，助手可能优先完成当前任务，在要求模糊时走捷径，留下分散的文件、工具和难以阅读的日志。",
-        "Connect reuse with everyday work": "把复用联系到日常工作",
-        "Illustrate future costs": "说明未来会付出的成本",
-        "Reduce repeated searching": "减少反复查找",
-        "Reveal a missing work habit": "揭示需要补足的工作习惯",
-        "Build a foundation for later work": "为后续工作建立基础",
-        "Guide AI and protect attention": "引导 AI 并保护注意力",
-        "The article proposes agents plus an environment that guides their work, while emphasizing that automation also needs understandable human interaction.": "文章提出为智能体配套引导其工作的运行环境，同时强调自动化需要让人容易理解和参与。",
-        "Agents plus a guiding environment": "智能体与引导环境",
-        "A harness is an environment that constrains and guides an agent’s behavior. The author supplies a direction while the agent explores the implementation.": "Harness 指约束和引导智能体行为的运行环境。作者提供方向，让智能体开展具体探索。",
-        "Reports must be understandable": "汇报需要容易理解",
-        "Technical jargon, obscure identifiers, and difficult explanations can prevent humans from understanding the underlying logic, even when the assistant follows wording requests.": "术语、晦涩标识和难懂的解释，会妨碍人理解底层逻辑；即便助手遵守措辞要求，问题仍可能存在。",
-        "Preserve time to think": "保留思考关键问题的时间",
-        "AI-written code produces large amounts of context. Decoding reports consumes researchers’ attention and reduces the time available for important questions.": "AI 编写代码会产生大量上下文。理解汇报继续占用研究者的注意力，压缩思考关键问题的时间。",
-        "Guide how work is organized": "引导工作的组织方式",
-        "Require effective human interaction": "需要有效的人机交互",
-        "Explain the attention cost": "说明理解汇报的成本",
-        "Guide the working process": "引导实际工作过程",
-        "Grow knowledge through interaction": "通过交互积累知识",
-        "ExtractStructure is the first step toward a research environment with reusable components, reproducible steps, shared understanding, and accumulated knowledge.": "ExtractStructure 是迈向研究协作环境的第一步：复用组件、重现执行步骤、保持共同理解，并持续积累知识。",
-        "See the whole, expand details": "先看全局，再展开细节",
-        "ExtractStructure turns a paper or repository into an interactive visual structure. Readers start with the overall organization and expand topics to inspect details.": "ExtractStructure 把论文或代码仓库转成可交互结构图。读者先理解整体组织，再展开具体主题查看细节。",
-        "Reuse research components": "复用研究功能组件",
-        "The proposed research harness would reduce distractions and engineering overhead, keep relevant knowledge updated, and integrate reusable functional components.": "设想中的研究协作环境将减少分心和工程负担，持续更新相关知识，并可靠集成可复用的功能组件。",
-        "Make steps reproducible": "让执行步骤可复现",
-        "The first goal is to create execution steps that people can understand and reproduce.": "第一个目标是形成让人能够理解和复现的执行步骤。",
-        "Keep understanding aligned": "保持理解一致",
-        "The second goal is to efficiently align execution steps and reasoning with human understanding throughout the research process.": "第二个目标是在研究过程中，高效地让执行步骤与推理保持和人的理解一致。",
-        "Accumulate reusable knowledge": "积累可复用的知识",
-        "The third goal is for useful knowledge to emerge through interaction and gradually accumulate into datasets that support later work.": "第三个目标是让有用知识在交互中产生，并逐渐积累成能够支持后续工作的数据集。",
-        "Motivate a visual overview": "引出可视化概览",
-        "Start a broader research environment": "迈向更完整的研究环境",
-        "Produce understandable steps": "形成可理解的步骤",
-        "Maintain shared understanding": "维持共同理解",
-        "Preserve knowledge from interaction": "保存交互中形成的知识",
-        "Make interaction easier to follow": "让交互更容易理解",
-        "Understand how AI uses knowledge": "理解 AI 如何运用知识",
-        "The final section argues that organizing external knowledge is an intermediate step toward understandable, verifiable, and controllable model behavior.": "最后一节认为，组织外部知识是中间步骤；最终还需要让模型行为能够被理解、验证和控制。",
-        "Documentation has limits": "文档仍有局限",
-        "Systematic records do not guarantee that external knowledge will influence model behavior as intended. The article treats the proposed harness as an intermediate step.": "系统记录文档，并不能保证外部知识按预期影响模型行为。文章因此把设想中的协作环境视为中间步骤。",
-        "Explanations may miss decisions": "解释未必反映真实决策",
         "A chain of thought or summary may not faithfully describe the model’s actual decision process, making it difficult to verify how contextual knowledge is used.": "思维链或摘要未必忠实描述模型真实的决策过程，因此难以仅凭这些说明验证模型如何使用上下文知识。",
-        "Study neurons and circuits": "研究神经元与回路",
-        "The author supports research into internal mechanisms, including neurons and circuits, while recognizing that sufficiently powerful tools are still needed.": "作者支持研究神经元、回路等内部机制，同时认为这一方向仍需要更有力的研究工具。",
-        "Weights and context": "权重中的知识与上下文",
-        "The author distinguishes knowledge incorporated into model weights from knowledge supplied in context, and expresses the belief that the former may offer more reliable influence over internal behavior.": "作者区分写入模型权重的知识与通过上下文提供的知识，并表达其看法：前者可能为可靠影响模型内部行为提供更好的路径。",
-        "Understand, verify, control": "理解、验证并控制行为",
-        "The stated long-term goal is to integrate knowledge into model behavior in ways humans can understand, verify, and control.": "文章提出的长期目标，是以人能够理解、验证和控制的方式，把知识整合进模型行为。",
-        "Make knowledge easier to share": "让知识更容易交流与积累",
-        "Efficient exchange between humans and AI could also improve communication among people and among AI systems, making each task a foundation for later progress.": "高效的人机信息交流，也可能改善人与人、AI 与 AI 之间的沟通，使每次工作成为后续进步的基础。",
+        "A coding agent can finish an experiment while leaving scattered scripts, disorganized files, and lengthy logs. Humans then struggle to understand or reproduce the result, so increased automation alone may not improve research effectiveness.": "编程智能体可能完成实验，却留下分散脚本、杂乱文件和冗长日志。人随后难以理解或复现实验，因此更多自动化未必直接提高科研效率。",
+        "A crowded desktop costs time": "杂乱桌面消耗注意力",
+        "A difficult achievement": "困难任务的成果",
+        "A document can be supplied through context or incorporated into model weights. The author believes shaping internal representations could eventually offer more reliable influence over future behavior, provided those changes can be verified and controlled.": "知识可以通过上下文提供，也可以整合进模型权重。作者认为，若能验证并控制相应变化，影响内部表征最终可能更可靠地塑造未来行为。",
+        "A harness provides structures, tools, and constraints that guide an agent. It can help AI work in ways humans can understand and maintain, offering a way to improve collaboration with current models.": "Harness 通过结构、工具和约束引导智能体，让 AI 的工作更容易被人理解和维护，为改善现有模型的人机协作提供途径。",
+        "A struggling teammate may use A to absorb damage. Mixed buffs can answer opposing tactics; more complex plans require stronger coordination.": "操作吃力的队友可以用 A 承担伤害；混合增益可以应对对方战术。计划越复杂，对团队协作的要求越高。",
+        "A: survive and practice": "A：生存并练习操作",
+        "AI can help humans identify what matters and build on discoveries.": "AI 可以帮助人识别关键问题，并在已有发现上继续推进。",
+        "AI-written code produces large amounts of context. Decoding reports consumes researchers’ attention and reduces the time available for important questions.": "AI 编写代码会产生大量上下文。理解汇报继续占用研究者的注意力，压缩思考关键问题的时间。",
+        "Accumulate reusable knowledge": "积累可复用的知识",
+        "Adjust roles and opponents": "根据角色与对手调整",
+        "Advance when dodging improves": "躲避熟练后推进",
+        "After the Riemann Hypothesis: Humans Still Have So Much to Do": "黎曼猜想之后：人类仍有许多工作要做",
+        "Agents plus a guiding environment": "智能体与引导环境",
+        "An effective cancer treatment is valuable immediately. Understanding its biological mechanisms could also help develop treatments for other diseases: a discovery matters both for the problem it solves and for what it makes possible next.": "有效的癌症治疗具有直接价值，理解其生物机制还可能帮助开发其他疾病的治疗方法。发现的价值既来自解决当前问题，也来自它为下一步带来的可能。",
+        "Apply the criterion to research": "把判断标准用于科研",
         "Ask how knowledge affects behavior": "追问知识如何影响行为",
-        "Expose a verification problem": "提出验证问题",
-        "Motivate internal study": "推动内部机制研究",
+        "B: land reliable damage": "B：稳定命中并输出",
+        "Before choosing A, B, or C, determine who can communicate in real time, whether players follow calls, and how skilled the team is.": "选择 A、B 或 C 之前，先确定哪些成员能实时沟通、大家是否听从指挥，以及队伍的操作水平。",
+        "Both players can move, attack, and dodge cast-time skills. A sets health to 200%, B sets attack power to 300%, and C sets movement speed to 400%.": "双方都能移动、攻击和躲避需要施法时间的技能。A 把生命值提高到 200%，B 把攻击力提高到 300%，C 把移动速度提高到 400%。",
+        "Build a foundation for later work": "为后续工作建立基础",
+        "Build on the result": "在成果上继续推进",
+        "C: strike and retreat": "C：快速进攻与撤退",
+        "Can the team coordinate?": "队伍能否协调行动",
+        "Carry the criterion into science": "把判断标准推广到科学",
+        "Change the game to teams": "把个人对战改成团队对战",
+        "Choose a useful practice stage": "选择合适的练习阶段",
+        "Choose for individual control": "按个人能力选择",
+        "Choose valuable questions": "选择有价值的研究问题",
+        "Choose, understand, build": "选择问题、理解发现、推进研究",
         "Compare ways to supply knowledge": "比较提供知识的方式",
-        "Seek verifiable mechanisms": "寻找可验证的机制",
-        "Seek reliable behavioral influence": "追求可靠影响行为",
-        "Support cumulative progress": "支持持续积累与进步",
         "Connect records with behavior": "把知识记录联系到模型行为",
-        "Collaborative AI: Build knowledge for what comes next": "协作式 AI：为后续工作积累知识",
-        "The full supplied essay, including individual and team game examples, research, collaboration, and model understanding.": "用户提供的完整文章，覆盖个人与团队游戏、科研、人机协作，以及对模型的理解。"
+        "Connect reuse with everyday work": "把复用联系到日常工作",
+        "Coordinate before choosing": "先看协作再选策略",
+        "Correct work needs direction": "正确成果也需要方向",
+        "Documentation has limits": "文档仍有局限",
+        "Each discovery enables the next": "让每次发现推动下一次发现",
+        "Each task supports the next": "每次工作支持下一步",
+        "Effective treatment has immediate value for patients. Understanding how it works can also make future drug development more efficient; the article treats both goals as valuable.": "有效治疗对患者有直接价值。理解其作用机制还可能提高后续药物开发的效率，文章认为这两个目标都值得追求。",
+        "Efficient knowledge exchange can help humans and AI, people with one another, and AI systems with one another. The essay proposes measuring intelligence by how reliably knowledge is understood, accumulated, and reused to support the next discovery.": "高效的知识交流可以帮助人与 AI、人与人、AI 与 AI 协作。文章主张，也应根据知识能否被可靠理解、积累和复用，以及每次发现如何推动下一次发现来衡量智能。",
+        "Enable synchronized tactics": "支持同步行动",
+        "Explain how ideas develop": "解释关键想法的形成",
+        "Explain long-term value": "说明长期价值",
+        "Explain the attention cost": "说明理解汇报的成本",
+        "Explain the continuing human role": "说明人类持续发挥的作用",
+        "Explanations may miss decisions": "解释未必反映真实决策",
+        "Expose a verification problem": "提出验证问题",
+        "Expose the player’s constraint": "暴露玩家当前的限制",
+        "Extra health allows more mistakes while learning control and dodging. The proposed next step depends on observed improvement.": "额外生命值提供了容错空间，让玩家练习控制角色和躲避技能。后续选择取决于实际进步。",
+        "ExtractStructure is the first step toward a research environment with reusable components, reproducible steps, shared understanding, and accumulated knowledge.": "ExtractStructure 是迈向研究协作环境的第一步：复用组件、重现执行步骤、保持共同理解，并持续积累知识。",
+        "ExtractStructure turns a paper or repository into an interactive visual structure. Readers start with the overall organization and expand topics to inspect details.": "ExtractStructure 把论文或代码仓库转成可交互结构图。读者先理解整体组织，再展开具体主题查看细节。",
+        "Find the decisive factor": "找出决定性因素",
+        "For sufficiently skilled players without real-time communication, the author proposes C to use individual mobility and control.": "对于操作足够熟练、但缺乏实时沟通的玩家，作者建议用 C 发挥个人机动性和操作优势。",
+        "Generalize the mechanism example": "推广机制理解的例子",
+        "Give folders clear purposes": "让文件夹职责清晰",
+        "Grow into a strong player": "成长为更强的玩家",
+        "Grow knowledge through interaction": "通过交互积累知识",
+        "Guide AI and protect attention": "引导 AI 并保护注意力",
+        "Guide how work is organized": "引导工作的组织方式",
+        "Guide subsequent discoveries": "指导后续发现",
+        "Guide the working process": "引导实际工作过程",
+        "High win rate, poor fit": "高胜率也可能不适合",
+        "Humans can identify important problems, understand new discoveries, develop better strategies, and turn knowledge into further progress. Collaborative AI helps humans and AI work, learn, and improve together.": "人类可以识别重要问题、理解新发现、发展更好的策略，并把知识转化为后续进步。协作式 AI 帮助人与 AI 共同工作、学习和改进。",
+        "Humans still have work to do": "人类仍有许多工作要做",
+        "Identifying questions that matter and turning results into new directions are additional measures of intelligence in the author’s argument.": "在作者的论证中，识别真正重要的问题、把成果转化为新的研究方向，是衡量智能的另一部分。",
+        "Illustrate future costs": "说明未来会付出的成本",
+        "Immediate completion scatters work": "只顾当前容易分散成果",
+        "In the example, AI recommends C from aggregate win rates. The player cannot control the speed, loses matches, and receives changing suggestions without an understandable learning plan.": "例子中的 AI 根据总体胜率推荐 C。玩家无法控制过快的移动速度，连续失利后得到反复变化的建议，却没有获得容易理解的学习计划。",
+        "In the five-versus-five version, the author makes communication and team skill the first criteria for choosing buffs and tactics.": "在五对五版本中，作者把沟通能力与队伍水平放在首位，再据此选择增益和战术。",
+        "Introduce team coordination": "引入团队协作条件",
+        "Keep understanding aligned": "保持理解一致",
+        "Learn through play": "在游戏中逐步学习",
+        "Maintain shared understanding": "维持共同理解",
+        "Make discoveries reusable": "让科研发现能够复用",
+        "Make interaction easier to follow": "让交互更容易理解",
+        "Make steps reproducible": "让执行步骤可复现",
+        "Mechanistic interpretability studies neurons, circuits, and internal representations to understand how models process information and make decisions. The author considers this essential for future Collaborative AI.": "机制可解释性研究神经元、回路和内部表征，以理解模型如何处理信息、作出决策。作者认为这对协作式 AI 的未来至关重要。",
+        "Motivate a broader measure": "引出更广的衡量标准",
+        "Motivate a visual overview": "引出可视化概览",
+        "Motivate internal study": "推动内部机制研究",
+        "No communication: skilled C": "无沟通：熟练者选 C",
+        "Once dodging improves and health remains high, the author switches to B. Reliable attack accuracy turns the additional attack power into useful damage.": "当躲避能力提升、生命值经常保持较高时，作者转用 B。稳定的命中能力让额外攻击力转化为有效输出。",
+        "Organize a conditional strategy": "组织有条件的策略",
+        "Organize work for later": "为后续工作组织成果",
+        "Organizing files into clearly defined folders takes time initially but makes future tasks easier. The essay uses this as an analogy for maintaining useful research structure.": "把文件放进职责清晰的文件夹需要初始投入，却能让后续任务更容易。文章用它类比维护有用的科研组织结构。",
+        "Partial coordination: B": "部分协作：优先选 B",
+        "Preserve knowledge from interaction": "保存交互中形成的知识",
+        "Preserve time to think": "保留思考关键问题的时间",
+        "Prioritize reliable focus": "优先保证稳定集火",
+        "Produce understandable steps": "形成可理解的步骤",
+        "Producing one successful result and understanding how to extend it are distinct capabilities. The article uses this distinction to motivate the rest of its argument.": "取得一次成功，与理解如何基于这次成功继续推进，是两种不同的能力。文章以此展开后面的论证。",
+        "Recover useful reasoning": "提炼有用的研究思路",
+        "Reduce repeated searching": "减少反复查找",
+        "Reports must be understandable": "汇报需要容易理解",
+        "Require effective human interaction": "需要有效的人机交互",
+        "Require transferable knowledge": "要求知识能够迁移",
+        "Researchers need to know how key ideas emerged, how steps were developed, which intuitions guided them, and which parts transfer to other problems.": "研究者需要理解关键想法从何而来、各步骤如何发展、哪些直觉引导了过程，以及哪些部分能迁移到其他问题。",
+        "Reuse research components": "复用研究功能组件",
+        "Reuse treatment principles": "复用药物与治疗原理",
+        "Reveal a missing work habit": "揭示需要补足的工作习惯",
+        "Revise through experimentation": "通过实验继续调整",
+        "Saving important files on the desktop is convenient initially; as files accumulate, searching and small distractions waste time.": "把重要文件放在桌面最初很方便；随着文件积累，查找和反复分心会不断消耗时间。",
+        "See the whole, expand details": "先看全局，再展开细节",
+        "Seek reliable behavioral influence": "追求可靠影响行为",
+        "Seek verifiable mechanisms": "寻找可验证的机制",
+        "Set the complexity of tactics": "决定战术复杂程度",
+        "Start a broader research environment": "迈向更完整的研究环境",
+        "Strong coordination: team C": "强协作：全队使用 C",
+        "Study neurons and circuits": "研究神经元与回路",
+        "Supply the available choices": "提供可选方案",
+        "Support cumulative progress": "支持持续积累与进步",
+        "Systematic records do not guarantee that external knowledge will influence model behavior as intended. The article treats the proposed harness as an intermediate step.": "系统记录文档，并不能保证外部知识按预期影响模型行为。文章因此把设想中的协作环境视为中间步骤。",
+        "Technical jargon, obscure identifiers, and difficult explanations can prevent humans from understanding the underlying logic, even when the assistant follows wording requests.": "术语、晦涩标识和难懂的解释，会妨碍人理解底层逻辑；即便助手遵守措辞要求，问题仍可能存在。",
+        "Test adaptable judgment": "检验适应性判断",
+        "Test judgment in a simple game": "用简单游戏检验判断",
+        "The article extends the game example to research: explain how ideas arise, select valuable questions, and reuse mechanisms across later problems.": "文章把游戏中的判断推广到科研：解释想法如何形成，选择有价值的问题，并把机制理解用于后续问题。",
+        "The article proposes agents plus an environment that guides their work, while emphasizing that automation also needs understandable human interaction.": "文章提出为智能体配套引导其工作的运行环境，同时强调自动化需要让人容易理解和参与。",
+        "The author acknowledges AI’s mathematical results, research code, and paper generation, including a cited release of hundreds of mathematical manuscripts, while asking whether correct results also create useful understanding.": "作者肯定 AI 在数学成果、科研代码和论文生成方面的能力，并提及数百篇数学手稿，同时追问正确的成果能否带来有用的理解。",
+        "The author first identifies the real goal: improve as a player and enjoy the game. Difficulty controlling C reveals a current skill constraint.": "作者先明确真正的目标：提升水平并享受游戏。难以控制 C 的速度，揭示了玩家当前操作能力的限制。",
+        "The author proposes a broader measure of intelligence: identify decisive factors in unfamiliar situations, adapt an approach, and turn discoveries into useful knowledge.": "作者提出更广的智能衡量标准：在陌生情境中找出决定性因素，调整解决方法，并把发现转化为有用的知识。",
+        "The author values recognizing communication as the governing constraint, organizing choices around it, and knowing what to test next as conditions change.": "作者看重的是：把沟通识别为主导约束，围绕它组织选择，并在条件变化时知道下一步应测试什么。",
+        "The complete revised essay: the continuing human role, adaptive game strategies, reusable research, Collaborative AI, and mechanistic interpretability.": "完整新版文章：人类持续发挥的作用、可调整的游戏策略、科研知识复用、协作式 AI 与机制可解释性。",
+        "The essay argues that humans can identify important problems, understand discoveries, develop strategies, and build on knowledge, with AI helping at every step.": "文章认为，人类仍能发现重要问题、理解新发现、发展策略并把知识转化为后续进步，AI 可以帮助完成这些工作。",
+        "The essay presents an AI-assisted Riemann Hypothesis proof as its opening example of a difficult achievement, while distinguishing success from understanding and reusing the result.": "文章以 AI 协助证明黎曼猜想的叙述作为困难成果的开篇例子，并区分取得成功与理解、复用成果的能力。",
+        "The file-organization analogy shows how an initial investment in clear structure can reduce future distractions and preserve useful work.": "文件整理的类比说明：预先建立清晰结构，可以减少后续分心，并保存已有工作的价值。",
+        "The final section argues that organizing external knowledge is an intermediate step toward understandable, verifiable, and controllable model behavior.": "最后一节认为，组织外部知识是中间步骤；最终还需要让模型行为能够被理解、验证和控制。",
+        "The first goal is to create execution steps that people can understand and reproduce.": "第一个目标是形成让人能够理解和复现的执行步骤。",
+        "The one-player example compares a generic win-rate recommendation with a training plan adapted to a player’s current control and goals.": "单人对战的例子比较了通用胜率建议与训练计划；后者围绕玩家当前的操作能力和长期目标进行调整。",
+        "The proposed research harness would reduce distractions and engineering overhead, keep relevant knowledge updated, and integrate reusable functional components.": "设想中的研究协作环境将减少分心和工程负担，持续更新相关知识，并可靠集成可复用的功能组件。",
+        "The second goal is to efficiently align execution steps and reasoning with human understanding throughout the research process.": "第二个目标是在研究过程中，高效地让执行步骤与推理保持和人的理解一致。",
+        "The stated long-term goal is to integrate knowledge into model behavior in ways humans can understand, verify, and control.": "文章提出的长期目标，是以人能够理解、验证和控制的方式，把知识整合进模型行为。",
+        "The third goal is for useful knowledge to emerge through interaction and gradually accumulate into datasets that support later work.": "第三个目标是让有用知识在交互中产生，并逐渐积累成能够支持后续工作的数据集。",
+        "The value of engineering, coding, or file organization includes the foundation it creates for future work.": "工程、编程和文件整理的价值，也包括它们为后续工作建立的基础。",
+        "Three buffs: A, B, C": "三种增益：A、B、C",
+        "Treatment and mechanism": "疗效与作用机制",
+        "Understand how AI uses knowledge": "理解 AI 如何运用知识",
+        "Understand, verify, control": "理解、验证并控制行为",
+        "Use better control": "利用提升后的操作能力",
+        "Weights and context": "权重中的知识与上下文",
+        "What matters in a new setting?": "新情境中什么最关键",
+        "When everyone is skilled and follows team calls, the proposed tactic is to rush together, focus one target, secure a kill, and retreat quickly.": "当全员熟练且能统一行动时，作者提出全队快速进场、集火一个目标、完成击杀后迅速撤退。",
+        "With improved control, the player returns to C, casts a skill, and retreats quickly. The intended AI assistant would plan and revise this progression through experimentation.": "操作熟练后，玩家重新选择 C，快速施放技能并撤退。作者期待 AI 能根据实验和反馈规划、调整这一成长过程。",
+        "With limited communication and less experienced players, the author suggests B for consistent damage without requiring perfect coordination. These choices are conditional strategies, rather than fixed rules.": "在沟通有限、玩家经验较少时，作者建议考虑 B，以较低的协作要求获得稳定伤害。这些选择是有条件的策略，会随情况调整。"
       }
     }
   }

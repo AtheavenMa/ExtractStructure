@@ -1,66 +1,69 @@
-# Collaborative AI: Building Knowledge for What Comes Next
+# After the Riemann Hypothesis: Humans Still Have So Much to Do
 
-By [Haotian Ma](https://github.com/AtheavenMa).
+**If AI can solve problems that humanity couldn't solve for centuries, what's left for us to do?**
 
-I'd like to share a different perspective on the future of AI:
+I believe the answer is: a lot.
 
-AI's contribution to proving the Riemann Hypothesis is a remarkable milestone. But solving an extraordinarily difficult problem doesn't necessarily demonstrate superintelligence.
+AI helped prove the Riemann Hypothesis, one of the hardest problems in mathematics. This is an extraordinary achievement.
 
-Collaborative AI can make human-AI interaction far more effective. And I believe this is an important foundation for building more powerful intelligence.
+I believe humans still have an essential role in the future of AI. We can identify important problems, understand new discoveries, develop better strategies, and turn knowledge into further progress.
 
-Many outstanding researchers are already exploring this direction, and I'm certainly not the first to discuss it. My goal is simply to explain these ideas in an accessible way and show why they matter.
+More importantly, AI can help us do all of these things.
+
+Hi everyone, I'm Haotian, a researcher in interpretability and AI safety. I'd like to share two ideas.
+
+1. AI's contribution to the Riemann Hypothesis is a remarkable milestone. But solving a difficult problem alone doesn't demonstrate superintelligence. Intelligence also involves understanding what matters, adapting to new situations, and building on previous discoveries.
+2. **Collaborative AI can help humans and AI work, learn, and improve together.** I believe this is an important foundation for developing more powerful intelligence.
+
+Many outstanding researchers are already exploring this direction. I hope to explain why it matters through a simple game and share some ideas for building better AI systems.
+
+---
 
 ## The Riemann Hypothesis Is a Milestone
 
-You may have seen the recent news that AI helped mathematicians complete a formal proof of the Riemann Hypothesis. You might not know exactly what that means, but judging by the community's reaction, it sounds like a big deal.
+The Riemann Hypothesis is one of the most important problems in mathematics. For over 150 years, some of the world's greatest mathematicians have tried to solve it.
 
-And yes, it is. This achievement demonstrates that AI has become remarkably capable.
+AI's contribution to its proof demonstrates how powerful these systems have become.
 
-The Riemann Hypothesis is one of the most important conjectures in mathematics.
+The proof has passed independent formal verification, although it will take time for humans to fully understand it.
 
-Even the world's greatest mathematicians couldn't solve it after decades of work.
+But solving an extraordinarily difficult problem and turning that achievement into reusable knowledge are two different capabilities.
 
-It's an extraordinarily difficult and complex problem. Naturally, people are amazed. Some feel shocked or anxious about being replaced. That's understandable. This achievement is truly extraordinary.
+This distinction matters when we talk about superintelligence.
 
-The proof has now passed independent formal verification, although it will take time for humans to fully understand it.
+---
 
 ## I Don't Think This Demonstrates Superintelligence
 
-Why? Before explaining with some examples, I want to revisit the debate between Terence Tao and some AI companies. You may remember Tao criticizing various limitations of today's AI.
+Before explaining why, I want to revisit a debate involving Terence Tao and some AI companies.
 
-I have tremendous respect for Tao's contributions to mathematics and for what these AI companies have achieved. I'm no genius. Even if I worked for 10,000 years, I couldn't match what either has contributed to the world.
+I have tremendous respect for Tao's contributions to mathematics and for what these companies have achieved. I couldn't match their contributions even if I worked for 10,000 years.
 
 But I want to offer a different perspective.
 
-Solving an extraordinarily difficult problem demonstrates remarkable capability. But it doesn't necessarily mean AI can identify what matters in unfamiliar situations, adapt its approach, and turn its discoveries into knowledge that helps solve future problems.
+You may remember Tao discussing AI-assisted drug development. His point was that when AI helps us develop a drug, we want more than evidence that it works. We also want to understand its mechanism and how that knowledge can help solve other problems.
 
-That's the distinction I want to make when discussing superintelligence.
+The criticism was straightforward. Medicine is meant to treat disease. For a cancer patient who urgently needs treatment, effectiveness matters more than understanding the mechanism.
 
-You may remember a post by Tao about medical treatment. His point was that when AI helps us develop a drug, we want more than evidence that it works. We also want to understand its underlying mechanism and how that knowledge can help us solve other problems.
+I agree that effectiveness comes first. But understanding the mechanism helps us develop future drugs more efficiently.
 
-The criticism was straightforward. Medicine is meant to treat disease. For a cancer patient who urgently needs treatment, effectiveness clearly matters more than understanding the mechanism.
+A successful treatment is valuable. Understanding why it works allows us to build on that success.
 
-My view is:
+Let me explain this with a simpler example.
 
-I fully recognize AI's contributions. Both patients and researchers should care about whether a treatment actually works.
+### A Simple Game
 
-Understanding the underlying mechanism allows us to develop useful drugs more efficiently. Without that understanding, long-term development becomes less efficient.
+Imagine you're playing a player-versus-player game.
 
-In other words, producing a successful result and knowing how to build on that result are two different capabilities.
+You and your opponent each control a character. You can move around a map and attack each other. Attacks reduce health, and the first player to reach zero loses.
 
-To explain this, I'll use a simpler example.
+Initially, both characters are identical. If you simply attack each other, the match ends in a draw.
 
-Imagine you're playing a player-versus-player game. You and your opponent each control a character. You can click to move around the map or click your opponent to attack. Attacks reduce health, and when your opponent's health reaches zero, you win.
+To make things interesting, the developers add skills that deal greater damage but take time to cast and can be dodged.
 
-It's a fair game. When both players attack each other, their characters perform exactly the same actions. Their health gradually decreases until both reach zero simultaneously. A draw.
+Now the game becomes a test of movement, timing, and reaction speed.
 
-But that's boring, so the developers introduce skills. Skills deal more damage than normal attacks, but they take time to cast and only work within a small area. This means your opponent can dodge them by moving.
-
-Now the game becomes a test of reaction speed. If you can dodge your opponent's skills while landing your own, you win.
-
-You play a few matches, winning some and losing others, and get through the beginner stage.
-
-To make things more interesting, the developers introduce strategic choices. Before each match, you can choose one of three buffs:
+After a few matches, the developers introduce another feature. Before each game, you can choose one of three buffs.
 
 A. Increase your health to 200%.
 
@@ -68,204 +71,236 @@ B. Increase your attack power to 300%.
 
 C. Increase your movement speed to 400%.
 
-Finally, AI enters the picture.
+Which should you choose?
 
-AI tells you that according to statistics from a gaming website, C has the highest win rate. It throws a bunch of numbers, technical terms, and reports you can't understand at you, then confidently concludes that C is the obvious choice!
+You ask AI.
+
+It searches a gaming website, finds that C has the highest win rate, and confidently recommends C, along with a lengthy statistical explanation.
 
 So you choose C.
 
-But the movement speed is so high that you struggle to control your character. After losing several matches, you angrily ask AI why its advice didn't work.
+But your character moves so quickly that you struggle to control it. You lose several matches.
 
-AI immediately apologizes. Sorry, I was wrong. Maybe try A, or perhaps B. Here are my reasons...
+You ask AI why its advice didn't work.
 
-But its answer is too long, so you ask it to summarize. Even after the summary, you still can't understand its reasoning. Its conclusion is, "I think A would be better for you, but that doesn't mean A will guarantee victory."
+It apologizes and recommends A or B instead. It gives you another long explanation, but you still don't understand what you should do.
 
-But the whole point of playing is to win!
+Eventually, you wonder how AI can help solve the Riemann Hypothesis yet struggle with such a simple game.
 
-You keep questioning it until AI finally stops responding.
-
-Then you ask yourself: How can AI solve the Riemann Hypothesis, yet be so useless at such a simple problem?
-
-Because it never understood what you actually needed.
+**Because it never understood what you actually needed.**
 
 As someone who has played games for years, I would approach this differently.
 
-I understand that my real goal is to become a strong player and enjoy the game.
+1. My goal isn't simply to choose the strongest buff. It's to become a better player and enjoy the game.
+2. I would first try C, but quickly realize that my reactions aren't fast enough to control the movement speed.
+3. So I would switch to A. The extra health lets me survive longer, practice movement, and gradually learn to dodge attacks.
+4. Once I can dodge consistently, I would try B. Since I'm taking less damage, increasing my attack power becomes more valuable.
+5. Eventually, when my control improves, I would return to C. I might discover that I can quickly cast a skill and retreat before my opponent can respond.
 
-I would check the website and notice the advantages of higher movement speed. After trying C, I would identify why it doesn't work for me. My reactions aren't fast enough to handle that speed yet.
+Now I can take advantage of C without losing control.
 
-So I would try A. The extra health lets me survive more damage while improving my control of the character.
+Notice what happened.
 
-Gradually, I learn to dodge enemy skills, and my health often stays relatively high. At this point, I switch to B. Under similar conditions, if I can land attacks consistently, B gives me higher damage output.
+I developed a strategy that changed as my abilities improved, rather than simply choosing the statistically strongest option.
 
-As I move and cast skills more frequently, my control improves. I return to C and discover that I can quickly cast a skill and retreat. I'm so fast that my opponent's attacks and skills become largely ineffective. Eventually, I can defeat opponents without losing health.
+AI could help with every step. But what I really want is for AI to design and continuously improve such a plan.
 
-I believe this is a good practice. AI could help us with every step.
+Some researchers might argue that LLMs simply haven't learned this particular game. Given enough examples, they could learn it much faster than humans.
 
-But what we really want is for AI to design a plan like this in the first place.
+But learning a new game isn't just about collecting information.
 
-I know some researchers might argue that this is only because the LLM hasn't learned the strategy for this particular game. LLMs can learn anything, and they can learn far faster than you!
+It requires identifying the factors that determine success, testing assumptions, and adjusting strategies based on experience.
 
-My response is no.
+I don't believe current AI can reliably accomplish this through existing knowledge and search alone.
 
-For a completely new game, learning a strategy isn't just about acquiring information. It's about identifying the factors that determine success and continuously adjusting through experimentation.
+And the problem becomes more interesting when the environment changes.
 
-I don't believe current AI can accomplish this through existing knowledge and search alone. And sometimes AI performs well at game strategy mainly because it can find and summarize high-quality guides written by humans.
+### What If It Becomes a 5v5 Game?
 
-But when transferred to a completely new environment, with no previous examples or references, even access to enormous amounts of information doesn't guarantee that it will identify the most fundamental factors.
+Now imagine the same game with five players on each team.
 
-For example, what happens when our game becomes 5 players versus 5 players?
+Everyone can choose A, B, or C.
 
-Which of A, B, or C should you choose?
+What's the best strategy?
 
-If you're interested, try sending the relevant description and this question to an AI model and see how it responds.
+If you're interested, try asking an AI model this question.
 
-Here's my answer.
+Here's how I would approach it.
 
-This is a team game. The first thing you need to determine is how closely your team can coordinate and communicate. Any strategy that ignores this factor is unrealistic.
+**The first question is how well your team can coordinate.**
 
-If you have no real-time communication, then once you're sufficiently skilled, choosing C at least allows you to make full use of your individual abilities.
+Without this information, any strategy is incomplete.
 
-If communication is excellent, everyone follows the team's commands, and all players are highly skilled, a powerful strategy is for everyone to choose C, rush in together, focus their skills on a single target, secure the kill, and quickly retreat.
+Consider three situations.
 
-If only 2–3 teammates communicate in real time and the team isn't particularly skilled, B should be the priority. It allows the team to focus damage on one target more consistently.
+1. **No real-time communication.** If you're skilled enough, C may be a good choice because it allows you to rely on your individual abilities.
+2. **Excellent communication and highly skilled teammates.** Everyone could choose C, coordinate their movements, focus their skills on one opponent, and quickly retreat. This could be an extremely powerful strategy.
+3. **Limited communication and less experienced players.** B may be more reliable because it allows teammates to deal consistent damage without requiring perfect coordination.
 
-This remains a dynamic process. I would adjust our choices based on the opponents' performance and composition. For example, if a teammate is struggling, I might have them choose A to absorb damage, exchanging simple actions for reliable value. If the opponents are likely to use targeted strategies, we could mix A, B, and C across the team to handle more complex situations.
+Of course, these aren't fixed rules.
 
-I would recognize that this question captures the essence of MOBA games. We aren't just discussing a simple example, but many broader situations it represents. In League of Legends, there are even more factors to consider, including champion selection, item builds, terrain advantages, and most importantly, strategic deception and psychological competition. The more complex a strategy becomes, the stronger the team's coordination must be. Without that coordination, B, which offers more consistent expected value, is generally the most sensible option to try.
+If a teammate struggles, I might have them choose A to absorb damage. If the opponents develop a strategy specifically against us, we might distribute A, B, and C across the team.
 
-I believe that if you send this question to AI, you may get plenty of reasonable analysis. But if it fails to recognize the critical importance of point 1 and put it first, it has missed the core of the problem.
+The strategy should change with the situation.
 
-It may list many possibilities without clearly organizing the relationships between them.
+This is also what makes MOBA games like League of Legends so interesting. Champion selection, items, terrain, coordination, and psychological competition all matter.
 
-This is what I believe strong intelligence should demonstrate: not just solving difficult problems, but identifying the fundamental factors that determine how problems should be solved.
+The more complex a strategy becomes, the more important team organization becomes.
 
-The difference between my approach and AI's is that even if I actually led a team through training and experimentation, I could maintain a clear strategy. I would know what to try next and how to adjust.
+An AI might produce many reasonable suggestions for this problem. But if it doesn't recognize that coordination is the key factor, it has missed the central issue.
 
-My answer is a synthesis that applies across many unfamiliar situations. AI, meanwhile, may be encountering this particular problem for the first time, especially without web access.
+And if I actually led a team through training, I would continue adjusting our strategy based on what happened.
 
-Compared with the complexity of the real world, this is just a simple example. Yet AI may not even outperform me here, let alone professional game designers and players.
+The important capability is identifying what matters, learning from experience, and maintaining a coherent strategy as circumstances change.
 
-Scientific research is even harder.
+### The Same Problem Appears in Scientific Research
 
-Today, some research papers are generated by AI. They may be technically correct, yet their overall reasoning doesn't make sense, and they're unlikely to guide future research directions.
+Scientific research is far more complex than this game.
 
-Consider another example. OpenAI recently released more than 700 mathematical research manuscripts. That's a tremendous achievement.
+AI can already produce impressive mathematical results, write research code, and help generate papers.
 
-But what we really want is for AI to explain how the key ideas emerged, how each step was developed, what intuitions guided the process, and which parts could help solve other mathematical problems.
+But a technically correct result doesn't necessarily provide a useful understanding of the problem.
 
-More importantly, we want to know which mathematical problems truly matter for future research.
+For example, OpenAI recently released hundreds of mathematical research manuscripts. That's a tremendous achievement.
 
-This knowledge would further accelerate mathematical progress.
+Yet we also want AI to explain how important ideas emerged, what intuitions guided each step, and how those ideas could help solve other mathematical problems.
 
-And this brings us back to the Riemann Hypothesis. Proving it is a remarkable achievement. But the ability to turn that achievement into reusable knowledge, new research directions, and further discoveries is another important measure of intelligence.
+Even more importantly, we want to identify which problems are worth investigating next.
 
-Now let's return to the cancer example.
+This brings us back to the Riemann Hypothesis.
 
-Suppose we use AI to develop an effective drug for a specific disease. That's wonderful. But why wouldn't we want to understand the mechanism behind it?
+Proving it is an extraordinary achievement. But turning the proof into reusable mathematical insights, new research directions, and further discoveries is another important capability.
 
-Why wouldn't we thoroughly figure out the engineering principles behind each stage of drug development and the biological significance of each stage of treatment?
+The same applies to medicine.
 
-With that knowledge, we could continue developing new drugs efficiently, making the process as generalizable as possible across different diseases, treatments, and prevention methods.
+If AI helps us develop an effective cancer treatment, that's wonderful. But understanding the biological mechanisms could help us develop treatments for many other diseases.
 
-If curing cancer patients is worth pursuing, then why wouldn't we also pursue an understanding of the mechanisms that could give us reusable methods to treat and prevent many more diseases?
+**The value of a discovery lies both in the problem it solves and in what it enables us to do next.**
 
-In the next section, I'll discuss my solution. It may be slightly more technical. Thank you for your patience!
+This is why I believe we need something beyond increasingly capable AI models.
+
+We need a better way for humans and AI to work together.
+
+---
 
 ## We Need to Collaborate with AI
 
-If you've written code, worked on engineering projects, or organized files on your computer, you may have realized something important.
+If you've written code, managed an engineering project, or simply organized files on your computer, you may have noticed something important.
 
-The value of our work isn't limited to completing the current task. It also lays the foundation for future work.
+**The value of our work goes beyond completing the current task. It also lays the foundation for future work.**
 
-For example, if you regularly use a MacBook and download important files, you might save them to your desktop for easy access.
+Imagine you regularly download important files to your MacBook.
 
-Some people become so accustomed to this that their desktops fill up with files. Finding anything becomes a distraction. Over time, those small distractions waste a lot of time.
+Saving everything to the desktop is convenient at first. But eventually, hundreds of files accumulate, and finding anything becomes difficult.
 
-A better approach is to organize files into clearly defined folders, with distinct responsibilities that collectively cover everything. The same principle applies to subfolders. Frequently used files can be exceptions.
+A better approach is to organize files into clearly defined folders.
 
-Setting up this structure takes some time initially, but it creates a persistent file system. Over time, it saves effort and reduces the risk of losing important files.
+Setting up this structure takes time, but every future task becomes easier.
 
-AI, however, often doesn't do this automatically.
+AI often overlooks this.
 
-LLMs are typically trained to complete the task at hand. They don't necessarily consider how to organize their work for related tasks that haven't happened yet.
+LLMs are typically focused on completing the current task. They don't necessarily consider how their work should support tasks that haven't happened yet.
 
-As a result, they may use whatever tools and methods get the immediate job done, often taking shortcuts when the user's instructions are unclear.
+For example, a coding agent might successfully complete an experiment while leaving behind scattered scripts, poorly organized files, and lengthy logs.
 
-Along the way, tools and files get scattered across poorly organized structures, leaving behind logs that humans struggle to understand.
+The experiment is finished, but understanding or reproducing it becomes difficult.
 
-You might ask: Why not simply train a smarter LLM?
+This creates a new problem.
 
-My answer is that it's difficult. And at our current stage, we already have a better approach.
+As AI becomes better at executing tasks, humans may struggle to understand and manage everything AI produces.
 
-Agents + Harnesses.
+More automation doesn't necessarily mean more effective research.
 
-Harnesses are becoming increasingly important. They can constrain and guide AI behavior within specific environments.
+You might ask why we don't simply train smarter LLMs.
 
-For example, I can give AI a clear direction and let it handle the actual exploration.
+My answer is that we can improve this problem right now through agents and harnesses.
 
-I believe anyone who has worked closely with AI will understand what I mean.
+A harness provides structures, tools, and constraints that guide an AI agent's behavior.
 
-AI is still difficult to use, even with a good harness.
+Instead of letting AI organize everything independently, we can design systems that help AI work in ways humans can understand and maintain.
 
-Perhaps developers have focused too much on automation while overlooking human interaction.
+However, even good harnesses often focus more on automation than human interaction.
 
-For example, when AI reports its results, it often uses technical jargon, obscure identifiers, metaphors, and other expressions that are difficult to understand.
+I've experienced this repeatedly.
 
-Even if you explicitly prohibit these, understanding the underlying logic remains difficult.
+AI can generate enormous amounts of code, run experiments, and produce detailed reports. But understanding what it actually did can take considerable effort.
 
-This is one reason so many AI-generated papers fail to explain their experiments clearly.
+Sometimes its explanations contain technical jargon, unfamiliar identifiers, or long descriptions that obscure the main ideas.
 
-At the same time, we can't realistically write all the code ourselves anymore.
+As a result, we spend less time thinking about scientific questions and more time trying to understand the AI's work.
 
-Once we let AI write code, enormous amounts of information flow into the LLM's context. Understanding its reports then consumes our attention, leaving us less time to think about the important questions.
+### My First Step
 
-To address this problem, I first developed a lightweight skill:
+To address this problem, I developed a lightweight skill.
 
-AtheavenMa/ExtractStructure: Extract structures from text, paper, and code.
+[ExtractStructure: Extract structures from text, paper, and code.](https://github.com/AtheavenMa/ExtractStructure)
 
-It can turn a paper or a code repo into an interactive visual structure.
+It transforms papers and code repositories into interactive visual structures.
 
-You first see the high-level organization. Then you can expand individual sections to explore their details.
+Instead of reading through hundreds of lines of explanations, you can first understand the overall organization, then expand individual sections to explore their details.
+
+The goal is simple: make complex information easier for humans to understand.
 
 This is only the beginning.
 
-I'm developing a harness designed for efficient interaction with researchers, reducing distractions and engineering overhead.
+I'm currently developing a research harness designed to make collaboration between humans and AI more efficient.
 
-The goal is to let AI continuously update and accumulate relevant knowledge throughout the research process while keeping its understanding aligned with the human researcher.
+I want AI to continuously organize and accumulate knowledge throughout the research process, while keeping that knowledge understandable and accessible to human researchers.
 
-I want to build an extensible system in which different functional components can be reliably integrated and reused.
+I also want the system to support reusable components that can be reliably integrated into future projects.
 
-I'm not the first person working on this, but I hope to make a harness that's easier to use than existing alternatives.
+Ultimately, I hope to achieve three things.
 
-Ultimately, I want to achieve three things:
+1. Create reproducible execution steps that humans can understand.
+2. Keep AI's execution and reasoning effectively aligned with human understanding.
+3. Allow knowledge to accumulate through interaction and gradually become reusable datasets.
 
-Create reproducible execution steps that humans can understand.
+I'm certainly not the first person pursuing these goals. But I believe there is substantial room to make these systems more useful.
 
-Keep execution steps and reasoning efficiently aligned with human understanding.
+The goal is to make every completed task contribute to our ability to solve future problems.
 
-Allow knowledge to emerge automatically through interaction and gradually accumulate into reusable datasets.
+---
 
 ## Ultimately, We Still Need to Understand AI
 
-Even if someone builds such a harness, it will only be an intermediate step.
+Even a well-designed harness is only an intermediate step.
 
-No matter how systematically AI records and organizes its documentation, we still can't guarantee that the documentation will work as intended in practice.
+We can organize documents, store knowledge, and maintain detailed records of what AI has done.
 
-In other words, we cannot reliably control how external knowledge influences the model's behavior.
+But we still cannot guarantee that this knowledge will influence the model's behavior in the intended way.
 
-This is important. Because a model's chain of thought or summary doesn't necessarily faithfully reflect its actual decision-making process.
+This is an important limitation.
 
-To address this, many outstanding researchers are studying neurons and circuits. Although we still lack sufficiently powerful tools, I believe this direction deserves serious attention.
+A model's chain of thought or summary doesn't necessarily faithfully reflect its actual decision-making process.
 
-Incorporating a document directly into an LLM's weights and providing it through the model's context may produce similar results on certain tasks. But I believe the former offers a more reliable path to shaping the model's internal behavior.
+As a result, even when a model produces convincing explanations, we may not know whether they accurately describe how it arrived at its decisions.
 
-When knowledge is provided only through context, we often rely on the model's explanations or summaries to understand how it uses that knowledge. However, these explanations may not faithfully reflect its actual decision-making process. This makes it harder to align the model's behavior with human knowledge and intuition.
+This is why mechanistic interpretability matters.
 
-I believe our ultimate goal is to reliably integrate knowledge into a model's behavior, in ways that humans can understand, verify, and control.
+Researchers are studying neurons, circuits, and internal representations to better understand how models process information and make decisions.
+
+I believe this work is essential for the future of Collaborative AI.
+
+Consider two ways to provide knowledge to an LLM.
+
+We can place a document in its context, or we can incorporate that knowledge directly into its weights.
+
+Both approaches may produce similar results on particular tasks. But I believe directly influencing the model's internal representations could eventually provide a more reliable way to shape its future behavior, provided we can verify and control those changes.
+
+With context alone, we often rely on the model's explanations to understand how it uses the information. Yet those explanations may not faithfully reflect its actual decision-making process.
+
+This makes it difficult to align the model's behavior with human knowledge and intuition.
+
+**Our ultimate goal should be to integrate knowledge into AI in ways that humans can understand, verify, and control.**
 
 Because, as I've emphasized throughout this article, work isn't just about completing the current task. It's also about laying the foundation for what comes next.
 
-Ultimately, what we need is an efficient way for humans and AI to exchange information. And this will also accelerate communication between humans, and between AI systems.
+Ultimately, we need more efficient ways for humans and AI to exchange knowledge.
 
-When accumulating and integrating knowledge is no longer the bottleneck, we will enter a new era.
+The same progress could also improve communication between humans and between AI systems.
+
+When knowledge can be reliably understood, accumulated, and reused, intelligence will no longer be measured only by the difficulty of individual problems we can solve.
+
+It will also be measured by how effectively each discovery helps us make the next one.
+
+And that, I believe, is how we move toward a new era of intelligence.
