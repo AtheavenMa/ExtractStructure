@@ -1,0 +1,1537 @@
+{
+  "source": "extract-structure/assets/articles/collaborative-ai.md",
+  "purpose": "Collaborative AI: Build knowledge for what comes next",
+  "coverage": "The full supplied essay, including individual and team game examples, research, collaboration, and model understanding.",
+  "groups": [
+    {
+      "id": "INTELLIGENCE",
+      "name": "Results and intelligence",
+      "meaning": "The article asks how a difficult achievement can become adaptable judgment and knowledge that supports future work.",
+      "category": "input",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "MILESTONE",
+          "name": "A difficult achievement",
+          "meaning": "The opening uses an AI-assisted Riemann Hypothesis proof as its motivating example and credits difficult achievements as evidence of capability.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                5,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CRITERION",
+          "name": "What matters in a new setting?",
+          "meaning": "The author proposes a broader measure of intelligence: identify decisive factors in unfamiliar situations, adapt an approach, and turn discoveries into useful knowledge.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                27,
+                37
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MEDICINE",
+          "name": "Treatment and mechanism",
+          "meaning": "Effective treatment has immediate value for patients. Understanding how it works can also make future drug development more efficient; the article treats both goals as valuable.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                39,
+                47
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REUSE",
+          "name": "Build on the result",
+          "meaning": "Producing one successful result and understanding how to extend it are distinct capabilities. The article uses this distinction to motivate the rest of its argument.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                49,
+                51
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "INDIVIDUAL",
+      "name": "Learn through play",
+      "meaning": "The one-player example compares a generic win-rate recommendation with a training plan adapted to a player’s current control and goals.",
+      "category": "process",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "RULES",
+          "name": "Three buffs: A, B, C",
+          "meaning": "Both players can move, attack, and dodge cast-time skills. A sets health to 200%, B sets attack power to 300%, and C sets movement speed to 400%.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                53,
+                69
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WINRATE",
+          "name": "High win rate, poor fit",
+          "meaning": "In the example, AI recommends C from aggregate win rates. The player cannot control the speed, loses matches, and receives changing suggestions without an understandable learning plan.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                71,
+                89
+              ]
+            }
+          ]
+        },
+        {
+          "id": "GOAL",
+          "name": "Grow into a strong player",
+          "meaning": "The author first identifies the real goal: improve as a player and enjoy the game. Difficulty controlling C reveals a current skill constraint.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                91,
+                95
+              ]
+            }
+          ]
+        },
+        {
+          "id": "A_TRAIN",
+          "name": "A: survive and practice",
+          "meaning": "Extra health allows more mistakes while learning control and dodging. The proposed next step depends on observed improvement.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                97,
+                99
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B_TRAIN",
+          "name": "B: land reliable damage",
+          "meaning": "Once dodging improves and health remains high, the author switches to B. Reliable attack accuracy turns the additional attack power into useful damage.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                99,
+                99
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C_TRAIN",
+          "name": "C: strike and retreat",
+          "meaning": "With improved control, the player returns to C, casts a skill, and retreats quickly. The intended AI assistant would plan and revise this progression through experimentation.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                101,
+                115
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TEAM",
+      "name": "Coordinate before choosing",
+      "meaning": "In the five-versus-five version, the author makes communication and team skill the first criteria for choosing buffs and tactics.",
+      "category": "process",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "COORDINATION",
+          "name": "Can the team coordinate?",
+          "meaning": "Before choosing A, B, or C, determine who can communicate in real time, whether players follow calls, and how skilled the team is.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                117,
+                125
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SOLO_C",
+          "name": "No communication: skilled C",
+          "meaning": "For sufficiently skilled players without real-time communication, the author proposes C to use individual mobility and control.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                127,
+                127
+              ]
+            }
+          ]
+        },
+        {
+          "id": "TEAM_C",
+          "name": "Strong coordination: team C",
+          "meaning": "When everyone is skilled and follows team calls, the proposed tactic is to rush together, focus one target, secure a kill, and retreat quickly.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                129,
+                129
+              ]
+            }
+          ]
+        },
+        {
+          "id": "TEAM_B",
+          "name": "Partial coordination: B",
+          "meaning": "When only two or three teammates communicate and overall skill is limited, the author prioritizes B for more consistent focused damage.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                131,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ADAPT_TEAM",
+          "name": "Adjust roles and opponents",
+          "meaning": "A struggling teammate may use A to absorb damage. Mixed buffs can answer opposing tactics; more complex plans require stronger coordination.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                133,
+                135
+              ]
+            }
+          ]
+        },
+        {
+          "id": "FUNDAMENTALS",
+          "name": "Find the decisive factor",
+          "meaning": "The author values recognizing communication as the governing constraint, organizing choices around it, and knowing what to test next as conditions change.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                137,
+                147
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RESEARCH",
+      "name": "Make discoveries reusable",
+      "meaning": "The article extends the game example to research: explain how ideas arise, select valuable questions, and reuse mechanisms across later problems.",
+      "category": "process",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "PAPERS",
+          "name": "Correct work needs direction",
+          "meaning": "The author argues that technical correctness alone may not guide research. The discussion cites AI-written papers and a release of more than 700 mathematical manuscripts as examples.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                149,
+                153
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IDEAS",
+          "name": "Explain how ideas develop",
+          "meaning": "Researchers need to know how key ideas emerged, how steps were developed, which intuitions guided them, and which parts transfer to other problems.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                155,
+                155
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DIRECTIONS",
+          "name": "Choose valuable questions",
+          "meaning": "Identifying questions that matter and turning results into new directions are additional measures of intelligence in the author’s argument.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                157,
+                161
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DRUGS",
+          "name": "Reuse treatment principles",
+          "meaning": "The drug example asks how engineering principles and biological mechanisms could support more efficient development across diseases, treatment, and prevention.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                163,
+                171
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ACCUMULATION",
+      "name": "Organize work for later",
+      "meaning": "The file-organization analogy shows how an initial investment in clear structure can reduce future distractions and preserve useful work.",
+      "category": "process",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "FUTURE",
+          "name": "Each task supports the next",
+          "meaning": "The value of engineering, coding, or file organization includes the foundation it creates for future work.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                175,
+                179
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DESKTOP",
+          "name": "A crowded desktop costs time",
+          "meaning": "Saving important files on the desktop is convenient initially; as files accumulate, searching and small distractions waste time.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                181,
+                183
+              ]
+            }
+          ]
+        },
+        {
+          "id": "FOLDERS",
+          "name": "Give folders clear purposes",
+          "meaning": "Clearly defined folders and subfolders distribute responsibilities and create persistent organization. Frequently used files can remain accessible exceptions.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                185,
+                187
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCATTER",
+          "name": "Immediate completion scatters work",
+          "meaning": "The author observes that assistants may prioritize the current task, take shortcuts under vague instructions, and leave scattered files, tools, and hard-to-read logs.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                189,
+                195
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HARNESS",
+      "name": "Guide AI and protect attention",
+      "meaning": "The article proposes agents plus an environment that guides their work, while emphasizing that automation also needs understandable human interaction.",
+      "category": "process",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "GUIDANCE",
+          "name": "Agents plus a guiding environment",
+          "meaning": "A harness is an environment that constrains and guides an agent’s behavior. The author supplies a direction while the agent explores the implementation.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                197,
+                207
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REPORTS",
+          "name": "Reports must be understandable",
+          "meaning": "Technical jargon, obscure identifiers, and difficult explanations can prevent humans from understanding the underlying logic, even when the assistant follows wording requests.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                209,
+                217
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ATTENTION",
+          "name": "Preserve time to think",
+          "meaning": "AI-written code produces large amounts of context. Decoding reports consumes researchers’ attention and reduces the time available for important questions.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                219,
+                221
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "COLLABORATION",
+      "name": "Grow knowledge through interaction",
+      "meaning": "ExtractStructure is the first step toward a research environment with reusable components, reproducible steps, shared understanding, and accumulated knowledge.",
+      "category": "process",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "MAP",
+          "name": "See the whole, expand details",
+          "meaning": "ExtractStructure turns a paper or repository into an interactive visual structure. Readers start with the overall organization and expand topics to inspect details.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                223,
+                231
+              ]
+            }
+          ]
+        },
+        {
+          "id": "COMPONENTS",
+          "name": "Reuse research components",
+          "meaning": "The proposed research harness would reduce distractions and engineering overhead, keep relevant knowledge updated, and integrate reusable functional components.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                233,
+                239
+              ]
+            }
+          ]
+        },
+        {
+          "id": "REPRODUCIBLE",
+          "name": "Make steps reproducible",
+          "meaning": "The first goal is to create execution steps that people can understand and reproduce.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                241,
+                243
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ALIGNMENT",
+          "name": "Keep understanding aligned",
+          "meaning": "The second goal is to efficiently align execution steps and reasoning with human understanding throughout the research process.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                235,
+                245
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DATASETS",
+          "name": "Accumulate reusable knowledge",
+          "meaning": "The third goal is for useful knowledge to emerge through interaction and gradually accumulate into datasets that support later work.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                241,
+                247
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "INTERNALS",
+      "name": "Understand how AI uses knowledge",
+      "meaning": "The final section argues that organizing external knowledge is an intermediate step toward understandable, verifiable, and controllable model behavior.",
+      "category": "output",
+      "columns": 2,
+      "nodes": [
+        {
+          "id": "DOCUMENTS",
+          "name": "Documentation has limits",
+          "meaning": "Systematic records do not guarantee that external knowledge will influence model behavior as intended. The article treats the proposed harness as an intermediate step.",
+          "category": "input",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                249,
+                255
+              ]
+            }
+          ]
+        },
+        {
+          "id": "FAITHFULNESS",
+          "name": "Explanations may miss decisions",
+          "meaning": "A chain of thought or summary may not faithfully describe the model’s actual decision process, making it difficult to verify how contextual knowledge is used.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                257,
+                263
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CIRCUITS",
+          "name": "Study neurons and circuits",
+          "meaning": "The author supports research into internal mechanisms, including neurons and circuits, while recognizing that sufficiently powerful tools are still needed.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                259,
+                259
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WEIGHTS",
+          "name": "Weights and context",
+          "meaning": "The author distinguishes knowledge incorporated into model weights from knowledge supplied in context, and expresses the belief that the former may offer more reliable influence over internal behavior.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                261,
+                263
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CONTROL",
+          "name": "Understand, verify, control",
+          "meaning": "The stated long-term goal is to integrate knowledge into model behavior in ways humans can understand, verify, and control.",
+          "category": "process",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                265,
+                265
+              ]
+            }
+          ]
+        },
+        {
+          "id": "EXCHANGE",
+          "name": "Make knowledge easier to share",
+          "meaning": "Efficient exchange between humans and AI could also improve communication among people and among AI systems, making each task a foundation for later progress.",
+          "category": "output",
+          "source": [
+            {
+              "path": "extract-structure/assets/articles/collaborative-ai.md",
+              "lines": [
+                267,
+                271
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "MILESTONE",
+      "to": "CRITERION",
+      "label": "Motivate a broader measure",
+      "description": "Motivate a broader measure",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            35,
+            37
+          ]
+        }
+      ]
+    },
+    {
+      "from": "CRITERION",
+      "to": "REUSE",
+      "label": "Require transferable knowledge",
+      "description": "Require transferable knowledge",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            35,
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "from": "MEDICINE",
+      "to": "REUSE",
+      "label": "Explain long-term value",
+      "description": "Explain long-term value",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            39,
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "from": "RULES",
+      "to": "WINRATE",
+      "label": "Supply the available choices",
+      "description": "Supply the available choices",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            63,
+            77
+          ]
+        }
+      ]
+    },
+    {
+      "from": "WINRATE",
+      "to": "GOAL",
+      "label": "Expose the player’s constraint",
+      "description": "Expose the player’s constraint",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            89,
+            95
+          ]
+        }
+      ]
+    },
+    {
+      "from": "GOAL",
+      "to": "A_TRAIN",
+      "label": "Choose a useful practice stage",
+      "description": "Choose a useful practice stage",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            93,
+            97
+          ]
+        }
+      ]
+    },
+    {
+      "from": "A_TRAIN",
+      "to": "B_TRAIN",
+      "label": "Advance when dodging improves",
+      "description": "Advance when dodging improves",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            99,
+            99
+          ]
+        }
+      ]
+    },
+    {
+      "from": "B_TRAIN",
+      "to": "C_TRAIN",
+      "label": "Use better control",
+      "description": "Use better control",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            99,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "from": "C_TRAIN",
+      "to": "GOAL",
+      "label": "Revise through experimentation",
+      "description": "Revise through experimentation",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            111,
+            115
+          ]
+        }
+      ],
+      "feedback": true,
+      "condition": "Revise through experimentation"
+    },
+    {
+      "from": "REUSE",
+      "to": "GOAL",
+      "label": "Test judgment in a simple game",
+      "description": "Test judgment in a simple game",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            51,
+            93
+          ]
+        }
+      ]
+    },
+    {
+      "from": "C_TRAIN",
+      "to": "COORDINATION",
+      "label": "Change the game to teams",
+      "description": "Change the game to teams",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            117,
+            125
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COORDINATION",
+      "to": "SOLO_C",
+      "label": "Choose for individual control",
+      "description": "Choose for individual control",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            127,
+            127
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COORDINATION",
+      "to": "TEAM_C",
+      "label": "Enable synchronized tactics",
+      "description": "Enable synchronized tactics",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            129,
+            129
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COORDINATION",
+      "to": "TEAM_B",
+      "label": "Prioritize reliable focus",
+      "description": "Prioritize reliable focus",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            131,
+            135
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COORDINATION",
+      "to": "ADAPT_TEAM",
+      "label": "Set the complexity of tactics",
+      "description": "Set the complexity of tactics",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            133,
+            135
+          ]
+        }
+      ]
+    },
+    {
+      "from": "SOLO_C",
+      "to": "FUNDAMENTALS",
+      "label": "Organize a conditional strategy",
+      "description": "Organize a conditional strategy",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            133,
+            143
+          ]
+        }
+      ]
+    },
+    {
+      "from": "TEAM_C",
+      "to": "FUNDAMENTALS",
+      "label": "Organize a conditional strategy",
+      "description": "Organize a conditional strategy",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            133,
+            143
+          ]
+        }
+      ]
+    },
+    {
+      "from": "TEAM_B",
+      "to": "FUNDAMENTALS",
+      "label": "Organize a conditional strategy",
+      "description": "Organize a conditional strategy",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            133,
+            143
+          ]
+        }
+      ]
+    },
+    {
+      "from": "ADAPT_TEAM",
+      "to": "FUNDAMENTALS",
+      "label": "Organize a conditional strategy",
+      "description": "Organize a conditional strategy",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            133,
+            143
+          ]
+        }
+      ]
+    },
+    {
+      "from": "FUNDAMENTALS",
+      "to": "PAPERS",
+      "label": "Apply the criterion to research",
+      "description": "Apply the criterion to research",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            141,
+            153
+          ]
+        }
+      ]
+    },
+    {
+      "from": "PAPERS",
+      "to": "IDEAS",
+      "label": "Recover useful reasoning",
+      "description": "Recover useful reasoning",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            153,
+            155
+          ]
+        }
+      ]
+    },
+    {
+      "from": "IDEAS",
+      "to": "DIRECTIONS",
+      "label": "Guide subsequent discoveries",
+      "description": "Guide subsequent discoveries",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            155,
+            161
+          ]
+        }
+      ]
+    },
+    {
+      "from": "DIRECTIONS",
+      "to": "DRUGS",
+      "label": "Generalize the mechanism example",
+      "description": "Generalize the mechanism example",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            161,
+            171
+          ]
+        }
+      ]
+    },
+    {
+      "from": "DRUGS",
+      "to": "FUTURE",
+      "label": "Connect reuse with everyday work",
+      "description": "Connect reuse with everyday work",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            171,
+            179
+          ]
+        }
+      ]
+    },
+    {
+      "from": "FUTURE",
+      "to": "DESKTOP",
+      "label": "Illustrate future costs",
+      "description": "Illustrate future costs",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            179,
+            183
+          ]
+        }
+      ]
+    },
+    {
+      "from": "DESKTOP",
+      "to": "FOLDERS",
+      "label": "Reduce repeated searching",
+      "description": "Reduce repeated searching",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            183,
+            187
+          ]
+        }
+      ]
+    },
+    {
+      "from": "FOLDERS",
+      "to": "SCATTER",
+      "label": "Reveal a missing work habit",
+      "description": "Reveal a missing work habit",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            189,
+            195
+          ]
+        }
+      ]
+    },
+    {
+      "from": "SCATTER",
+      "to": "GUIDANCE",
+      "label": "Guide how work is organized",
+      "description": "Guide how work is organized",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            195,
+            205
+          ]
+        }
+      ]
+    },
+    {
+      "from": "GUIDANCE",
+      "to": "REPORTS",
+      "label": "Require effective human interaction",
+      "description": "Require effective human interaction",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            207,
+            217
+          ]
+        }
+      ]
+    },
+    {
+      "from": "REPORTS",
+      "to": "ATTENTION",
+      "label": "Explain the attention cost",
+      "description": "Explain the attention cost",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            213,
+            221
+          ]
+        }
+      ]
+    },
+    {
+      "from": "ATTENTION",
+      "to": "MAP",
+      "label": "Motivate a visual overview",
+      "description": "Motivate a visual overview",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            221,
+            229
+          ]
+        }
+      ]
+    },
+    {
+      "from": "MAP",
+      "to": "COMPONENTS",
+      "label": "Start a broader research environment",
+      "description": "Start a broader research environment",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            231,
+            239
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COMPONENTS",
+      "to": "REPRODUCIBLE",
+      "label": "Produce understandable steps",
+      "description": "Produce understandable steps",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            241,
+            243
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COMPONENTS",
+      "to": "ALIGNMENT",
+      "label": "Maintain shared understanding",
+      "description": "Maintain shared understanding",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            235,
+            245
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COMPONENTS",
+      "to": "DATASETS",
+      "label": "Preserve knowledge from interaction",
+      "description": "Preserve knowledge from interaction",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            241,
+            247
+          ]
+        }
+      ]
+    },
+    {
+      "from": "DATASETS",
+      "to": "DOCUMENTS",
+      "label": "Ask how knowledge affects behavior",
+      "description": "Ask how knowledge affects behavior",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            247,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "from": "DOCUMENTS",
+      "to": "FAITHFULNESS",
+      "label": "Expose a verification problem",
+      "description": "Expose a verification problem",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            253,
+            257
+          ]
+        }
+      ]
+    },
+    {
+      "from": "FAITHFULNESS",
+      "to": "CIRCUITS",
+      "label": "Motivate internal study",
+      "description": "Motivate internal study",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            257,
+            259
+          ]
+        }
+      ]
+    },
+    {
+      "from": "FAITHFULNESS",
+      "to": "WEIGHTS",
+      "label": "Compare ways to supply knowledge",
+      "description": "Compare ways to supply knowledge",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            261,
+            263
+          ]
+        }
+      ]
+    },
+    {
+      "from": "CIRCUITS",
+      "to": "CONTROL",
+      "label": "Seek verifiable mechanisms",
+      "description": "Seek verifiable mechanisms",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            259,
+            265
+          ]
+        }
+      ]
+    },
+    {
+      "from": "WEIGHTS",
+      "to": "CONTROL",
+      "label": "Seek reliable behavioral influence",
+      "description": "Seek reliable behavioral influence",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            261,
+            265
+          ]
+        }
+      ]
+    },
+    {
+      "from": "CONTROL",
+      "to": "EXCHANGE",
+      "label": "Support cumulative progress",
+      "description": "Support cumulative progress",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            265,
+            271
+          ]
+        }
+      ]
+    }
+  ],
+  "upper_edges": [
+    {
+      "from": "INTELLIGENCE",
+      "to": "INDIVIDUAL",
+      "label": "Test adaptable judgment",
+      "description": "Test adaptable judgment",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            51,
+            93
+          ]
+        }
+      ]
+    },
+    {
+      "from": "INDIVIDUAL",
+      "to": "TEAM",
+      "label": "Introduce team coordination",
+      "description": "Introduce team coordination",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            117,
+            125
+          ]
+        }
+      ]
+    },
+    {
+      "from": "TEAM",
+      "to": "RESEARCH",
+      "label": "Carry the criterion into science",
+      "description": "Carry the criterion into science",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            141,
+            155
+          ]
+        }
+      ]
+    },
+    {
+      "from": "RESEARCH",
+      "to": "ACCUMULATION",
+      "label": "Build a foundation for later work",
+      "description": "Build a foundation for later work",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            171,
+            179
+          ]
+        }
+      ]
+    },
+    {
+      "from": "ACCUMULATION",
+      "to": "HARNESS",
+      "label": "Guide the working process",
+      "description": "Guide the working process",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            195,
+            205
+          ]
+        }
+      ]
+    },
+    {
+      "from": "HARNESS",
+      "to": "COLLABORATION",
+      "label": "Make interaction easier to follow",
+      "description": "Make interaction easier to follow",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            221,
+            235
+          ]
+        }
+      ]
+    },
+    {
+      "from": "COLLABORATION",
+      "to": "INTERNALS",
+      "label": "Connect records with behavior",
+      "description": "Connect records with behavior",
+      "source": [
+        {
+          "path": "extract-structure/assets/articles/collaborative-ai.md",
+          "lines": [
+            247,
+            265
+          ]
+        }
+      ]
+    }
+  ],
+  "i18n": {
+    "source_language": "en",
+    "translations": {
+      "zh": {
+        "Results and intelligence": "成果与智能",
+        "The article asks how a difficult achievement can become adaptable judgment and knowledge that supports future work.": "文章讨论如何把一次困难任务的成果转化为适应新情境的判断，以及支持后续工作的知识。",
+        "A difficult achievement": "困难任务的成果",
+        "The opening uses an AI-assisted Riemann Hypothesis proof as its motivating example and credits difficult achievements as evidence of capability.": "开篇以 AI 协助证明黎曼猜想的叙述引出讨论，并肯定解决困难问题所体现的能力。",
+        "What matters in a new setting?": "新情境中什么最关键",
+        "The author proposes a broader measure of intelligence: identify decisive factors in unfamiliar situations, adapt an approach, and turn discoveries into useful knowledge.": "作者提出更广的智能衡量标准：在陌生情境中找出决定性因素，调整解决方法，并把发现转化为有用的知识。",
+        "Treatment and mechanism": "疗效与作用机制",
+        "Effective treatment has immediate value for patients. Understanding how it works can also make future drug development more efficient; the article treats both goals as valuable.": "有效治疗对患者有直接价值。理解其作用机制还可能提高后续药物开发的效率，文章认为这两个目标都值得追求。",
+        "Build on the result": "在成果上继续推进",
+        "Producing one successful result and understanding how to extend it are distinct capabilities. The article uses this distinction to motivate the rest of its argument.": "取得一次成功，与理解如何基于这次成功继续推进，是两种不同的能力。文章以此展开后面的论证。",
+        "Motivate a broader measure": "引出更广的衡量标准",
+        "Require transferable knowledge": "要求知识能够迁移",
+        "Explain long-term value": "说明长期价值",
+        "Learn through play": "在游戏中逐步学习",
+        "The one-player example compares a generic win-rate recommendation with a training plan adapted to a player’s current control and goals.": "单人对战的例子比较了通用胜率建议与训练计划；后者围绕玩家当前的操作能力和长期目标进行调整。",
+        "Three buffs: A, B, C": "三种增益：A、B、C",
+        "Both players can move, attack, and dodge cast-time skills. A sets health to 200%, B sets attack power to 300%, and C sets movement speed to 400%.": "双方都能移动、攻击和躲避需要施法时间的技能。A 把生命值提高到 200%，B 把攻击力提高到 300%，C 把移动速度提高到 400%。",
+        "High win rate, poor fit": "高胜率也可能不适合",
+        "In the example, AI recommends C from aggregate win rates. The player cannot control the speed, loses matches, and receives changing suggestions without an understandable learning plan.": "例子中的 AI 根据总体胜率推荐 C。玩家无法控制过快的移动速度，连续失利后得到反复变化的建议，却没有获得容易理解的学习计划。",
+        "Grow into a strong player": "成长为更强的玩家",
+        "The author first identifies the real goal: improve as a player and enjoy the game. Difficulty controlling C reveals a current skill constraint.": "作者先明确真正的目标：提升水平并享受游戏。难以控制 C 的速度，揭示了玩家当前操作能力的限制。",
+        "A: survive and practice": "A：生存并练习操作",
+        "Extra health allows more mistakes while learning control and dodging. The proposed next step depends on observed improvement.": "额外生命值提供了容错空间，让玩家练习控制角色和躲避技能。后续选择取决于实际进步。",
+        "B: land reliable damage": "B：稳定命中并输出",
+        "Once dodging improves and health remains high, the author switches to B. Reliable attack accuracy turns the additional attack power into useful damage.": "当躲避能力提升、生命值经常保持较高时，作者转用 B。稳定的命中能力让额外攻击力转化为有效输出。",
+        "C: strike and retreat": "C：快速进攻与撤退",
+        "With improved control, the player returns to C, casts a skill, and retreats quickly. The intended AI assistant would plan and revise this progression through experimentation.": "操作熟练后，玩家重新选择 C，快速施放技能并撤退。作者期待 AI 能根据实验和反馈规划、调整这一成长过程。",
+        "Supply the available choices": "提供可选方案",
+        "Expose the player’s constraint": "暴露玩家当前的限制",
+        "Choose a useful practice stage": "选择合适的练习阶段",
+        "Advance when dodging improves": "躲避熟练后推进",
+        "Use better control": "利用提升后的操作能力",
+        "Revise through experimentation": "通过实验继续调整",
+        "Test judgment in a simple game": "用简单游戏检验判断",
+        "Test adaptable judgment": "检验适应性判断",
+        "Coordinate before choosing": "先看协作再选策略",
+        "In the five-versus-five version, the author makes communication and team skill the first criteria for choosing buffs and tactics.": "在五对五版本中，作者把沟通能力与队伍水平放在首位，再据此选择增益和战术。",
+        "Can the team coordinate?": "队伍能否协调行动",
+        "Before choosing A, B, or C, determine who can communicate in real time, whether players follow calls, and how skilled the team is.": "选择 A、B 或 C 之前，先确定哪些成员能实时沟通、大家是否听从指挥，以及队伍的操作水平。",
+        "No communication: skilled C": "无沟通：熟练者选 C",
+        "For sufficiently skilled players without real-time communication, the author proposes C to use individual mobility and control.": "对于操作足够熟练、但缺乏实时沟通的玩家，作者建议用 C 发挥个人机动性和操作优势。",
+        "Strong coordination: team C": "强协作：全队使用 C",
+        "When everyone is skilled and follows team calls, the proposed tactic is to rush together, focus one target, secure a kill, and retreat quickly.": "当全员熟练且能统一行动时，作者提出全队快速进场、集火一个目标、完成击杀后迅速撤退。",
+        "Partial coordination: B": "部分协作：优先选 B",
+        "When only two or three teammates communicate and overall skill is limited, the author prioritizes B for more consistent focused damage.": "当只有两三人能沟通、队伍整体水平有限时，作者优先考虑 B，以便更稳定地集火输出。",
+        "Adjust roles and opponents": "根据角色与对手调整",
+        "A struggling teammate may use A to absorb damage. Mixed buffs can answer opposing tactics; more complex plans require stronger coordination.": "操作吃力的队友可以用 A 承担伤害；混合增益可以应对对方战术。计划越复杂，对团队协作的要求越高。",
+        "Find the decisive factor": "找出决定性因素",
+        "The author values recognizing communication as the governing constraint, organizing choices around it, and knowing what to test next as conditions change.": "作者看重的是：把沟通识别为主导约束，围绕它组织选择，并在条件变化时知道下一步应测试什么。",
+        "Change the game to teams": "把个人对战改成团队对战",
+        "Choose for individual control": "按个人能力选择",
+        "Enable synchronized tactics": "支持同步行动",
+        "Prioritize reliable focus": "优先保证稳定集火",
+        "Set the complexity of tactics": "决定战术复杂程度",
+        "Organize a conditional strategy": "组织有条件的策略",
+        "Introduce team coordination": "引入团队协作条件",
+        "Make discoveries reusable": "让科研发现能够复用",
+        "The article extends the game example to research: explain how ideas arise, select valuable questions, and reuse mechanisms across later problems.": "文章把游戏中的判断推广到科研：解释想法如何形成，选择有价值的问题，并把机制理解用于后续问题。",
+        "Correct work needs direction": "正确成果也需要方向",
+        "The author argues that technical correctness alone may not guide research. The discussion cites AI-written papers and a release of more than 700 mathematical manuscripts as examples.": "作者认为，技术上正确的成果仍可能无法指导后续研究。文中以 AI 生成论文以及其提到的七百多篇数学手稿为例展开讨论。",
+        "Explain how ideas develop": "解释关键想法的形成",
+        "Researchers need to know how key ideas emerged, how steps were developed, which intuitions guided them, and which parts transfer to other problems.": "研究者需要理解关键想法从何而来、各步骤如何发展、哪些直觉引导了过程，以及哪些部分能迁移到其他问题。",
+        "Choose valuable questions": "选择有价值的研究问题",
+        "Identifying questions that matter and turning results into new directions are additional measures of intelligence in the author’s argument.": "在作者的论证中，识别真正重要的问题、把成果转化为新的研究方向，是衡量智能的另一部分。",
+        "Reuse treatment principles": "复用药物与治疗原理",
+        "The drug example asks how engineering principles and biological mechanisms could support more efficient development across diseases, treatment, and prevention.": "药物例子追问：能否理解开发流程的工程原理和治疗过程的生物机制，从而更高效地支持不同疾病的治疗与预防。",
+        "Apply the criterion to research": "把判断标准用于科研",
+        "Recover useful reasoning": "提炼有用的研究思路",
+        "Guide subsequent discoveries": "指导后续发现",
+        "Generalize the mechanism example": "推广机制理解的例子",
+        "Carry the criterion into science": "把判断标准推广到科学",
+        "Organize work for later": "为后续工作组织成果",
+        "The file-organization analogy shows how an initial investment in clear structure can reduce future distractions and preserve useful work.": "文件整理的类比说明：预先建立清晰结构，可以减少后续分心，并保存已有工作的价值。",
+        "Each task supports the next": "每次工作支持下一步",
+        "The value of engineering, coding, or file organization includes the foundation it creates for future work.": "工程、编程和文件整理的价值，也包括它们为后续工作建立的基础。",
+        "A crowded desktop costs time": "杂乱桌面消耗注意力",
+        "Saving important files on the desktop is convenient initially; as files accumulate, searching and small distractions waste time.": "把重要文件放在桌面最初很方便；随着文件积累，查找和反复分心会不断消耗时间。",
+        "Give folders clear purposes": "让文件夹职责清晰",
+        "Clearly defined folders and subfolders distribute responsibilities and create persistent organization. Frequently used files can remain accessible exceptions.": "职责明确的文件夹及子文件夹形成持续可用的组织方式。经常使用的文件可以作为便于访问的例外。",
+        "Immediate completion scatters work": "只顾当前容易分散成果",
+        "The author observes that assistants may prioritize the current task, take shortcuts under vague instructions, and leave scattered files, tools, and hard-to-read logs.": "作者观察到，助手可能优先完成当前任务，在要求模糊时走捷径，留下分散的文件、工具和难以阅读的日志。",
+        "Connect reuse with everyday work": "把复用联系到日常工作",
+        "Illustrate future costs": "说明未来会付出的成本",
+        "Reduce repeated searching": "减少反复查找",
+        "Reveal a missing work habit": "揭示需要补足的工作习惯",
+        "Build a foundation for later work": "为后续工作建立基础",
+        "Guide AI and protect attention": "引导 AI 并保护注意力",
+        "The article proposes agents plus an environment that guides their work, while emphasizing that automation also needs understandable human interaction.": "文章提出为智能体配套引导其工作的运行环境，同时强调自动化需要让人容易理解和参与。",
+        "Agents plus a guiding environment": "智能体与引导环境",
+        "A harness is an environment that constrains and guides an agent’s behavior. The author supplies a direction while the agent explores the implementation.": "Harness 指约束和引导智能体行为的运行环境。作者提供方向，让智能体开展具体探索。",
+        "Reports must be understandable": "汇报需要容易理解",
+        "Technical jargon, obscure identifiers, and difficult explanations can prevent humans from understanding the underlying logic, even when the assistant follows wording requests.": "术语、晦涩标识和难懂的解释，会妨碍人理解底层逻辑；即便助手遵守措辞要求，问题仍可能存在。",
+        "Preserve time to think": "保留思考关键问题的时间",
+        "AI-written code produces large amounts of context. Decoding reports consumes researchers’ attention and reduces the time available for important questions.": "AI 编写代码会产生大量上下文。理解汇报继续占用研究者的注意力，压缩思考关键问题的时间。",
+        "Guide how work is organized": "引导工作的组织方式",
+        "Require effective human interaction": "需要有效的人机交互",
+        "Explain the attention cost": "说明理解汇报的成本",
+        "Guide the working process": "引导实际工作过程",
+        "Grow knowledge through interaction": "通过交互积累知识",
+        "ExtractStructure is the first step toward a research environment with reusable components, reproducible steps, shared understanding, and accumulated knowledge.": "ExtractStructure 是迈向研究协作环境的第一步：复用组件、重现执行步骤、保持共同理解，并持续积累知识。",
+        "See the whole, expand details": "先看全局，再展开细节",
+        "ExtractStructure turns a paper or repository into an interactive visual structure. Readers start with the overall organization and expand topics to inspect details.": "ExtractStructure 把论文或代码仓库转成可交互结构图。读者先理解整体组织，再展开具体主题查看细节。",
+        "Reuse research components": "复用研究功能组件",
+        "The proposed research harness would reduce distractions and engineering overhead, keep relevant knowledge updated, and integrate reusable functional components.": "设想中的研究协作环境将减少分心和工程负担，持续更新相关知识，并可靠集成可复用的功能组件。",
+        "Make steps reproducible": "让执行步骤可复现",
+        "The first goal is to create execution steps that people can understand and reproduce.": "第一个目标是形成让人能够理解和复现的执行步骤。",
+        "Keep understanding aligned": "保持理解一致",
+        "The second goal is to efficiently align execution steps and reasoning with human understanding throughout the research process.": "第二个目标是在研究过程中，高效地让执行步骤与推理保持和人的理解一致。",
+        "Accumulate reusable knowledge": "积累可复用的知识",
+        "The third goal is for useful knowledge to emerge through interaction and gradually accumulate into datasets that support later work.": "第三个目标是让有用知识在交互中产生，并逐渐积累成能够支持后续工作的数据集。",
+        "Motivate a visual overview": "引出可视化概览",
+        "Start a broader research environment": "迈向更完整的研究环境",
+        "Produce understandable steps": "形成可理解的步骤",
+        "Maintain shared understanding": "维持共同理解",
+        "Preserve knowledge from interaction": "保存交互中形成的知识",
+        "Make interaction easier to follow": "让交互更容易理解",
+        "Understand how AI uses knowledge": "理解 AI 如何运用知识",
+        "The final section argues that organizing external knowledge is an intermediate step toward understandable, verifiable, and controllable model behavior.": "最后一节认为，组织外部知识是中间步骤；最终还需要让模型行为能够被理解、验证和控制。",
+        "Documentation has limits": "文档仍有局限",
+        "Systematic records do not guarantee that external knowledge will influence model behavior as intended. The article treats the proposed harness as an intermediate step.": "系统记录文档，并不能保证外部知识按预期影响模型行为。文章因此把设想中的协作环境视为中间步骤。",
+        "Explanations may miss decisions": "解释未必反映真实决策",
+        "A chain of thought or summary may not faithfully describe the model’s actual decision process, making it difficult to verify how contextual knowledge is used.": "思维链或摘要未必忠实描述模型真实的决策过程，因此难以仅凭这些说明验证模型如何使用上下文知识。",
+        "Study neurons and circuits": "研究神经元与回路",
+        "The author supports research into internal mechanisms, including neurons and circuits, while recognizing that sufficiently powerful tools are still needed.": "作者支持研究神经元、回路等内部机制，同时认为这一方向仍需要更有力的研究工具。",
+        "Weights and context": "权重中的知识与上下文",
+        "The author distinguishes knowledge incorporated into model weights from knowledge supplied in context, and expresses the belief that the former may offer more reliable influence over internal behavior.": "作者区分写入模型权重的知识与通过上下文提供的知识，并表达其看法：前者可能为可靠影响模型内部行为提供更好的路径。",
+        "Understand, verify, control": "理解、验证并控制行为",
+        "The stated long-term goal is to integrate knowledge into model behavior in ways humans can understand, verify, and control.": "文章提出的长期目标，是以人能够理解、验证和控制的方式，把知识整合进模型行为。",
+        "Make knowledge easier to share": "让知识更容易交流与积累",
+        "Efficient exchange between humans and AI could also improve communication among people and among AI systems, making each task a foundation for later progress.": "高效的人机信息交流，也可能改善人与人、AI 与 AI 之间的沟通，使每次工作成为后续进步的基础。",
+        "Ask how knowledge affects behavior": "追问知识如何影响行为",
+        "Expose a verification problem": "提出验证问题",
+        "Motivate internal study": "推动内部机制研究",
+        "Compare ways to supply knowledge": "比较提供知识的方式",
+        "Seek verifiable mechanisms": "寻找可验证的机制",
+        "Seek reliable behavioral influence": "追求可靠影响行为",
+        "Support cumulative progress": "支持持续积累与进步",
+        "Connect records with behavior": "把知识记录联系到模型行为",
+        "Collaborative AI: Build knowledge for what comes next": "协作式 AI：为后续工作积累知识",
+        "The full supplied essay, including individual and team game examples, research, collaboration, and model understanding.": "用户提供的完整文章，覆盖个人与团队游戏、科研、人机协作，以及对模型的理解。"
+      }
+    }
+  }
+}

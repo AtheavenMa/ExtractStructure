@@ -18,6 +18,7 @@
 
 - [GPT 代码结构图](https://atheavenma.github.io/ExtractStructure/examples/gpt-code-structure.html)：查看 GPT 模型代码的结构。
 - [《Attention Is All You Need》论文结构图](https://atheavenma.github.io/ExtractStructure/examples/attention-is-all-you-need-paper-structure.html)：查看论文的主要内容及其关系。
+- [《协作式 AI：为后续工作积累知识》文章结构图](https://atheavenma.github.io/ExtractStructure/examples/collaborative-ai-article-structure.html#lang=zh)：从游戏策略、知识复用，展开到人机协作与模型理解。[英文原文](assets/articles/collaborative-ai.md) · [assets 中的网页](assets/articles/collaborative-ai-article-structure.html)。
 
 点击上面的链接即可直接打开交互页面。每个示例的独立 HTML 文件也保存在 [`examples/`](examples/) 中，可下载后离线使用。
 

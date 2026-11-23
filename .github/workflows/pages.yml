@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - "examples/**"
+      - "assets/articles/**"
       - "docs/index.html"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -29,6 +30,8 @@ jobs:
         run: |
           mkdir -p _site/examples
           cp examples/*.html _site/examples/
+          mkdir -p _site/assets/articles
+          cp assets/articles/* _site/assets/articles/
           cp docs/index.html _site/index.html
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3

@@ -18,8 +18,9 @@ An Agent Skill that turns documents and code repositories into interactive struc
 
 - [GPT code structure map](https://atheavenma.github.io/ExtractStructure/examples/gpt-code-structure.html): Explore the structure of GPT model code.
 - [Attention Is All You Need paper structure map](https://atheavenma.github.io/ExtractStructure/examples/attention-is-all-you-need-paper-structure.html): Explore the paper's main ideas and their relationships.
+- [Collaborative AI article structure map](https://atheavenma.github.io/ExtractStructure/examples/collaborative-ai-article-structure.html): Explore the argument from game strategy and reusable knowledge to human–AI collaboration and model understanding. [Original article](assets/articles/collaborative-ai.md) · [HTML in assets](assets/articles/collaborative-ai-article-structure.html).
 
-Click either link to open the interactive page directly in your browser. Each example is also available as a self-contained HTML file in [`examples/`](examples/) for offline use.
+Click any link to open its interactive page directly in your browser. Each example is also available as a self-contained HTML file in [`examples/`](examples/) for offline use.
 
 ## Install
 
